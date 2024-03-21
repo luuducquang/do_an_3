@@ -1,0 +1,25 @@
+.image-btn{
+    display: none;
+}
+
+.image:hover .image-btn{
+    display: block;
+}
+
+.image{ 
+    
+    width: 75%;
+    height: 80%;
+    margin: 0 auto;
+    position: relative;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.image img{
+    width: 100%;
+    margin: 3% auto;
+    margin-top: 85px;
+    transition: all 1s linear;
+    
+}

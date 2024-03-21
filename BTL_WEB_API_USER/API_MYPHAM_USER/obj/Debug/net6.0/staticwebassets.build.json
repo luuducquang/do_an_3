@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "gnqBdOpPpuMLWR5IIGzt7B2j07oLpvlL2fBHgKxKYcw=",
+  "Source": "API_MYPHAM_USER",
+  "BasePath": "_content/API_MYPHAM_USER",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "API_MYPHAM_USER\\wwwroot",
+      "Source": "API_MYPHAM_USER",
+      "ContentRoot": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\",
+      "BasePath": "_content/API_MYPHAM_USER",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}

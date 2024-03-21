@@ -1,0 +1,197 @@
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import classNames from "classnames/bind";
+
+import styles from "./Category.module.scss";
+import { FaShop } from "react-icons/fa6";
+import { FaEye, FaLongArrowAltRight, FaShippingFast, FaStar } from "react-icons/fa";
+import { apiImage } from "../../constant/api";
+
+const cx = classNames.bind(styles);
+
+type NewsParams = {
+    page: string;
+    nameCategory: any;
+};
+
+function Category() {
+    const [listProduct, setListproduct] = useState([]);
+    const { page, nameCategory } = useParams<NewsParams>();
+
+    const [data, setData] = useState([]);
+    const datas = {
+        page: "1",
+        pageSize: "10",
+        TenDanhMuc: nameCategory,
+    };
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.post(
+                "https://localhost:44365/api/SanPham/search-sanpham",
+                datas
+            );
+            setData(response.data.data);
+            console.log(response.data.data);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    return (
+        <div style={{ marginTop: 85 }} className={cx("content")}>
+            <div className={cx("cleanser")}>
+                <div style={{ marginTop: 10 }} className={cx("type")}>
+                    <Link to="/">Trang chủ</Link>
+                    <FaLongArrowAltRight className={cx("arrow-item")} />
+                    <Link to={`/category/1/${nameCategory}`}>
+                        {nameCategory}
+                    </Link>
+                </div>
+                <div className={cx("searchCategory")}>
+                    <div className={cx("searchPriceAbout")}>
+                        <form action="">
+                            <label style={{ color: "gray" }}>Khoảng giá</label>
+                            <input
+                                className={cx("startPrice")}
+                                type="text"
+                                name=""
+                                id=""
+                            />
+                            <label>-</label>
+                            <input
+                                className={cx("endPrice")}
+                                type="text"
+                                name=""
+                                id=""
+                            />
+                            <button>Tìm kiếm</button>
+                        </form>
+                        <a
+                            href="category/1/{{tendanhmucsearch}}"
+                            className={cx("Defaut")}
+                        >
+                            Mới nhất
+                        </a>
+                        <a
+                            href="category/1/{{tendanhmucsearch}}/selling"
+                            ng-click="selling()"
+                            className={cx("Defaut")}
+                        >
+                            Bán chạy
+                        </a>
+                        <a
+                            href="category/1/{{tendanhmucsearch}}/view"
+                            className={cx("Defaut")}
+                        >
+                            Lượt xem
+                        </a>
+                        <a
+                            href="category/1/{{tendanhmucsearch}}/up"
+                            className={cx("searchLowToHigh")}
+                        >
+                            Giá từ thấp đến cao
+                        </a>
+                        <a
+                            href="category/1/{{tendanhmucsearch}}/down"
+                            className={cx("searchHighToLow")}
+                        >
+                            Giá từ cao đến thấp
+                        </a>
+                    </div>
+                </div>
+                {data.map((value: any, index: any) => {
+                    return (
+                        <div key={index} className={cx("home-product-item")}>
+                        <a
+                            className={cx("linkproduct")}
+                            href={"/detail/" + value.maSanPham}
+                        >
+                            <div className={cx("home-product-item_img")}>
+                                <img
+                                    style={{ minHeight: 200, minWidth: 100 }}
+                                    src={apiImage + value.anhDaiDien}
+                                    alt=""
+                                />
+                            </div>
+                            <h4 className={cx("home-product-item_name")}>
+                                {value.tenSanPham}
+                            </h4>
+                            <span className={cx("decrip-item")}>{value.moTa}</span>
+                        </a>
+                        <span className={cx("sale-up")}>
+                            {(100 - (value.giaGiam / value.gia) * 100).toFixed(
+                                0
+                            )}{" "}
+                            <sup>%</sup>
+                            <div>Giảm</div>
+                        </span>
+                        <div className={cx("home-product-item_price")}>
+                            <span className={cx("home-product-item_price_current")}>
+                                {value.giaGiam.toLocaleString("DE-de")}
+                                <sup>đ</sup>
+                            </span>
+                            <span className={cx("home-product-item_price_old")}>
+                                {value.gia.toLocaleString("DE-de")}
+                                <sup>đ</sup>
+                            </span>
+                        </div>
+                        <div className={cx("home-icon-recommend")}>
+                            {value.danhGia > 0 ? (
+                                <>
+                                    <span>
+                                        {value.danhGia > 0
+                                            ? value.danhGia.toFixed(1)
+                                            : ""}
+                                    </span>
+                                    <FaStar className={cx("star-gold")} />
+
+                                    <span className={cx("m03")}>|</span>
+                                </>
+                            ) : (
+                                ""
+                            )}
+                            <span title="Đã bán">
+                                <FaShop className={cx("mtop3")} />
+                            </span>
+                            <span title="Đã bán" className={cx("amount-product")}>
+                                {value.luotBan}
+                            </span>
+                            <span className={cx("fa-solid fa-truck-fast free-ship")} />
+                            <FaShippingFast className={cx("free-ship")} />
+                        </div>
+                        <div className={cx("view")}>
+                            <FaEye className={cx("mr3")} />
+                            {value.luotXem.toLocaleString("DE-de")}
+                        </div>
+                        <div className={cx("country")}>{value.xuatXu}</div>
+                    </div>
+                    );
+                })}
+            </div>
+            <div className={cx("NonOptionProduct")}>
+                <div className={cx("nonProduct")}>
+                    <div className={cx("showNonProduct")}>
+                        <i className={cx("fa-regular fa-face-smile")} />
+                    </div>
+                </div>
+                <div className={cx("optionNonProduct")}>
+                    <p>
+                        Không có sản phẩm nào phù hợp với điều kiện lọc của bạn.
+                    </p>
+                    <p>Bạn thử tắt điều kiện lọc và tìm lại nhé!</p>
+                    <div className={cx("delOption")}>
+                        <button ng-click="delOption()">Xoá bộ lọc</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default Category;

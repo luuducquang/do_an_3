@@ -1,0 +1,23 @@
+.banner_right{
+    position: fixed;
+    top: 85px;
+    width: 12.4%;
+    right: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    background-color: var(--color-bgc);
+}
+
+.banner_right::-webkit-scrollbar { 
+    width: 0 !important;
+    display: none; 
+}
+
+.banner_right img:hover{
+    cursor: pointer;
+    border: 1px solid #888888;
+}
+
+.banner_right img{
+    width: 100%;    
+}

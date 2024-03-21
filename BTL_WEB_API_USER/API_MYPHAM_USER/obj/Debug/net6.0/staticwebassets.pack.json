@@ -1,0 +1,941 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\1.webp",
+      "PackagePath": "staticwebassets\\img\\1.webp"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\15434140675872_svr--logo-ok2.png",
+      "PackagePath": "staticwebassets\\img\\15434140675872_svr--logo-ok2.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\1606717542-poster-my-pham-2.jpg",
+      "PackagePath": "staticwebassets\\img\\1606717542-poster-my-pham-2.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\1620325-new-logo-simple.avif",
+      "PackagePath": "staticwebassets\\img\\1620325-new-logo-simple.avif"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\2.jpg",
+      "PackagePath": "staticwebassets\\img\\2.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\2000x360 SP_update.webp",
+      "PackagePath": "staticwebassets\\img\\2000x360 SP_update.webp"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\2164154-all-products-flatlay-simple-skincare-products-1880x1100p.jpg.rendition.1700.650.avif",
+      "PackagePath": "staticwebassets\\img\\2164154-all-products-flatlay-simple-skincare-products-1880x1100p.jpg.rendition.1700.650.avif"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\3.jpg",
+      "PackagePath": "staticwebassets\\img\\3.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\4.jpg",
+      "PackagePath": "staticwebassets\\img\\4.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\5.webp",
+      "PackagePath": "staticwebassets\\img\\5.webp"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\65ppIkbEsTQJ2.jpg",
+      "PackagePath": "staticwebassets\\img\\65ppIkbEsTQJ2.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\Clinique-Moisture-Surge1_1595859472.jpg",
+      "PackagePath": "staticwebassets\\img\\Clinique-Moisture-Surge1_1595859472.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\Cosrx-Viet-Nam-Logo.png",
+      "PackagePath": "staticwebassets\\img\\Cosrx-Viet-Nam-Logo.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\Estée Lauder.jpg",
+      "PackagePath": "staticwebassets\\img\\Estée Lauder.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\Lancôme.jpg",
+      "PackagePath": "staticwebassets\\img\\Lancôme.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\Loreal hong da kho.jpg",
+      "PackagePath": "staticwebassets\\img\\Loreal hong da kho.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\Poster quảng cáo khai trương.jpg",
+      "PackagePath": "staticwebassets\\img\\Poster quảng cáo khai trương.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\Screenshot (2).png",
+      "PackagePath": "staticwebassets\\img\\Screenshot (2).png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\Screenshot (6) - Copy.png",
+      "PackagePath": "staticwebassets\\img\\Screenshot (6) - Copy.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\Shiseido.jpg",
+      "PackagePath": "staticwebassets\\img\\Shiseido.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\WebsiteTemplateIcon.png",
+      "PackagePath": "staticwebassets\\img\\WebsiteTemplateIcon.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\anh fb 11.jpg",
+      "PackagePath": "staticwebassets\\img\\anh fb 11.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\anh fb.png",
+      "PackagePath": "staticwebassets\\img\\anh fb.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\anh nen doi.jpg",
+      "PackagePath": "staticwebassets\\img\\anh nen doi.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\artboard-1_1683097126.png",
+      "PackagePath": "staticwebassets\\img\\artboard-1_1683097126.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\b5 godndoc.jpg",
+      "PackagePath": "staticwebassets\\img\\b5 godndoc.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\b5 mediphar.jpg",
+      "PackagePath": "staticwebassets\\img\\b5 mediphar.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\banner1.jpg",
+      "PackagePath": "staticwebassets\\img\\banner1.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\banner2.jpg",
+      "PackagePath": "staticwebassets\\img\\banner2.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\banner3.jpg",
+      "PackagePath": "staticwebassets\\img\\banner3.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\bannerdoc.jpg",
+      "PackagePath": "staticwebassets\\img\\bannerdoc.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\bioderma hong.jpg",
+      "PackagePath": "staticwebassets\\img\\bioderma hong.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\biore.jpg",
+      "PackagePath": "staticwebassets\\img\\biore.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\centella.jpg",
+      "PackagePath": "staticwebassets\\img\\centella.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\centella.webp",
+      "PackagePath": "staticwebassets\\img\\centella.webp"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\cerave-renewing-sa-face-cleanser-for-normal-skin.png",
+      "PackagePath": "staticwebassets\\img\\cerave-renewing-sa-face-cleanser-for-normal-skin.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\cerave.jpg",
+      "PackagePath": "staticwebassets\\img\\cerave.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\cetaphil.jpg",
+      "PackagePath": "staticwebassets\\img\\cetaphil.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\cocoon.jpg",
+      "PackagePath": "staticwebassets\\img\\cocoon.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\cosrx.webp",
+      "PackagePath": "staticwebassets\\img\\cosrx.webp"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\cv---song-hanh---svr-sebiaclear-gel-moussant-400ml-1672387396_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\cv---song-hanh---svr-sebiaclear-gel-moussant-400ml-1672387396_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\dior-beauty.avif",
+      "PackagePath": "staticwebassets\\img\\dior-beauty.avif"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\duong-chat-khoang-co-dac-vichy-mineral-89-phuc-hoi-bao-ve-da-50ml-1672909349_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\duong-chat-khoang-co-dac-vichy-mineral-89-phuc-hoi-bao-ve-da-50ml-1672909349_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\duong-chat-khoang-co-dac-vichy-mineral-89-phuc-hoi-bao-ve-da-50ml-1695027961_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\duong-chat-khoang-co-dac-vichy-mineral-89-phuc-hoi-bao-ve-da-50ml-1695027961_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\e100.jpg",
+      "PackagePath": "staticwebassets\\img\\e100.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\esunvy.jpg",
+      "PackagePath": "staticwebassets\\img\\esunvy.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-200400012-1692774853_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-200400012-1692774853_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-201600019-1695022823_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-201600019-1695022823_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-201600182-1695028665_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-201600182-1695028665_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-204100003-1700039895_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-204100003-1700039895_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-204900004-1700192522_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-204900004-1700192522_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-204900089-1700120327_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-204900089-1700120327_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-211300002-1695109099_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-211300002-1695109099_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-224100008-1700551273_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-224100008-1700551273_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-253900003-1695975260_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-253900003-1695975260_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-253900006-1695973833_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-253900006-1695973833_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-293500050-1696655002_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-293500050-1696655002_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-318900002-1696305461_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-318900002-1696305461_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-318900011-1696306306_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-318900011-1696306306_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-318900012-1696306376_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-318900012-1696306376_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-422200152-1695796939_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-422200152-1695796939_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-422200236-1695637682_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-422200236-1695637682_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-422203282-1698828362_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-422203282-1698828362_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-422206248-1695108182_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-422206248-1695108182_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-422206646-1695784319_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-422206646-1695784319_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-422207844-1695286397_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-422207844-1695286397_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-422208913-1696227707_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-422208913-1696227707_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-bo-doi-svr-lam-sach-cho-da-dau-mun-1664168117_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-bo-doi-svr-lam-sach-cho-da-dau-mun-1664168117_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-gel-rua-mat-bioderma-danh-cho-da-dau-hon-hop-500ml-1690273994_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-gel-rua-mat-bioderma-danh-cho-da-dau-hon-hop-500ml-1690273994_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-gel-rua-mat-cosrx-tram-tra-0-5-bha-co-do-ph-thap-150ml-1693822877_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-gel-rua-mat-cosrx-tram-tra-0-5-bha-co-do-ph-thap-150ml-1693822877_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-kem-chong-nang-la-roche-posay-kiem-soat-dau-spf50-50ml-phien-ban-moi-1691995076_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-kem-chong-nang-la-roche-posay-kiem-soat-dau-spf50-50ml-phien-ban-moi-1691995076_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-nuoc-hoa-hong-some-by-mi-cho-da-mun-150ml-1694839439_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-nuoc-hoa-hong-some-by-mi-cho-da-mun-150ml-1694839439_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-sua-chong-nang-anessa-duong-da-kiem-dau-bao-ve-hoan-hao-60ml-1689836804_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-sua-chong-nang-anessa-duong-da-kiem-dau-bao-ve-hoan-hao-60ml-1689836804_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\facebook-dynamic-tinh-chat-goodndoc-duong-am-ho-tro-phuc-hoi-da-30ml-1693823891_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\facebook-dynamic-tinh-chat-goodndoc-duong-am-ho-tro-phuc-hoi-da-30ml-1693823891_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\fix derma shadow spf50+ cream.jpg",
+      "PackagePath": "staticwebassets\\img\\fix derma shadow spf50+ cream.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\gariner.webp",
+      "PackagePath": "staticwebassets\\img\\gariner.webp"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\gel-rua-mat-bioderma-danh-cho-da-dau-hon-hop-500ml-1-1677731293_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\gel-rua-mat-bioderma-danh-cho-da-dau-hon-hop-500ml-1-1677731293_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\gel-rua-mat-bioderma-danh-cho-da-dau-hon-hop-500ml-1677731292_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\gel-rua-mat-bioderma-danh-cho-da-dau-hon-hop-500ml-1677731292_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\gel-rua-mat-bioderma-danh-cho-da-dau-hon-hop-500ml-2-1677731293_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\gel-rua-mat-bioderma-danh-cho-da-dau-hon-hop-500ml-2-1677731293_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\gel-rua-mat-cosrx-tram-tra-0-5-bha-co-do-ph-thap-150ml-2_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\gel-rua-mat-cosrx-tram-tra-0-5-bha-co-do-ph-thap-150ml-2_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\gel-rua-mat-cosrx-tram-tra-0-5-bha-co-do-ph-thap-150ml-3_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\gel-rua-mat-cosrx-tram-tra-0-5-bha-co-do-ph-thap-150ml-3_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\gel-rua-mat-danh-cho-da-nhay-cam-simple-150ml-1-1673580537_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\gel-rua-mat-danh-cho-da-nhay-cam-simple-150ml-1-1673580537_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\gel-rua-mat-danh-cho-da-nhay-cam-simple-150ml-1-1678183280_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\gel-rua-mat-danh-cho-da-nhay-cam-simple-150ml-1-1678183280_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\gel-rua-mat-danh-cho-da-nhay-cam-simple-150ml-6-1673580539_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\gel-rua-mat-danh-cho-da-nhay-cam-simple-150ml-6-1673580539_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\gel-rua-mat-la-roche-posay-cho-da-dau-nhay-cam-400ml-1671700144_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\gel-rua-mat-la-roche-posay-cho-da-dau-nhay-cam-400ml-1671700144_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\gel-rua-mat-la-roche-posay-cho-da-dau-nhay-cam-400ml-4-1663661433_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\gel-rua-mat-la-roche-posay-cho-da-dau-nhay-cam-400ml-4-1663661433_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\gel-rua-mat-svr-khong-chua-xa-phong-cho-da-dau-400ml-1-1696654299_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\gel-rua-mat-svr-khong-chua-xa-phong-cho-da-dau-400ml-1-1696654299_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\gel-rua-mat-svr-khong-chua-xa-phong-cho-da-dau-400ml-doi-mau-1649227920_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\gel-rua-mat-svr-khong-chua-xa-phong-cho-da-dau-400ml-doi-mau-1649227920_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\google-shopping-bo-doi-svr-lam-sach-cho-da-dau-mun-1664168172_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\google-shopping-bo-doi-svr-lam-sach-cho-da-dau-mun-1664168172_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\google-shopping-gel-rua-mat-svr-khong-chua-xa-phong-cho-da-dau-400ml-1-1649227732_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\google-shopping-gel-rua-mat-svr-khong-chua-xa-phong-cho-da-dau-400ml-1-1649227732_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\google-shopping-kem-chong-nang-eucerin-cho-da-nhon-mun-50ml-1658221792_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\google-shopping-kem-chong-nang-eucerin-cho-da-nhon-mun-50ml-1658221792_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\google-shopping-kem-chong-nang-skin1004-chiet-xuat-rau-ma-spf50-pa-50ml-1_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\google-shopping-kem-chong-nang-skin1004-chiet-xuat-rau-ma-spf50-pa-50ml-1_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\google-shopping-nuoc-hoa-hong-bioderma-danh-cho-da-nhay-cam-250ml-1_1_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\google-shopping-nuoc-hoa-hong-bioderma-danh-cho-da-nhay-cam-250ml-1_1_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\google-shopping-nuoc-hoa-hong-dr-pepti-duong-da-cang-bong-180ml-1655952167_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\google-shopping-nuoc-hoa-hong-dr-pepti-duong-da-cang-bong-180ml-1655952167_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\google-shopping-sua-rua-mat-dang-gel-vichy-lam-sach-sau-cho-da-nhon-mun-400ml_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\google-shopping-sua-rua-mat-dang-gel-vichy-lam-sach-sau-cho-da-nhon-mun-400ml_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\google-shopping-tinh-chat-paula-s-choice-se-khit-lo-chan-long-toi-uu-20ml_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\google-shopping-tinh-chat-paula-s-choice-se-khit-lo-chan-long-toi-uu-20ml_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\google-shopping-tinh-chat-svr-lam-giam-mun-mo-nam-lam-mem-min-da-30ml-1672391841_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\google-shopping-tinh-chat-svr-lam-giam-mun-mo-nam-lam-mem-min-da-30ml-1672391841_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\ha b5 bora.webp",
+      "PackagePath": "staticwebassets\\img\\ha b5 bora.webp"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\ha balance.jpg",
+      "PackagePath": "staticwebassets\\img\\ha balance.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\hoa cuc velycell calendula soothing.jpg",
+      "PackagePath": "staticwebassets\\img\\hoa cuc velycell calendula soothing.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\image spf50+.jpg",
+      "PackagePath": "staticwebassets\\img\\image spf50+.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\innisfree spf50+ pa++++.webp",
+      "PackagePath": "staticwebassets\\img\\innisfree spf50+ pa++++.webp"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\innisfree tra xanh.jpg",
+      "PackagePath": "staticwebassets\\img\\innisfree tra xanh.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\kcn-innisfree-intensive-long-lasting-sunscreen-spf50-50ml.jpg",
+      "PackagePath": "staticwebassets\\img\\kcn-innisfree-intensive-long-lasting-sunscreen-spf50-50ml.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\kem-chong-nang-eucerin-cho-da-nhon-mun-50ml-1-1658227880_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\kem-chong-nang-eucerin-cho-da-nhon-mun-50ml-1-1658227880_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\kem-chong-nang-eucerin-cho-da-nhon-mun-50ml-1_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\kem-chong-nang-eucerin-cho-da-nhon-mun-50ml-1_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\kem-chong-nang-la-roche-posay-kiem-soat-dau-spf50-50ml-phien-ban-moi-1-1691995541_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\kem-chong-nang-la-roche-posay-kiem-soat-dau-spf50-50ml-phien-ban-moi-1-1691995541_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\kem-chong-nang-la-roche-posay-kiem-soat-dau-spf50-50ml-phien-ban-moi-1691995541_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\kem-chong-nang-la-roche-posay-kiem-soat-dau-spf50-50ml-phien-ban-moi-1691995541_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\kem-chong-nang-la-roche-posay-kiem-soat-dau-spf50-50ml-phien-ban-moi-2-1691995540_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\kem-chong-nang-la-roche-posay-kiem-soat-dau-spf50-50ml-phien-ban-moi-2-1691995540_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\kem-chong-nang-martiderm-pho-rong-toan-dien-spf50-40ml_1_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\kem-chong-nang-martiderm-pho-rong-toan-dien-spf50-40ml_1_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\kem-chong-nang-martiderm-pho-rong-toan-dien-spf50-40ml_2_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\kem-chong-nang-martiderm-pho-rong-toan-dien-spf50-40ml_2_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\kem-chong-nang-martiderm-pho-rong-toan-dien-spf50-40ml_4_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\kem-chong-nang-martiderm-pho-rong-toan-dien-spf50-40ml_4_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\kem-chong-nang-skin1004-chiet-xuat-rau-ma-spf50-pa-50ml-7_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\kem-chong-nang-skin1004-chiet-xuat-rau-ma-spf50-pa-50ml-7_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\kem-chong-nang-skin1004-cho-da-nhay-cam-spf-50-50ml-1_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\kem-chong-nang-skin1004-cho-da-nhay-cam-spf-50-50ml-1_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\kem-chong-nang-skin1004-cho-da-nhay-cam-spf-50-50ml_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\kem-chong-nang-skin1004-cho-da-nhay-cam-spf-50-50ml_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\kem-rua-mat-hada-labo-duong-sang-da-80g-1-1679279947_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\kem-rua-mat-hada-labo-duong-sang-da-80g-1-1679279947_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\kem-rua-mat-hada-labo-duong-sang-da-80g-2-1679279947_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\kem-rua-mat-hada-labo-duong-sang-da-80g-2-1679279947_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\kem-rua-mat-hada-labo-duong-sang-da-80g-3-1679279948_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\kem-rua-mat-hada-labo-duong-sang-da-80g-3-1679279948_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\kem-rua-mat-hada-labo-duong-sang-da-80g-4-1679279948_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\kem-rua-mat-hada-labo-duong-sang-da-80g-4-1679279948_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\klairs.jpg",
+      "PackagePath": "staticwebassets\\img\\klairs.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\laroche da nhay cam.jpg",
+      "PackagePath": "staticwebassets\\img\\laroche da nhay cam.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\laroche spf50+.jpg",
+      "PackagePath": "staticwebassets\\img\\laroche spf50+.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\laroche.jpg",
+      "PackagePath": "staticwebassets\\img\\laroche.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\laroche.png",
+      "PackagePath": "staticwebassets\\img\\laroche.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\logo-hada-labo-xanh.png",
+      "PackagePath": "staticwebassets\\img\\logo-hada-labo-xanh.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\logo-klairs.png",
+      "PackagePath": "staticwebassets\\img\\logo-klairs.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\logo-paulachoice.png",
+      "PackagePath": "staticwebassets\\img\\logo-paulachoice.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\logo-skin1004.png",
+      "PackagePath": "staticwebassets\\img\\logo-skin1004.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\logo.jpg",
+      "PackagePath": "staticwebassets\\img\\logo.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\logo.png",
+      "PackagePath": "staticwebassets\\img\\logo.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\logo_vichy_2-2.png",
+      "PackagePath": "staticwebassets\\img\\logo_vichy_2-2.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\logo_vn.svg",
+      "PackagePath": "staticwebassets\\img\\logo_vn.svg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\loreal xanh nhat.jpg",
+      "PackagePath": "staticwebassets\\img\\loreal xanh nhat.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\loreal.jpg",
+      "PackagePath": "staticwebassets\\img\\loreal.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\mat-sau-gel-rua-mat-cosrx-tram-tra-0-5-bha-co-do-ph-thap-150ml-1695698669_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\mat-sau-gel-rua-mat-cosrx-tram-tra-0-5-bha-co-do-ph-thap-150ml-1695698669_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\mat-sau-sua-rua-mat-cerave-sach-sau-cho-da-thuong-den-da-dau-473ml-1695090634_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\mat-sau-sua-rua-mat-cerave-sach-sau-cho-da-thuong-den-da-dau-473ml-1695090634_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\murad.jpg",
+      "PackagePath": "staticwebassets\\img\\murad.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\neutrogena.webp",
+      "PackagePath": "staticwebassets\\img\\neutrogena.webp"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\neutroskincare-logo-transparent-50-retina.png",
+      "PackagePath": "staticwebassets\\img\\neutroskincare-logo-transparent-50-retina.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\nuoc-hoa-hong-bioderma-danh-cho-da-nhay-cam-250ml-doi-mau-2021_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\nuoc-hoa-hong-bioderma-danh-cho-da-nhay-cam-250ml-doi-mau-2021_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\nuoc-hoa-hong-dr-pepti-duong-da-cang-bong-180ml-1-1651745105_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\nuoc-hoa-hong-dr-pepti-duong-da-cang-bong-180ml-1-1651745105_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\nuoc-hoa-hong-dr-pepti-duong-da-cang-bong-180ml-2-1651745104_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\nuoc-hoa-hong-dr-pepti-duong-da-cang-bong-180ml-2-1651745104_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\nuoc-hoa-hong-dr-pepti-duong-da-cang-bong-180ml-3-1651745104_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\nuoc-hoa-hong-dr-pepti-duong-da-cang-bong-180ml-3-1651745104_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\nuoc-hoa-hong-khong-mui-klairs-danh-cho-da-nhay-cam-180ml-1-1681723599_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\nuoc-hoa-hong-khong-mui-klairs-danh-cho-da-nhay-cam-180ml-1-1681723599_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\nuoc-hoa-hong-khong-mui-klairs-danh-cho-da-nhay-cam-180ml-2-1681723600_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\nuoc-hoa-hong-khong-mui-klairs-danh-cho-da-nhay-cam-180ml-2-1681723600_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\nuoc-hoa-hong-klairs-danh-cho-da-nhay-cam-180ml-1681724593_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\nuoc-hoa-hong-klairs-danh-cho-da-nhay-cam-180ml-1681724593_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\nuoc-hoa-hong-klairs-danh-cho-da-nhay-cam-180ml-2-1681724624_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\nuoc-hoa-hong-klairs-danh-cho-da-nhay-cam-180ml-2-1681724624_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\nuoc-hoa-hong-klairs-danh-cho-da-nhay-cam-180ml-3-1681724625_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\nuoc-hoa-hong-klairs-danh-cho-da-nhay-cam-180ml-3-1681724625_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\nuoc-hoa-hong-simple-danh-cho-da-nhay-cam-200ml-1-1677139614_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\nuoc-hoa-hong-simple-danh-cho-da-nhay-cam-200ml-1-1677139614_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\nuoc-hoa-hong-simple-danh-cho-da-nhay-cam-200ml-2-1677139614_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\nuoc-hoa-hong-simple-danh-cho-da-nhay-cam-200ml-2-1677139614_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\nuoc-hoa-hong-simple-danh-cho-da-nhay-cam-200ml-4-1677139615_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\nuoc-hoa-hong-simple-danh-cho-da-nhay-cam-200ml-4-1677139615_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\nuoc-hoa-hong-some-by-mi-cho-da-mun-150ml-1694839516_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\nuoc-hoa-hong-some-by-mi-cho-da-mun-150ml-1694839516_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\nuoc-hoa-hong-some-by-mi-cho-da-mun-150ml-2-1694839517_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\nuoc-hoa-hong-some-by-mi-cho-da-mun-150ml-2-1694839517_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\oh-oh.jpg",
+      "PackagePath": "staticwebassets\\img\\oh-oh.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\perfect whip.jpg",
+      "PackagePath": "staticwebassets\\img\\perfect whip.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\poster-my-pham1.jpg",
+      "PackagePath": "staticwebassets\\img\\poster-my-pham1.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\poster.jpg",
+      "PackagePath": "staticwebassets\\img\\poster.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\poster2.jpg",
+      "PackagePath": "staticwebassets\\img\\poster2.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\poster3.jpg",
+      "PackagePath": "staticwebassets\\img\\poster3.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\promotions-auto-gel-rua-mat-danh-cho-da-nhay-cam-simple-150ml_aCS18bb5QbK9A9Nk_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\promotions-auto-gel-rua-mat-danh-cho-da-nhay-cam-simple-150ml_aCS18bb5QbK9A9Nk_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\promotions-auto-gel-rua-mat-la-roche-posay-cho-da-dau-nhay-cam-400ml_wRzvzBt28bEwV86s_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\promotions-auto-gel-rua-mat-la-roche-posay-cho-da-dau-nhay-cam-400ml_wRzvzBt28bEwV86s_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\promotions-auto-sua-rua-mat-cerave-sach-sau-cho-da-thuong-den-da-dau-473ml_4pksW3LSWtcbKbav_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\promotions-auto-sua-rua-mat-cerave-sach-sau-cho-da-thuong-den-da-dau-473ml_4pksW3LSWtcbKbav_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\promotions-auto-sua-rua-mat-cetaphil-diu-nhe-khong-xa-phong-500ml-moi_coGCbcu47pvTFnkk_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\promotions-auto-sua-rua-mat-cetaphil-diu-nhe-khong-xa-phong-500ml-moi_coGCbcu47pvTFnkk_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\rsz_1228873144.jpg",
+      "PackagePath": "staticwebassets\\img\\rsz_1228873144.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\serum-l-oreal-paris-glycolic-duong-sang-va-mo-tham-nam-30ml-1-1684989511_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\serum-l-oreal-paris-glycolic-duong-sang-va-mo-tham-nam-30ml-1-1684989511_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\serum-l-oreal-paris-glycolic-duong-sang-va-mo-tham-nam-30ml-1684989510_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\serum-l-oreal-paris-glycolic-duong-sang-va-mo-tham-nam-30ml-1684989510_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\serum-l-oreal-paris-glycolic-duong-sang-va-mo-tham-nam-30ml-2-1684989511_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\serum-l-oreal-paris-glycolic-duong-sang-va-mo-tham-nam-30ml-2-1684989511_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\set-trang-diem-va-duong-da-lancome-2022-beauty-box-blockbuster-skincare-makeup-11-mon-63d49ce05433c-28012023105616.jpg",
+      "PackagePath": "staticwebassets\\img\\set-trang-diem-va-duong-da-lancome-2022-beauty-box-blockbuster-skincare-makeup-11-mon-63d49ce05433c-28012023105616.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\shipped.png",
+      "PackagePath": "staticwebassets\\img\\shipped.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\simple moisturising facial wash.jpg",
+      "PackagePath": "staticwebassets\\img\\simple moisturising facial wash.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\simple refeshing facial.webp",
+      "PackagePath": "staticwebassets\\img\\simple refeshing facial.webp"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\simple.png",
+      "PackagePath": "staticwebassets\\img\\simple.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\skincare+banner.jpg",
+      "PackagePath": "staticwebassets\\img\\skincare+banner.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\skincare.png",
+      "PackagePath": "staticwebassets\\img\\skincare.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\st ives acne control.jpg",
+      "PackagePath": "staticwebassets\\img\\st ives acne control.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\sua-chong-nang-anessa-duong-da-kiem-dau-bao-ve-hoan-hao-60ml-1689836804_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\sua-chong-nang-anessa-duong-da-kiem-dau-bao-ve-hoan-hao-60ml-1689836804_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\sua-rua-mat-cerave-sach-sau-cho-da-thuong-den-da-dau-473ml-1-1660555475_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\sua-rua-mat-cerave-sach-sau-cho-da-thuong-den-da-dau-473ml-1-1660555475_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\sua-rua-mat-cetaphil-diu-nhe-khong-xa-phong-500ml-moi-1-1684727436_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\sua-rua-mat-cetaphil-diu-nhe-khong-xa-phong-500ml-moi-1-1684727436_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\sua-rua-mat-cetaphil-diu-nhe-khong-xa-phong-500ml-moi-2-1684727435_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\sua-rua-mat-cetaphil-diu-nhe-khong-xa-phong-500ml-moi-2-1684727435_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\sua-rua-mat-cetaphil-diu-nhe-khong-xa-phong-500ml-moi-3-1684727435_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\sua-rua-mat-cetaphil-diu-nhe-khong-xa-phong-500ml-moi-3-1684727435_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\sua-rua-mat-dang-gel-vichy-lam-sach-sau-cho-da-nhon-mun-400ml-1695028704_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\sua-rua-mat-dang-gel-vichy-lam-sach-sau-cho-da-nhon-mun-400ml-1695028704_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\sua-rua-mat-simple-kiem-dau-ngua-mun-cho-da-mun-150ml-1-1676456884_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\sua-rua-mat-simple-kiem-dau-ngua-mun-cho-da-mun-150ml-1-1676456884_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\sua-rua-mat-simple-kiem-dau-ngua-mun-cho-da-mun-150ml-1676456883_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\sua-rua-mat-simple-kiem-dau-ngua-mun-cho-da-mun-150ml-1676456883_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\sua-rua-mat-simple-kiem-dau-ngua-mun-cho-da-mun-150ml-4-1676456885_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\sua-rua-mat-simple-kiem-dau-ngua-mun-cho-da-mun-150ml-4-1676456885_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\svr physiopure tonique.jpg",
+      "PackagePath": "staticwebassets\\img\\svr physiopure tonique.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\svr.jpg",
+      "PackagePath": "staticwebassets\\img\\svr.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tem-phu-204900004-16625343102767_img_358x358_843626_fit_center.png",
+      "PackagePath": "staticwebassets\\img\\tem-phu-204900004-16625343102767_img_358x358_843626_fit_center.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tem-phu-gel-rua-mat-cosrx-tram-tra-0-5-bha-co-do-ph-thap-150ml_3_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tem-phu-gel-rua-mat-cosrx-tram-tra-0-5-bha-co-do-ph-thap-150ml_3_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tem-phu-gel-rua-mat-la-roche-posay-danh-cho-da-dau-nhay-cam-200ml-1663663318_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tem-phu-gel-rua-mat-la-roche-posay-danh-cho-da-dau-nhay-cam-200ml-1663663318_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tem-phu-serum-vichy-khoang-phuc-hoi-chuyen-sau-mineral-89-50ml-1663745216_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tem-phu-serum-vichy-khoang-phuc-hoi-chuyen-sau-mineral-89-50ml-1663745216_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tem-phu-sua-rua-mat-cetaphil-diu-nhe-khong-xa-phong-500ml-moi-1663584050_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tem-phu-sua-rua-mat-cetaphil-diu-nhe-khong-xa-phong-500ml-moi-1663584050_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tem-phu-tinh-chat-la-roche-posay-ho-tro-phuc-hoi-da-30ml-1666769612_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tem-phu-tinh-chat-la-roche-posay-ho-tro-phuc-hoi-da-30ml-1666769612_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tem-phu-tinh-chat-rau-ma-skin1004-ho-tro-giam-mun-phuc-hoi-da-100ml-1690184018_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tem-phu-tinh-chat-rau-ma-skin1004-ho-tro-giam-mun-phuc-hoi-da-100ml-1690184018_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tem-phu_422206430-1658483466_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tem-phu_422206430-1658483466_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tem-phu_422208973-1681801240_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tem-phu_422208973-1681801240_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tem-phu_422209345-1665744218_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tem-phu_422209345-1665744218_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tem-phu_422211389-1679718769_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tem-phu_422211389-1679718769_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-garnier-giam-mun-mo-tham-cho-da-dau-mun-30ml-3-1660021004_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-garnier-giam-mun-mo-tham-cho-da-dau-mun-30ml-3-1660021004_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-garnier-giam-mun-mo-tham-cho-da-dau-mun-30ml-4-1660021004_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-garnier-giam-mun-mo-tham-cho-da-dau-mun-30ml-4-1660021004_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-garnier-giam-mun-mo-tham-cho-da-dau-mun-30ml-5-1660021004_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-garnier-giam-mun-mo-tham-cho-da-dau-mun-30ml-5-1660021004_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-garnier-giam-mun-mo-tham-cho-da-dau-mun-30ml-6-1660021004_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-garnier-giam-mun-mo-tham-cho-da-dau-mun-30ml-6-1660021004_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-goodndoc-duong-am-ho-tro-phuc-hoi-da-30ml-2_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-goodndoc-duong-am-ho-tro-phuc-hoi-da-30ml-2_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-goodndoc-duong-am-ho-tro-phuc-hoi-da-30ml-3_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-goodndoc-duong-am-ho-tro-phuc-hoi-da-30ml-3_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-goodndoc-duong-am-ho-tro-phuc-hoi-da-30ml-4_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-goodndoc-duong-am-ho-tro-phuc-hoi-da-30ml-4_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-goodndoc-duong-am-ho-tro-phuc-hoi-da-30ml_doi-mau-2021_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-goodndoc-duong-am-ho-tro-phuc-hoi-da-30ml_doi-mau-2021_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-l-oreal-hyaluronic-acid-cap-am-sang-da-30ml-10_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-l-oreal-hyaluronic-acid-cap-am-sang-da-30ml-10_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-l-oreal-hyaluronic-acid-cap-am-sang-da-30ml-11_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-l-oreal-hyaluronic-acid-cap-am-sang-da-30ml-11_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-l-oreal-hyaluronic-acid-cap-am-sang-da-30ml-9_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-l-oreal-hyaluronic-acid-cap-am-sang-da-30ml-9_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-la-roche-posay-phuc-hoi-do-am-san-chac-da-30ml-1-1663927791_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-la-roche-posay-phuc-hoi-do-am-san-chac-da-30ml-1-1663927791_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-la-roche-posay-phuc-hoi-do-am-san-chac-da-30ml-1663927791_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-la-roche-posay-phuc-hoi-do-am-san-chac-da-30ml-1663927791_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-la-roche-posay-phuc-hoi-do-am-san-chac-da-30ml-2-1663927791_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-la-roche-posay-phuc-hoi-do-am-san-chac-da-30ml-2-1663927791_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-lam-sang-da-klairs-vitamin-c-35ml-1-1681961969_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-lam-sang-da-klairs-vitamin-c-35ml-1-1681961969_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-lam-sang-da-klairs-vitamin-c-35ml-2-1681961970_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-lam-sang-da-klairs-vitamin-c-35ml-2-1681961970_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-oh-oh-duong-sang-da-giam-tham-nam-30ml-1-1681098480_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-oh-oh-duong-sang-da-giam-tham-nam-30ml-1-1681098480_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-oh-oh-duong-sang-da-giam-tham-nam-30ml-3-1681098481_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-oh-oh-duong-sang-da-giam-tham-nam-30ml-3-1681098481_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-oh-oh-duong-sang-da-giam-tham-nam-30ml-4-1681098482_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-oh-oh-duong-sang-da-giam-tham-nam-30ml-4-1681098482_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-paula-s-choice-se-khit-lo-chan-long-toi-uu-20ml-1_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-paula-s-choice-se-khit-lo-chan-long-toi-uu-20ml-1_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-paula-s-choice-se-khit-lo-chan-long-toi-uu-20ml-3_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-paula-s-choice-se-khit-lo-chan-long-toi-uu-20ml-3_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-rau-ma-skin1004-ho-tro-giam-mun-phuc-hoi-da-100ml-3_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-rau-ma-skin1004-ho-tro-giam-mun-phuc-hoi-da-100ml-3_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-rau-ma-skin1004-ho-tro-giam-mun-phuc-hoi-da-100ml-4_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-rau-ma-skin1004-ho-tro-giam-mun-phuc-hoi-da-100ml-4_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-skin1004-rau-ma-giam-mun-phuc-hoi-da-100ml-1-1646014793_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-skin1004-rau-ma-giam-mun-phuc-hoi-da-100ml-1-1646014793_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-svr-lam-giam-mun-mo-nam-lam-mem-min-da-30ml-1-1672391745_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-svr-lam-giam-mun-mo-nam-lam-mem-min-da-30ml-1-1672391745_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\tinh-chat-svr-lam-giam-mun-mo-nam-lam-mem-min-da-30ml-1672391745-1696655014_img_358x358_843626_fit_center.jpg",
+      "PackagePath": "staticwebassets\\img\\tinh-chat-svr-lam-giam-mun-mo-nam-lam-mem-min-da-30ml-1672391745-1696655014_img_358x358_843626_fit_center.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\top_logo.png",
+      "PackagePath": "staticwebassets\\img\\top_logo.png"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\trang-diem-chanel.jpg",
+      "PackagePath": "staticwebassets\\img\\trang-diem-chanel.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\upload\\anh nen doi.jpg",
+      "PackagePath": "staticwebassets\\img\\upload\\anh nen doi.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\user.jpg",
+      "PackagePath": "staticwebassets\\img\\user.jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\wallpaperflare.com_wallpaper (1).jpg",
+      "PackagePath": "staticwebassets\\img\\wallpaperflare.com_wallpaper (1).jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\wallpaperflare.com_wallpaper (2).jpg",
+      "PackagePath": "staticwebassets\\img\\wallpaperflare.com_wallpaper (2).jpg"
+    },
+    {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\BTL_WEB_API_USER\\API_MYPHAM_USER\\wwwroot\\img\\wallpaperflare.com_wallpaper.jpg",
+      "PackagePath": "staticwebassets\\img\\wallpaperflare.com_wallpaper.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.API_MYPHAM_USER.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.API_MYPHAM_USER.props",
+      "PackagePath": "build\\API_MYPHAM_USER.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.API_MYPHAM_USER.props",
+      "PackagePath": "buildMultiTargeting\\API_MYPHAM_USER.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.API_MYPHAM_USER.props",
+      "PackagePath": "buildTransitive\\API_MYPHAM_USER.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
