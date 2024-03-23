@@ -1,12 +1,14 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import MenuHeder from "../MenuHeder";
-import './Header.scss'
-import logo from '../../../assets/images/logo1.png';
+import "./Header.scss";
+import logo from "../../../assets/images/logo1.png";
+import { cartState } from "../../../constant/recoil";
 
 export const isMenuContext = createContext<{
     isMenu: boolean;
@@ -17,17 +19,31 @@ export const isMenuContext = createContext<{
 });
 
 function Header() {
+    const valueCart: any = useRecoilValue(cartState);
+
     const [isMenu, setIsMenu] = useState(false);
 
     const handleMenu = () => {
         setIsMenu(!isMenu);
     };
 
+    const setCartValue = useSetRecoilState(cartState);
+
+    useEffect(() => {
+        let productListString = localStorage.getItem("productList");
+        let listProduct = productListString
+            ? JSON.parse(productListString)
+            : [];
+        setCartValue(listProduct);
+    }, []);
+
     return (
         <isMenuContext.Provider value={{ isMenu, setIsMenu }}>
             <div id="header">
-                
-                <div onClick={handleMenu} className="ti-menu list"> <FaBars/></div>
+                <div onClick={handleMenu} className="ti-menu list">
+                    {" "}
+                    <FaBars />
+                </div>
                 <div className="banner">
                     <Link to="/">
                         <img src={logo} alt="" />
@@ -46,7 +62,7 @@ function Header() {
                             className="searchButton"
                             id="searchButton"
                         >
-                            <FaMagnifyingGlass/>
+                            <FaMagnifyingGlass />
                         </button>
                     </form>
                     <span className="suggest">
@@ -76,10 +92,9 @@ function Header() {
                 </div>
                 {/* ---------------------Shop--------------- */}
                 <div className="shopping">
-                    <Link
-                        to="/cart"
-                    >
-                        <FaShoppingCart className="fa-solid fa-cart-shopping shop"/>
+                    <Link to="/cart" className="cartItem">
+                        <FaShoppingCart className="fa-cart-shopping shop" />
+                        <span className="value-cart">{valueCart.length}</span>
                     </Link>
                 </div>
                 {/* <div style="display: flex;height: 100%;justify-content: center;align-items: center;">

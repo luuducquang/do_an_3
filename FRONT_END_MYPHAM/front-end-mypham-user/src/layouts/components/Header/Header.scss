@@ -269,3 +269,23 @@
 .Login, .Registry {
     margin: 0 5%;
 }
+
+.cartItem{
+    position: relative;
+}
+
+.value-cart{
+    color: #009a82;
+    position: absolute;
+    text-align: center;
+    background: #ffffff;
+    top: 0;
+    padding: 0 0.3125rem;
+    border-radius: 2.75rem;
+    height: 1.8rem;
+    font-family: none;
+    font-size: 15px;
+    transform: translate(81%, -42%);
+
+}
+

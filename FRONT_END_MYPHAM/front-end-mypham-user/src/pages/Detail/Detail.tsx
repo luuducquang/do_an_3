@@ -22,6 +22,10 @@ import {
 } from "../../services/detail.service";
 import { apiImage } from "../../constant/api";
 import Rating from "../../layouts/components/Rating";
+import MessageProduct from "../../components/MessageProduct";
+import { addToCart } from "../../utils/detail";
+import { useSetRecoilState } from "recoil";
+import { cartState } from "../../constant/recoil";
 
 const cx = classNames.bind(styles);
 
@@ -68,6 +72,39 @@ function Detail() {
 
     const [dataRating, setDataRating] = useState([]);
 
+    const [showMessage, setShowMessage] = useState(false);
+
+    const [typeMessage, setTypeMessage] = useState(Boolean);
+
+    const [amountAdd, setAmountAdd] = useState(1);
+
+    const setCartValue = useSetRecoilState(cartState);
+
+    const handleAddProductToCart = () => {
+        setShowMessage(true);
+        setTimeout(() => {
+            setShowMessage(false);
+        }, 2500);
+
+        const mes = addToCart(data, amountAdd);
+        setTypeMessage(mes);
+
+        let productListString = localStorage.getItem("productList");
+        let listProduct = productListString
+            ? JSON.parse(productListString)
+            : [];
+        setCartValue(listProduct);
+    };
+
+    const handleAmountProductMinus = () => {
+        if (amountAdd > 1) {
+            setAmountAdd(amountAdd - 1);
+        }
+    };
+    const handleAmountProductPlus = () => {
+        setAmountAdd(amountAdd + 1);
+    };
+
     useEffect(() => {
         async function loadData(id: any) {
             let res = await getProductById(id);
@@ -95,6 +132,18 @@ function Detail() {
 
     return (
         <div className={cx("content")}>
+            {showMessage &&
+                (typeMessage === true ? (
+                    <MessageProduct
+                        title="Sản phẩm đã có trong giỏ hàng"
+                        display={"block"}
+                    />
+                ) : (
+                    <MessageProduct
+                        title="Sản phẩm đã được thêm vào giỏ hàng"
+                        display={"block"}
+                    />
+                ))}
             <div className={cx("product")}>
                 <div className={cx("type")}>
                     <Link to="/">Trang chủ</Link>
@@ -294,6 +343,9 @@ function Detail() {
                                                     cursor: "pointer",
                                                 }}
                                                 className={cx("minus")}
+                                                onClick={
+                                                    handleAmountProductMinus
+                                                }
                                             />
                                             <input
                                                 style={{
@@ -303,9 +355,20 @@ function Detail() {
                                                     border: "none",
                                                 }}
                                                 type="text"
-                                                defaultValue={1}
                                                 min={1}
                                                 className={cx("amount")}
+                                                value={amountAdd.toString()}
+                                                onChange={(e) => {
+                                                    const value =
+                                                        e.target.value;
+                                                    if (/^\d*$/.test(value)) {
+                                                        setAmountAdd(
+                                                            parseInt(value)
+                                                        );
+                                                    } else {
+                                                        setAmountAdd(1);
+                                                    }
+                                                }}
                                             />
                                             <GoPlus
                                                 style={{
@@ -320,13 +383,19 @@ function Detail() {
                                                     cursor: "pointer",
                                                 }}
                                                 className={cx("plus")}
+                                                onClick={
+                                                    handleAmountProductPlus
+                                                }
                                             />
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <button className={cx("add-item")}>
+                                        <button
+                                            className={cx("add-item")}
+                                            onClick={handleAddProductToCart}
+                                        >
                                             THÊM VÀO GIỎ HÀNG
                                         </button>
                                     </td>
@@ -414,7 +483,7 @@ function Detail() {
                         className={cx("information-product")}
                         dangerouslySetInnerHTML={{ __html: data.chiTiet }}
                     />
-                    <Rating data={data} dataRating={dataRating}/>
+                    <Rating data={data} dataRating={dataRating} />
                 </div>
                 <div className={cx("information-right")}>
                     <div className={cx("recommend")}>
@@ -426,7 +495,7 @@ function Detail() {
                                         key={index}
                                         className={cx("product-recommend")}
                                     >
-                                        <a href={"/detail/" + value.maSanPham}>
+                                        <Link to={"/detail/" + value.maSanPham}>
                                             <div
                                                 className={cx(
                                                     "product-recommend-img"
@@ -479,7 +548,7 @@ function Detail() {
                                             >
                                                 {value.tenSanPham}
                                             </div>
-                                        </a>
+                                        </Link>
                                         <div className={cx("icon-recommend")}>
                                             {value.danhGia > 0 ? (
                                                 <>

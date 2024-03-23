@@ -6,6 +6,7 @@ import Detail from "../pages/Detail";
 import Forgot from "../pages/Forgot";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import Order from "../pages/Order";
 import Registry from "../pages/Registry";
 
 interface RouteItem {
@@ -19,6 +20,7 @@ const publicRoutes: RouteItem[] = [
     {path: config.routes.category, component: Category },
     {path: config.routes.cart, component: Cart },
     {path: config.routes.detail, component: Detail },
+    {path: config.routes.order, component: Order },
     {path: config.routes.login, component: Login, layout:OnlyLayout },
     {path: config.routes.registry, component: Registry, layout:OnlyLayout },
     {path: config.routes.forgot, component: Forgot, layout:OnlyLayout },
