@@ -5,6 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import GlobalStyles from "./components/GlobalStyles";
+import 'bootstrap/dist/css/bootstrap.css';
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement

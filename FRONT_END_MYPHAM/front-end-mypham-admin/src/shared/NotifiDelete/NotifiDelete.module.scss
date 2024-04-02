@@ -1,0 +1,23 @@
+
+.notifi {
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    animation: show .5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.notifi-btn {
+    max-width: 300px;
+    height: 162px;
+    padding: 13px;
+    background-color: #fff;
+    flex-grow: 1;
+    border-radius: 20px;
+}

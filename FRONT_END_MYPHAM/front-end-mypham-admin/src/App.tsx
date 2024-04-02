@@ -2,10 +2,15 @@ import React, { Fragment } from "react";
 import { publicRoutes } from "./routes";
 import { Route, Routes } from "react-router-dom";
 import DefaultLayout from "./layouts/DefaultLayout";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { baselightTheme } from "./theme/DefaultColors";
+import Product from "./pages/Product";
 
 function App() {
+    const theme = baselightTheme;
     return (
-        <div className="App">
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
             {publicRoutes.map((route, index) => {
                 const Page = route.component;
 
@@ -30,7 +35,7 @@ function App() {
                     </Routes>
                 );
             })}
-        </div>
+        </ThemeProvider>
     );
 }
 
