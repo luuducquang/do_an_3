@@ -3,10 +3,18 @@ import classNames from "classnames/bind";
 import styles from "./Order.module.scss";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { apiImage } from "../../constant/api";
 
 const cx = classNames.bind(styles);
 
 function Order() {
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        let productBuyString = localStorage.getItem("listProductBuy");
+        let dataBuy = productBuyString ? JSON.parse(productBuyString) : [];
+        setData(dataBuy);
+    }, []);
     return (
         <div className={cx("content")}>
             <div className={cx("order-cart-shop")}>
@@ -29,19 +37,149 @@ function Order() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* <tr>
-                      <td style=" display: flex; align-items: center;"><img style="width: 20%;" src="./assets/img/Cleanser/cerave-renewing-sa-face-cleanser-for-normal-skin.png" alt=""><span class="nameItem">Sữa Rửa Mặt CeraVe Sạch Sâu Cho Da Thường Đến Da Dầu Foaming Cleanser</span></td>
-                      <td>473ml</td>
-                      <td><p><span class="price-item">399.000</span><sup>đ</sup></p></td>
-                      <td>
-                          <div class="buy-amount" style="display: flex; justify-content: center;">
-                              <span style="height: 30px; width: 30px;display: flex;justify-content: center;align-items: center; outline: none; background-color: #ddd;border: none; cursor: pointer;" class="ti-minus minus"></span>
-                              <input style="width: 30px; height: 30px; text-align: center;border:none; " type="text" value="1" min="1" class="amount">
-                              <span style="height: 30px; width: 30px;display: flex;justify-content: center;align-items: center; outline: none; background-color: #ddd;border: none; cursor: pointer;" class="ti-plus plus"></span>  
-                          </div>
-                      </td>
-                      <td style="cursor: pointer;"><span class="delete-cart">Xoá</span> </td>
-                  </tr> */}
+                                {data.map(function (value: any, index: any) {
+                                    return (
+                                        <tr key={index}>
+                                            <td
+                                                style={{
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                }}
+                                            >
+                                                <img
+                                                    style={{
+                                                        width: "20%",
+                                                        padding: 10,
+                                                    }}
+                                                    src={apiImage + value.img}
+                                                    alt=""
+                                                />
+                                                <a
+                                                    style={{
+                                                        textDecoration: "none",
+                                                        fontSize: 14,
+                                                    }}
+                                                    href={`#!/product/${value.id}`}
+                                                    className="nameItem"
+                                                >
+                                                    {value.name}
+                                                </a>
+                                            </td>
+                                            <td style={{ fontSize: 14 }}>
+                                                {value.size}
+                                            </td>
+                                            <td>
+                                                <div
+                                                    style={{
+                                                        display: "flex",
+                                                        justifyContent:
+                                                            "center",
+                                                    }}
+                                                >
+                                                    <p>
+                                                        <span
+                                                            style={{
+                                                                fontSize: 14,
+                                                                color: "#888888",
+                                                                textDecoration:
+                                                                    "line-through",
+                                                            }}
+                                                            className={cx(
+                                                                "price-item"
+                                                            )}
+                                                        >
+                                                            {value.priceOld.toLocaleString(
+                                                                "DE-de"
+                                                            )}
+                                                        </span>
+                                                        <sup
+                                                            style={{
+                                                                color: "#888888",
+                                                            }}
+                                                        >
+                                                            đ
+                                                        </sup>
+                                                    </p>
+                                                    <p>
+                                                        <span
+                                                            style={{
+                                                                fontSize: 14,
+                                                                marginLeft: 5,
+                                                            }}
+                                                            className={cx(
+                                                                "price-item"
+                                                            )}
+                                                        >
+                                                            {value.price.toLocaleString(
+                                                                "DE-de"
+                                                            )}
+                                                        </span>
+                                                        <sup>đ</sup>
+                                                    </p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div
+                                                    className={cx("buy-amount")}
+                                                    style={{
+                                                        display: "flex",
+                                                        justifyContent:
+                                                            "center",
+                                                    }}
+                                                >
+                                                    <span
+                                                        style={{
+                                                            height: 30,
+                                                            width: 30,
+                                                            display: "flex",
+                                                            justifyContent:
+                                                                "center",
+                                                            alignItems:
+                                                                "center",
+                                                            outline: "none",
+                                                            border: "1px solid #ddd",
+                                                            cursor: "pointer",
+                                                        }}
+                                                        className={cx(
+                                                            "ti-minus minus"
+                                                        )}
+                                                    />
+                                                    <input
+                                                        style={{
+                                                            width: 30,
+                                                            height: 30,
+                                                            textAlign: "center",
+                                                            border: "1px solid #ddd",
+                                                        }}
+                                                        type="text"
+                                                        defaultValue={
+                                                            value.amount
+                                                        }
+                                                        min={1}
+                                                        className={cx("amount")}
+                                                    />
+                                                    <span
+                                                        style={{
+                                                            height: 30,
+                                                            width: 30,
+                                                            display: "flex",
+                                                            justifyContent:
+                                                                "center",
+                                                            alignItems:
+                                                                "center",
+                                                            outline: "none",
+                                                            border: "1px solid #ddd",
+                                                            cursor: "pointer",
+                                                        }}
+                                                        className={cx(
+                                                            "ti-plus plus"
+                                                        )}
+                                                    />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
                             </tbody>
                         </table>
                     </form>

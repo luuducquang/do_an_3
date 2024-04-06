@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
     Avatar,
     Box,
@@ -17,11 +17,19 @@ import { IconListCheck, IconMail, IconUser } from "@tabler/icons";
 
 const Profile = () => {
     const [anchorEl2, setAnchorEl2] = useState(null);
+    const navigate = useNavigate();
     const handleClick2 = (event: any) => {
         setAnchorEl2(event.currentTarget);
     };
     const handleClose2 = () => {
         setAnchorEl2(null);
+    };
+    const handlerLogout = () => {
+        async function logout() {
+            localStorage.setItem("user", JSON.stringify(null));
+            navigate("/login");
+        }
+        logout();
     };
 
     return (
@@ -85,10 +93,9 @@ const Profile = () => {
                 </MenuItem>
                 <Box mt={1} py={1} px={2}>
                     <Button
-                        to="/auth/login"
                         variant="outlined"
                         color="primary"
-                        component={Link}
+                        onClick={handlerLogout}
                         fullWidth
                     >
                         Logout

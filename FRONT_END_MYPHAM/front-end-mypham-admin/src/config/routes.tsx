@@ -13,6 +13,7 @@ const routes = {
     bannerslide: "/bannerslide",
     typeaccount: "/typeaccount",
     account: "/account",
+    login: "/login",
 };
 
 export default routes;

@@ -1,4 +1,5 @@
 import config from "../config";
+import OnlyChildren from "../layouts/OnlyChildren";
 import Account from "../pages/Account";
 import Advertisement from "../pages/Advertisement";
 import BannerSlide from "../pages/BannerSlide";
@@ -7,20 +8,26 @@ import Category from "../pages/Category";
 import CategoryOffer from "../pages/CategoryOffer";
 import Distributor from "../pages/Distributor";
 import ImportBill from "../pages/ImportBill";
+import Login from "../pages/Login";
 import Manufactor from "../pages/Manufactor";
 import New from "../pages/New";
 import Overview from "../pages/Overview";
 import Product from "../pages/Product";
 import Rate from "../pages/Rate";
 import TypeAccount from "../pages/TypeAccount";
+import Error404 from "../shared/404/Error404";
 
 interface RouteItem {
-    path: string;
+    path?: string;
     component: React.ComponentType<any>;
     layout?: React.ComponentType<any> | null;
 }
 
 const publicRoutes: RouteItem[] = [
+    { path: config.routes.login, component: Login, layout: OnlyChildren },
+];
+
+const privateRoutes: RouteItem[] = [
     { path: config.routes.overview, component: Overview },
     { path: config.routes.product, component: Product },
     { path: config.routes.billsell, component: BillSell },
@@ -36,7 +43,5 @@ const publicRoutes: RouteItem[] = [
     { path: config.routes.typeaccount, component: TypeAccount },
     { path: config.routes.account, component: Account },
 ];
-
-const privateRoutes: [] = [];
 
 export { publicRoutes, privateRoutes };

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^41.2.1",
+    "@ckeditor/ckeditor5-react": "^6.2.0",
     "@emotion/styled": "^11.11.5",
     "@mui/material": "^5.15.14",
     "@tabler/icons": "^1.84.0",
@@ -14,6 +16,7 @@
     "@types/react": "^18.2.70",
     "@types/react-dom": "^18.2.22",
     "antd": "^5.15.4",
+    "antd-img-crop": "^4.21.0",
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "classnames": "^2.5.1",
