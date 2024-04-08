@@ -66,7 +66,7 @@ namespace API_MYPHAM.Controllers
                 string TieuDe = "";
                 if (formData.Keys.Contains("TieuDe") && !string.IsNullOrEmpty(Convert.ToString(formData["TieuDe"]))) { TieuDe = Convert.ToString(formData["TieuDe"]); }
                 string TrangThai = "";
-                if (formData.Keys.Contains("TrangThai") && !string.IsNullOrEmpty(Convert.ToString(formData["TrangThai"]))) { TieuDe = Convert.ToString(formData["TrangThai"]); }
+                if (formData.Keys.Contains("TrangThai") && !string.IsNullOrEmpty(Convert.ToString(formData["TrangThai"]))) { TrangThai = Convert.ToString(formData["TrangThai"]); }
                 long total = 0;
                 var data = _tinTucBUS.Search(page, pageSize, out total,  TieuDe, TrangThai);
                 return Ok(

@@ -1,59 +1,126 @@
-import { Link } from 'react-router-dom';
-import './Login.scss'
+import { Link, useNavigate } from "react-router-dom";
+import classNames from "classnames/bind";
+import styles from "./Login.module.scss";
+import { Button, Checkbox, Form, Input, notification } from "antd";
+import { useEffect, useState } from "react";
+import { login } from "../../services/login.service";
+
+const cx = classNames.bind(styles);
+
+type NotificationType = "success" | "info" | "warning" | "error";
 
 function Login() {
+    const [form] = Form.useForm();
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = (type: NotificationType, content: any) => {
+        notification[type]({
+            message: "Thông Báo",
+            description: content,
+        });
+    };
+
+    const onFinish = async (values: any) => {
+        setLoading(true);
+        try {
+            const res = await login({
+                username: values.username,
+                password: values.password,
+            });
+            res.isRemember = values.remember;
+
+            if (res.message) {
+                openNotificationWithIcon("error", res.message);
+            } else {
+                await loginSuccess(res);
+            }
+        } catch (error) {
+            console.error("Error logging in:", error);
+            openNotificationWithIcon(
+                "error",
+                "An error occurred while logging in."
+            );
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const loginSuccess = async (res: any) => {
+        localStorage.setItem("customer", JSON.stringify(res));
+        openNotificationWithIcon(
+            "success",
+            `Xin chào ${res.hoten} bạn đã đăng nhập thành công`
+        );
+        navigate("/");
+    };
+
+    useEffect(() => {
+        const stringUser = localStorage.getItem("customer");
+        let userLocalStorage;
+        if (!stringUser) {
+            navigate("/login");
+            return;
+        }
+        userLocalStorage = JSON.parse(stringUser);
+        if (userLocalStorage?.isRemember) {
+            form.setFieldsValue({
+                username: userLocalStorage.taikhoan,
+                remember: true,
+            });
+        }
+    }, [form]);
+
     return (
-        <div id="wrapper">
-            <form action="#" id="form-login">
-                <h1 className="form-heading">Đăng nhập</h1>
-                <div className="form-group">
-                    <i className="fa-solid fa-user" />
-                    <input
-                        type="text"
-                        className="form-input input-user"
-                        placeholder="Tên đăng nhập"
-                    />
-                    <span
-                        className="warning"
-                        style={{ color: "red", display: "none" }}
+        <div className={cx("wrapper")}>
+            <Form
+                form={form}
+                name="login-form"
+                initialValues={{ remember: false }}
+                onFinish={onFinish}
+                className={cx("login-form")}
+            >
+                <h2 className={cx("login-form-title")}>Login Skin Care</h2>
+                <Form.Item
+                    name="username"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please input your username!",
+                        },
+                    ]}
+                >
+                    <Input placeholder="Username" />
+                </Form.Item>
+
+                <Form.Item
+                    name="password"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please input your password!",
+                        },
+                    ]}
+                >
+                    <Input.Password placeholder="Password" />
+                </Form.Item>
+
+                <Form.Item name="remember" valuePropName="checked">
+                    <Checkbox style={{color:'#fff'}}>Remember username</Checkbox>
+                </Form.Item>
+
+                <Form.Item>
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        loading={loading}
+                        className={cx("login-form-button")}
                     >
-                        *
-                    </span>
-                </div>
-                <div className="form-group">
-                    <i className="fa-solid fa-lock" />
-                    <input
-                        type="password"
-                        className="form-input input-pass"
-                        placeholder="Mật khẩu"
-                    />
-                    <span className="eye-close">
-                        <i className="fa-solid fa-eye-slash" />
-                    </span>
-                    <span className="eye-open hidden">
-                        <i className="fa-solid fa-eye" />
-                    </span>
-                    <span
-                        className="warning-pass"
-                        style={{ color: "red", display: "none" }}
-                    >
-                        *
-                    </span>
-                </div>
-                <div className="forgot-password">
-                    <Link to="/forgot">Quên mật khẩu</Link>
-                </div>
-                {/* <input type="submit" src="./home.html" value="Đăng nhập" class="form-submit"> */}
-                <input
-                    type="submit"
-                    defaultValue="Đăng nhập"
-                    className="form-submit"
-                />
-                <div className="register">
-                    <ul>Bạn có tài khoản chưa?</ul>
-                    <Link to="/registry">Đăng ký ngay</Link>
-                </div>
-            </form>
+                        Log in
+                    </Button>
+                </Form.Item>
+            </Form>
             <div
                 style={{
                     display: "flex",

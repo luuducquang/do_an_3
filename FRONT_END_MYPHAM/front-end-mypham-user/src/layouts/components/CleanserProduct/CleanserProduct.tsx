@@ -27,7 +27,7 @@ function CleanserProduct() {
     return (
         <div className={cx("cleanser")}>
             <div className={cx("more")}>
-                <a href="/category/1/Sữa rửa mặt">Xem thêm</a>
+                <a href="/category/Sữa rửa mặt">Xem thêm</a>
             </div>
             <h2 className={cx("type")}>SỮA RỬA MẶT</h2>
             {data.map(function (value: any, index: any) {

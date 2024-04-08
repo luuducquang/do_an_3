@@ -6,6 +6,8 @@ import Detail from "../pages/Detail";
 import Forgot from "../pages/Forgot";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import New from "../pages/New";
+import NewDetail from "../pages/NewDetail";
 import Order from "../pages/Order";
 import Registry from "../pages/Registry";
 
@@ -16,14 +18,16 @@ interface RouteItem {
 }
 
 const publicRoutes: RouteItem[] = [
-    {path: config.routes.home, component: Home },
-    {path: config.routes.category, component: Category },
-    {path: config.routes.cart, component: Cart },
-    {path: config.routes.detail, component: Detail },
-    {path: config.routes.order, component: Order },
-    {path: config.routes.login, component: Login, layout:OnlyLayout },
-    {path: config.routes.registry, component: Registry, layout:OnlyLayout },
-    {path: config.routes.forgot, component: Forgot, layout:OnlyLayout },
+    { path: config.routes.home, component: Home },
+    { path: config.routes.category, component: Category },
+    { path: config.routes.cart, component: Cart },
+    { path: config.routes.detail, component: Detail },
+    { path: config.routes.order, component: Order },
+    { path: config.routes.new, component: New },
+    { path: config.routes.newdetail, component: NewDetail },
+    { path: config.routes.login, component: Login, layout: OnlyLayout },
+    { path: config.routes.registry, component: Registry, layout: OnlyLayout },
+    { path: config.routes.forgot, component: Forgot, layout: OnlyLayout },
 ];
 
 const privateRoutes: [] = [];

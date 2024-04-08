@@ -22,6 +22,7 @@ function Header() {
     const valueCart: any = useRecoilValue(cartState);
 
     const [isMenu, setIsMenu] = useState(false);
+    const [customer, setCustomer] = useState({});
 
     const handleMenu = () => {
         setIsMenu(!isMenu);
@@ -35,6 +36,10 @@ function Header() {
             ? JSON.parse(productListString)
             : [];
         setCartValue(listProduct);
+
+        let customerString = localStorage.getItem("customer");
+        let customer = customerString ? JSON.parse(customerString) : [];
+        setCustomer(customer);
     }, []);
 
     return (

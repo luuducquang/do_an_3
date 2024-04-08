@@ -52,7 +52,7 @@ function MenuHeder() {
                         </ul>
                         <ul className={cx("menu-list")}>
                             <li>
-                                <a href="/news/1">Tin Tức</a>
+                                <a href="/new">Tin Tức</a>
                             </li>
                         </ul>
                         <ul className={cx("menu-list")}>
@@ -66,7 +66,7 @@ function MenuHeder() {
                                         return (
                                             <li key={index}>
                                                 <a
-                                                    href={`/category/1/${value.tenDanhMuc}`}
+                                                    href={`/category/${value.tenDanhMuc}`}
                                                 >
                                                     {value.tenDanhMuc}
                                                 </a>

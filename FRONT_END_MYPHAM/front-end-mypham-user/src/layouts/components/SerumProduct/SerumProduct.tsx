@@ -27,7 +27,7 @@ function SerumProduct() {
     return (
         <div className={cx("take-care")}>
             <div className={cx("more")}>
-                <a href="/category/1/Serum">Xem thêm</a>
+                <a href="/category/Serum">Xem thêm</a>
             </div>
             <h2 className={cx("type")}>SERUM</h2>
             {data.map(function (value: any, index: any) {

@@ -46,7 +46,7 @@
 
 .product-item-img img{
     width: 100%;
-    padding: 10px;
+    // padding: 10px;   
     object-fit: cover;
     background-size: cover;
     transition: all .2s linear;
@@ -87,11 +87,18 @@
 
 .img-slider{
     display: flex;
-    /* padding: 10px; */
+    justify-content: center;
+    align-items: center;
+    // padding: 10px; 
     width: 100%;
     flex-wrap: nowrap;
     overflow-y: scroll;
+    border: 1px solid #ddd;
 }
+
+// .img-slider-item{
+//     border: 1px solid #95969c;
+// }
 
 .img-slider::-webkit-scrollbar {
     width: 0;

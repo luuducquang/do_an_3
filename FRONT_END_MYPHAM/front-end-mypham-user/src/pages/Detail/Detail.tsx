@@ -12,6 +12,7 @@ import { GoPlus } from "react-icons/go";
 import { FiMinus } from "react-icons/fi";
 import { AiFillLike } from "react-icons/ai";
 import { PiGearSixFill } from "react-icons/pi";
+import { Image } from "antd";
 
 import styles from "./Detail.module.scss";
 import {
@@ -159,8 +160,8 @@ function Detail() {
                         <span className={cx("product-item-img")}>
                             <img src={apiImage + data.anhDaiDien} alt="" />
                         </span>
-                        <div className={cx("miror")} />
-                        <div className={cx("but")}>
+                        {/* <div className={cx("miror")} /> */}
+                        {/* <div className={cx("but")}>
                             <span>
                                 <i
                                     ng-click="Prev()"
@@ -173,7 +174,7 @@ function Detail() {
                                     className={cx("fa-solid fa-angle-right")}
                                 />
                             </span>
-                        </div>
+                        </div> */}
                         <div className={cx("img-slider")}>
                             {imgDetail &&
                                 imgDetail.map(function (
@@ -181,12 +182,18 @@ function Detail() {
                                     index: any
                                 ) {
                                     return (
-                                        <img
-                                            className={cx("")}
+                                        // <img
+                                        //     className={cx("")}
+                                        //     key={index}
+                                        //     src={apiImage + value.linkAnh}
+                                        //     alt=""
+                                        // ></img>
+                                        <Image
                                             key={index}
+                                            width={100}
                                             src={apiImage + value.linkAnh}
-                                            alt=""
-                                        ></img>
+                                            className={cx("img-slider-item")}
+                                        />
                                     );
                                 })}
                         </div>
