@@ -1,6 +1,158 @@
+import { Pagination, Table, TableColumnsType } from "antd";
+import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
+import { MdEditSquare } from "react-icons/md";
+import { searchNew } from "../../service/new.service";
+import { apiImage } from "../../constant/api";
+import NewModal from "../../components/HandlerNew/NewModal";
+import NewDelete from "../../components/HandlerNew/NewDelete";
+
+interface DataType {
+    key: React.Key;
+    maTinTuc: any;
+    tieuDe: any;
+    noiDung: any;
+    hinhAnh: any;
+    maTaiKhoan: any;
+    luotXem: any;
+    hoTen: any;
+    trangThai: any;
+}
 
 function New() {
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [totalNews, setTotalNews] = useState(0);
+
+    const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [maTinTuc, setMaTinTuc] = useState();
+
+    const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+    const [listIdDelete, setListIdDelete] = useState([]);
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+
+    const handleCancelDeleteModal = () => {
+        setIsOpenDeleteModal(false);
+    };
+
+    const handleClearSelection = () => {
+        setSelectedRowKeys([]);
+    };
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCancelIUModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const columns: TableColumnsType<DataType> = [
+        {
+            title: "STT",
+            dataIndex: "key",
+        },
+        {
+            title: "Hình Ảnh",
+            dataIndex: "hinhAnh",
+            render: (hinhAnh: string) => (
+                <img
+                    src={apiImage + hinhAnh}
+                    alt="Hình Ảnh"
+                    style={{ width: "100px" }}
+                />
+            ),
+        },
+        {
+            title: "Tiêu đề",
+            dataIndex: "tieuDe",
+        },
+        {
+            title: "Người Đăng",
+            dataIndex: "hoTen",
+        },
+        {
+            title: "Lượt Xem",
+            dataIndex: "luotXem",
+        },
+        {
+            title: "Trạng Thái",
+            dataIndex: "trangThai",
+        },
+        {
+            title: "Tuỳ Chọn",
+            align: "center",
+            render: (_, record) => (
+                <div
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                        setIsModalOpen(true);
+                        setMaTinTuc(record.maTinTuc);
+                    }}
+                >
+                    <MdEditSquare style={{ fontSize: "20px" }} />
+                </div>
+            ),
+        },
+    ];
+
+    const fetchData = async () => {
+        setLoading(true);
+        let results = await searchNew({
+            page: currentPage,
+            pageSize: 10,
+        });
+        setData(results.data);
+        setTotalNews(results.totalItems);
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, [currentPage]);
+
+    const dataSet = data.map(function (value: any, index: any) {
+        return {
+            key: index + 1,
+            maTinTuc: value.maTinTuc,
+            tieuDe: value.tieuDe,
+            noiDung: value.noiDung,
+            hinhAnh: value.hinhAnh,
+            maTaiKhoan: value.maTaiKhoan,
+            luotXem: value.luotXem,
+            hoTen: value.hoTen,
+            trangThai: value.trangThai,
+        };
+    });
+
+    const rowSelection = {
+        onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
+            // console.log(
+            //     `selectedRowKeys: ${selectedRowKeys}`,
+            //     "selectedRows: ",
+            //     selectedRows
+            // );
+            setSelectedRowKeys(selectedRowKeys);
+            const listid: any = selectedRows.map(function (
+                value: any,
+                index: any
+            ) {
+                return value.maTinTuc;
+            });
+            setListIdDelete(listid);
+        },
+        getCheckboxProps: (record: DataType) => ({
+            // disabled: record.id === "Disabled User", // Column configuration not to be checked
+            // name: record.name,
+        }),
+    };
     return (
         <div className="container">
             <form className="form-group">
@@ -24,83 +176,63 @@ function New() {
             </form>
 
             <div className="button mt-3">
-                <button type="button" className="btn btn-success btn-add ">
+                <button
+                    onClick={() => {
+                        showModal();
+                        setMaTinTuc(undefined);
+                    }}
+                    type="button"
+                    className="btn btn-success btn-add"
+                >
                     <i className="fa-solid fa-plus" />
                     Thêm Tin Tức
                 </button>
-                <button type="button" className="btn btn-danger btn-del mx-1">
+                <button
+                    onClick={() => {
+                        if (listIdDelete.length > 0) {
+                            setIsOpenDeleteModal(true);
+                        }
+                    }}
+                    type="button"
+                    className="btn btn-danger btn-del mx-1"
+                >
                     <i className="fa-solid fa-trash" />
                     Xoá Tin Tức
                 </button>
             </div>
-            <form action="">
-                <table className="table table-hover">
-                    <thead className="thead-dark">
-                        <tr className="text-center">
-                            <th scope="col">Chọn</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Hình Ảnh</th>
-                            <th scope="col">Tiêu đề</th>
-                            <th scope="col">Người Đăng</th>
-                            <th scope="col">Lượt Xem</th>
-                            <th scope="col">Trạng Thái</th>
-                            <th scope="col">Hành Động</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className="text-center">
-                            <td>
-                                <input
-                                    className="form-check-input"
-                                    ng-model="selected"
-                                    type="checkbox"
-                                    ng-click="toggleSelection(x)"
-                                />
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.maTinTuc{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                <img
-                                    className="img-fluid"
-                                    src="{{x.hinhAnh}}"
-                                    alt=""
-                                />
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.tieuDe{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.hoTen{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.luotXem{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.trangThai{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                <a className="edit text-decoration-none">
-                                    <i
-                                        ng-click="edit(x)"
-                                        className="fa-solid fa-pen-to-square"
-                                    />
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
+            <Table
+                bordered={true}
+                rowSelection={{
+                    ...rowSelection,
+                    selectedRowKeys: selectedRowKeys,
+                }}
+                columns={columns}
+                dataSource={dataSet}
+                loading={loading}
+                rowClassName="hover-row"
+                pagination={false}
+            />
+            <Pagination
+                current={currentPage}
+                total={totalNews}
+                pageSize={10}
+                onChange={handlePageChange}
+                style={{ marginTop: "16px", textAlign: "center" }}
+            />
+            <NewModal
+                showModal={showModal}
+                isModalOpen={isModalOpen}
+                handleCancelIUModal={handleCancelIUModal}
+                fetchData={fetchData}
+                maTinTuc={maTinTuc}
+            />
+            <NewDelete
+                isOpenDeleteModal={isOpenDeleteModal}
+                fetchData={fetchData}
+                handleCancelDeleteModal={handleCancelDeleteModal}
+                listiddel={listIdDelete}
+                onDeleteSuccess={handleClearSelection}
+            />
         </div>
     );
 }

@@ -27,6 +27,13 @@ function Product() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [maSanPham, setMaSanPham] = useState();
+    const [totalProducts, setTotalProducts] = useState(0);
+    
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
@@ -50,14 +57,6 @@ function Product() {
     const handleCancelDeleteModal = () => {
         setIsOpenDeleteModal(false);
     };
-
-    const [currentPage, setCurrentPage] = useState(1);
-
-    const handlePageChange = (page: number) => {
-        setCurrentPage(page);
-    };
-
-    const [totalProducts, setTotalProducts] = useState(0);
 
     const fetchData = async () => {
         setLoading(true);

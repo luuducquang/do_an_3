@@ -1,6 +1,208 @@
+import { Pagination, Table, TableColumnsType } from "antd";
+import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
+import { apiImage } from "../../constant/api";
+import { MdEditSquare } from "react-icons/md";
+import { searchRate } from "../../service/rate.service";
+import { FaStar } from "react-icons/fa";
+import RateModal from "../../components/HandlerRate/RateModal";
+import RateDelete from "../../components/HandlerRate/RateDelete";
+
+interface DataType {
+    key: React.Key;
+    maDanhGia: any;
+    maSanPham: any;
+    maTaiKhoan: any;
+    anhDanhGia: any;
+    chatLuong: any;
+    noiDung: any;
+    trangThai: any;
+    thoiGian: any;
+    ghiChu: any;
+    tenSanPham: any;
+    hoTen: any;
+    tenTaiKhoan: any;
+    soDienThoai: any;
+}
 
 function Rate() {
+    const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+    const [listIdDelete, setListIdDelete] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [maDanhGia, setMaDanhGia] = useState();
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [totalRate, setTotalRate] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [record, setRecord] = useState<DataType>();
+    const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCancelIUModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCancelDeleteModal = () => {
+        setIsOpenDeleteModal(false);
+    };
+
+    const handleClearSelection = () => {
+        setSelectedRowKeys([]);
+    };
+
+    const columns: TableColumnsType<DataType> = [
+        {
+            title: "STT",
+            dataIndex: "key",
+        },
+        {
+            title: "Tên Người Dùng",
+            dataIndex: "hoTen",
+        },
+        {
+            title: "Tên Đăng Nhập",
+            dataIndex: "tenTaiKhoan",
+        },
+        {
+            title: "Số Điện Thoại",
+            dataIndex: "soDienThoai",
+        },
+        {
+            title: "Tên Sản Phẩm",
+            dataIndex: "tenSanPham",
+        },
+        {
+            title: "Chất Lượng",
+            dataIndex: "chatLuong",
+            render: (chatLuong: string) => {
+                return (
+                    <div>
+                        <span>{chatLuong}</span>
+                        <FaStar
+                            style={{
+                                marginTop: "-3px",
+                                color: "#ff9c1a",
+                                marginLeft: "2px",
+                            }}
+                        />
+                    </div>
+                );
+            },
+        },
+        {
+            title: "Nội Dung",
+            dataIndex: "noiDung",
+        },
+        {
+            title: "Ảnh Đánh Giá",
+            dataIndex: "anhDanhGia",
+            render: (anhDanhGia: string) => (
+                <img
+                    src={apiImage + anhDanhGia}
+                    alt="Hình Ảnh"
+                    style={{ width: "100px" }}
+                />
+            ),
+        },
+        {
+            title: "Thời Gian",
+            dataIndex: "thoiGian",
+        },
+        {
+            title: "Trạng Thái",
+            dataIndex: "trangThai",
+        },
+        {
+            title: "Ghi Chú",
+            dataIndex: "ghiChu",
+        },
+        {
+            title: "Tuỳ Chọn",
+            align: "center",
+            render: (_, record) => (
+                <div
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                        setIsModalOpen(true);
+                        setMaDanhGia(record.maDanhGia);
+                        setRecord(record);
+                    }}
+                >
+                    <MdEditSquare style={{ fontSize: "20px" }} />
+                </div>
+            ),
+        },
+    ];
+
+    const rowSelection = {
+        onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
+            // console.log(
+            //     `selectedRowKeys: ${selectedRowKeys}`,
+            //     "selectedRows: ",
+            //     selectedRows
+            // );
+            setSelectedRowKeys(selectedRowKeys);
+            const listid: any = selectedRows.map(function (
+                value: any,
+                index: any
+            ) {
+                return value.maDanhGia;
+            });
+            setListIdDelete(listid);
+        },
+        getCheckboxProps: (record: DataType) => ({
+            // disabled: record.id === "Disabled User", // Column configuration not to be checked
+            // name: record.name,
+        }),
+    };
+
+    const fetchData = async () => {
+        setLoading(true);
+        let results = await searchRate({
+            page: currentPage,
+            pageSize: 10,
+        });
+        setData(results.data);
+        setTotalRate(results.totalItems);
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, [currentPage]);
+
+    const dataSet = data.map(function (value: any, index: any) {
+        const thoiGianDate = value.thoiGian ? new Date(value.thoiGian) : null;
+
+        const formattedThoiGian = thoiGianDate
+            ? thoiGianDate.toLocaleString()
+            : null;
+
+        return {
+            key: index + 1,
+            maDanhGia: value.maDanhGia || null,
+            maSanPham: value.maSanPham || null,
+            maTaiKhoan: value.maTaiKhoan || null,
+            anhDanhGia: value.anhDanhGia || null,
+            chatLuong: value.chatLuong || null,
+            noiDung: value.noiDung || null,
+            trangThai: value.trangThai ? "Đã mua hàng" : "Chưa mua hàng",
+            thoiGian: formattedThoiGian || null,
+            ghiChu: value.ghiChu || null,
+            tenSanPham: value.tenSanPham || null,
+            hoTen: value.hoTen || null,
+            tenTaiKhoan: value.tenTaiKhoan || null,
+            soDienThoai: value.soDienThoai || null,
+        };
+    });
+
     return (
         <div className="container">
             <form className="form-group">
@@ -16,8 +218,9 @@ function Rate() {
                         <select
                             className="form-select mr-2"
                             aria-label="Default select example"
+                            defaultValue={""}
                         >
-                            <option disabled selected value="">
+                            <option disabled value="">
                                 Chất lượng
                             </option>
                             <option value={1}>1 Sao</option>
@@ -39,109 +242,53 @@ function Rate() {
             </form>
 
             <div className="button">
-                <button type="button" className="btn btn-danger btn-del">
+                <button
+                    onClick={() => {
+                        if (listIdDelete.length > 0) {
+                            setIsOpenDeleteModal(true);
+                        }
+                    }}
+                    type="button"
+                    className="btn btn-danger btn-del"
+                >
                     <i className="fa-solid fa-trash" />
                     Xoá Đánh Giá
                 </button>
             </div>
-            <form action="">
-                <table className="table table-hover">
-                    <thead className="thead-dark">
-                        <tr className="text-center">
-                            <th scope="col">Chọn</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Tên người dùng</th>
-                            <th scope="col">Tên đăng nhập</th>
-                            <th scope="col">Số điện thoại</th>
-                            <th scope="col">Tên sản phẩm</th>
-                            <th scope="col">Chất lượng</th>
-                            <th scope="col">Nội dung</th>
-                            <th scope="col">Thời gian</th>
-                            <th scope="col">Trạng thái</th>
-                            <th scope="col">Ghi chú</th>
-                            <th scope="col">Hành động</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className="text-center">
-                            <td>
-                                <input
-                                    className="form-check-input"
-                                    ng-model="selected"
-                                    type="checkbox"
-                                    ng-click="toggleSelection(x)"
-                                />
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.maDanhGia{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.hoTen{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.tenTaiKhoan{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.soDienThoai{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.tenSanPham{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.chatLuong{"}"}
-                                {"}"}{" "}
-                                <i
-                                    className="fa-solid fa-star"
-                                    style={{ color: "#ff9c1a" }}
-                                />
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.noiDung{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"} x.thoiGian | date:'HH:mm dd/MM/yyyy'{"}"}
-                                {"}"}
-                            </td>
-                            <td ng-style="{'color': x.trangThai === false ? '#FF0000' : '#00CC00'}">
-                                {"{"}
-                                {"{"}x.trangThai===true ? 'Đã mua hàng':'Chưa
-                                mua hàng'{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.ghiChu{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                <a
-                                    style={{ cursor: "pointer" }}
-                                    className="edit text-decoration-none"
-                                >
-                                    <i
-                                        ng-click="edit(x)"
-                                        className="fa-solid fa-pen-to-square"
-                                    />
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
+            <Table
+                bordered={true}
+                rowSelection={{
+                    ...rowSelection,
+                    selectedRowKeys: selectedRowKeys,
+                }}
+                columns={columns}
+                dataSource={dataSet}
+                loading={loading}
+                rowClassName="hover-row"
+                pagination={false}
+            />
+            <Pagination
+                current={currentPage}
+                total={totalRate}
+                pageSize={10}
+                onChange={handlePageChange}
+                style={{ marginTop: "16px", textAlign: "center" }}
+            />
+            <RateModal
+                showModal={showModal}
+                isModalOpen={isModalOpen}
+                handleCancelIUModal={handleCancelIUModal}
+                fetchData={fetchData}
+                maDanhGia={maDanhGia}
+                record={record}
+            />
+            <RateDelete
+                isOpenDeleteModal={isOpenDeleteModal}
+                fetchData={fetchData}
+                handleCancelDeleteModal={handleCancelDeleteModal}
+                listiddel={listIdDelete}
+                onDeleteSuccess={handleClearSelection}
+            />
         </div>
     );
 }

@@ -26,7 +26,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api-admin/DanhGia/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT","DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/DanhMuc/{everything}",
@@ -218,7 +218,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api-user/ChiTietTaiKhoan/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/DanhGia/{everything}",
@@ -230,7 +230,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api-user/DanhGia/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/DanhMuc/{everything}",
@@ -242,7 +242,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api-user/DanhMuc/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/DanhMucUuDai/{everything}",
@@ -254,7 +254,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api-user/DanhMucUuDai/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/HoaDon/{everything}",
@@ -266,7 +266,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api-user/HoaDon/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/QuangCao/{everything}",
@@ -278,7 +278,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api-user/QuangCao/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/SanPham/{everything}",
@@ -290,7 +290,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api-user/SanPham/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/SlideDetail/{everything}",
@@ -302,7 +302,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api-user/SlideDetail/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/TaiKhoan/{everything}",
@@ -314,7 +314,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api-user/TaiKhoan/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/User/{everything}",
@@ -326,7 +326,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api-user/User/{everything}",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/Image/{everything}",

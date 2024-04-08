@@ -33,6 +33,10 @@
       "PackagePath": "staticwebassets\\img\\3.jpg"
     },
     {
+      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\GATE_WAY_API\\GATEWAY\\wwwroot\\img\\4 - Copy.jpg",
+      "PackagePath": "staticwebassets\\img\\4 - Copy.jpg"
+    },
+    {
       "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\GATE_WAY_API\\GATEWAY\\wwwroot\\img\\4.jpg",
       "PackagePath": "staticwebassets\\img\\4.jpg"
     },
@@ -899,10 +903,6 @@
     {
       "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\GATE_WAY_API\\GATEWAY\\wwwroot\\img\\trang-diem-chanel.jpg",
       "PackagePath": "staticwebassets\\img\\trang-diem-chanel.jpg"
-    },
-    {
-      "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\GATE_WAY_API\\GATEWAY\\wwwroot\\img\\upload\\anh nen doi.jpg",
-      "PackagePath": "staticwebassets\\img\\upload\\anh nen doi.jpg"
     },
     {
       "Id": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\GATE_WAY_API\\GATEWAY\\wwwroot\\img\\user.jpg",

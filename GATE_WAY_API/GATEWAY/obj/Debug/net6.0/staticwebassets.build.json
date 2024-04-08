@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "eCpJhgj7qT6QRY/wtpqWnsGKOxTl3DOlgIPSD06v/y0=",
+  "Hash": "iAQ25NvzGjj9k36VoKgEh6sk6zb0IyP0Fbt/SCoTnNM=",
   "Source": "GATEWAY",
   "BasePath": "_content/GATEWAY",
   "Mode": "Default",
@@ -151,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\3.jpg"
+    },
+    {
+      "Identity": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\GATE_WAY_API\\GATEWAY\\wwwroot\\img\\4 - Copy.jpg",
+      "SourceId": "GATEWAY",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\GATE_WAY_API\\GATEWAY\\wwwroot\\",
+      "BasePath": "_content/GATEWAY",
+      "RelativePath": "img/4 - Copy.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\4 - Copy.jpg"
     },
     {
       "Identity": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\GATE_WAY_API\\GATEWAY\\wwwroot\\img\\4.jpg",
@@ -3823,23 +3840,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\trang-diem-chanel.jpg"
-    },
-    {
-      "Identity": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\GATE_WAY_API\\GATEWAY\\wwwroot\\img\\upload\\anh nen doi.jpg",
-      "SourceId": "GATEWAY",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\GATE_WAY_API\\GATEWAY\\wwwroot\\",
-      "BasePath": "_content/GATEWAY",
-      "RelativePath": "img/upload/anh nen doi.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\img\\upload\\anh nen doi.jpg"
     },
     {
       "Identity": "D:\\Bài kiểm tra\\DO_AN_3+BTL_WEB_API_REACTJS_C#\\GATE_WAY_API\\GATEWAY\\wwwroot\\img\\user.jpg",

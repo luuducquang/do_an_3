@@ -1,12 +1,12 @@
 import { Flex, Modal, notification } from "antd";
-import { deleteProduct } from "../../service/product.service";
+import { deleteNew } from "../../service/new.service";
 
 type NotificationType = "success" | "info" | "warning" | "error";
-const ProductDelete = (props: any) => {
+const NewDelete = (props: any) => {
     const [api, contextHolder] = notification.useNotification();
     const handleOk = async () => {
         props.handleCancelDeleteModal();
-        await deleteProduct(props.listiddel);
+        await deleteNew(props.listiddel);
         props.fetchData();
         props.onDeleteSuccess();
         openNotificationWithIcon("success");
@@ -56,4 +56,4 @@ const ProductDelete = (props: any) => {
         </>
     );
 };
-export default ProductDelete;
+export default NewDelete;

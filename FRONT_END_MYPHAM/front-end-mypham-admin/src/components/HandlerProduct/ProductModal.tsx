@@ -1,6 +1,5 @@
 import {
     Button,
-    DatePicker,
     Form,
     Input,
     Modal,
@@ -99,10 +98,7 @@ function ProductModal(props: any) {
                     props.handleCancelIUModal();
                     debugger;
                     props.fetchData();
-                    openNotificationWithIcon(
-                        "success",
-                        "Cập nhật người dùng thành công!"
-                    );
+                    openNotificationWithIcon("success", "Cập nhật thành công!");
                 } else {
                     props.handleCancelIUModal();
                     await createProduct({
@@ -131,17 +127,11 @@ function ProductModal(props: any) {
                         list_json_anhsanpham: listImgDetail,
                     });
                     props.refreshData();
-                    openNotificationWithIcon(
-                        "success",
-                        "Thêm người dùng thành công!"
-                    );
+                    openNotificationWithIcon("success", "Thêm thành công!");
                 }
             })
             .catch(async () => {
-                openNotificationWithIcon(
-                    "warning",
-                    "Thông tin người dùng chưa đủ!"
-                );
+                openNotificationWithIcon("warning", "Thông tin chưa đủ!");
             });
     };
 
