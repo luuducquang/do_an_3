@@ -4,24 +4,93 @@ import classNames from "classnames/bind";
 
 import styles from "./Rating.module.scss";
 import { apiImage } from "../../../constant/api";
-import { Button, Rate, Space, Upload, UploadProps } from "antd";
+import {
+    Button,
+    Form,
+    Pagination,
+    Rate,
+    Space,
+    Upload,
+    UploadFile,
+    UploadProps,
+} from "antd";
 import { UploadOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+    checkBuyProduct,
+    createRating,
+    searchRatingUser,
+} from "../../../services/rating.service";
+import { getRatingProduct } from "../../../services/detail.service";
 
 const cx = classNames.bind(styles);
 
-function Rating({ data, dataRating }: any) {
+type Img = {
+    name: any;
+};
+
+type dataFeedback = {
+    chatLuong: any;
+    noiDung: any;
+    anhDanhGia: any;
+};
+
+function Rating({ data, maSanPham, loadData }: any) {
+    const [form] = Form.useForm();
     const [rating, setRating] = useState<number>(0);
-    const [anhchitiet, setAnhChiTiet] = useState([]);
+    const [anhdaidien, setAnhDaiDien] = useState<Img[]>([]);
     const [comment, setComment] = useState("");
+    const [isBuy, setIsBuy] = useState(false);
+    const [isFeedback, setIsFeedback] = useState(false);
+    const [dataFeedback, setDataFeedback] = useState<dataFeedback>();
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalItems, setTotalItems] = useState(0);
+
+    const [dataRating, setDataRating] = useState([]);
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
 
     const handlerCommentRate = (event: any) => {
         setComment(event.target.value);
     };
 
-    const handleUploadChangeImageDetail = ({ fileList }: { fileList: any }) => {
-        const fileNames = fileList.map((file: any) => file.name);
-        setAnhChiTiet(fileList);
+    const handleRateChange = (value: number) => {
+        setRating(value);
+    };
+
+    const handleSendRate = () => {
+        async function checkProductBuy(id: any) {
+            const res = await checkBuyProduct(id);
+            const listIdProduct = res.map(function (value: any) {
+                return value.maSanPham;
+            });
+            const search = listIdProduct.find(
+                (x: number) => x === parseInt(maSanPham)
+            );
+            setIsBuy(search === maSanPham);
+
+            const currentTime = new Date();
+            const gmt7ISODate = currentTime.toISOString();
+
+            await createRating({
+                MaSanPham: maSanPham,
+                MaTaiKhoan: user.mataikhoan,
+                ChatLuong: rating,
+                NoiDung: comment,
+                TrangThai: isBuy,
+                ThoiGian: gmt7ISODate,
+                AnhDanhGia:
+                    anhdaidien.length > 0 ? "/img/" + anhdaidien[0].name : "",
+                GhiChu: "",
+            });
+            getRating(maSanPham);
+            setIsFeedback(true);
+            searchIsRatingUser(maSanPham);
+            loadData(maSanPham);
+        }
+        checkProductBuy(user.mataikhoan);
     };
 
     const renderSatisfactionLevel = (value: number): string => {
@@ -41,20 +110,75 @@ function Rating({ data, dataRating }: any) {
         }
     };
 
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
-    const upload_props_multiple: UploadProps = {
+    const user = JSON.parse(localStorage.getItem("customer") || "{}");
+
+    const upload_props: UploadProps = {
         name: "file",
-        action: apiImage + "/api-user/Image/upload",
+        action: apiImage + "/api-admin/Image/upload",
         headers: {
             authorization: "Bearer " + user.token,
         },
-        multiple: true,
         onChange(info) {
             if (info.file.status === "done") {
-                console.log("File uploaded successfully:", info.file);
+                form.setFieldValue(
+                    "image_url",
+                    info.fileList[0].response.filePath
+                );
             }
         },
     };
+
+    const handleUploadChange = ({ fileList }: { fileList: any }) => {
+        const fileNames = fileList.map((file: any) => file.name);
+        setAnhDaiDien(fileList);
+    };
+
+    const mapImgToUploadFile = (imgs: Img[]): UploadFile<any>[] => {
+        return imgs.map((img, index) => ({
+            uid: String(index),
+            name: img.name,
+            status: "done",
+            url: `${apiImage}/img/${img.name}`,
+        }));
+    };
+
+    const fileListAnhDaiDien = mapImgToUploadFile(anhdaidien);
+
+    async function searchIsRatingUser(id: any) {
+        const res = await searchRatingUser({
+            page: 1,
+            pageSize: 10000,
+            MaSanPham: id,
+        });
+        const listProduct = res.data;
+        const search = listProduct.find(
+            (x: any) => x.maTaiKhoan === user.mataikhoan
+        );
+        if (search) {
+            setIsFeedback(true);
+            setDataFeedback(search);
+        } else {
+            setIsFeedback(false);
+            setRating(0);
+            form.resetFields();
+            setComment("");
+        }
+    }
+
+    async function getRating(id: any) {
+        let res = await getRatingProduct({
+            page: currentPage,
+            pageSize: 10,
+            MaSanPham: id,
+        });
+        setDataRating(res.data);
+        setTotalItems(res.totalItems);
+    }
+
+    useEffect(() => {
+        searchIsRatingUser(maSanPham);
+        getRating(maSanPham);
+    }, [maSanPham, currentPage]);
 
     return (
         <div className={cx("rate")}>
@@ -72,96 +196,93 @@ function Rating({ data, dataRating }: any) {
                     />
                 </h1>
             </div>
-            <div className={cx("ratingUser")}>
-                <p>Đánh giá sản phẩm này:</p>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                    <Rate
-                        style={{ color: "#ff9c19", fontSize: "45px" }}
-                        allowHalf
-                        defaultValue={0}
-                    />
-                    <div
-                        style={{ marginLeft: "30px", lineHeight: "40px" }}
-                        className="textStar"
-                    >
-                        {renderSatisfactionLevel(rating)}
+            {isFeedback ? (
+                <div className={cx("stars2")}>
+                    <p style={{ marginBottom: 10 }}>Bạn đã đánh giá:</p>
+                    <div style={{ display: "flex" }}>
+                        {(() => {
+                            const stars = [];
+                            for (let i = 0; i < dataFeedback?.chatLuong; i++) {
+                                stars.push(
+                                    <FaStar key={i} className={cx("fa-star")} />
+                                );
+                            }
+                            return stars;
+                        })()}
                     </div>
-                </div>
-                <p>Mô tả nhận xét:</p>
-                <textarea
-                    name=""
-                    cols={10}
-                    rows={3}
-                    defaultValue={""}
-                    onChange={handlerCommentRate}
-                    value={comment}
-                />
-                <span>Chọn ảnh:</span>
-                <Space
-                    direction="vertical"
-                    style={{ width: "100%", marginTop: "5px" }}
-                    size="large"
-                >
-                    <Upload
-                        // action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-                        {...upload_props_multiple}
-                        listType="picture"
-                        multiple
-                        fileList={anhchitiet}
-                        onChange={handleUploadChangeImageDetail}
+                    <p
+                        className={cx("commentRated")}
+                        style={{ marginLeft: 7, paddingTop: 3 }}
                     >
-                        <Button icon={<UploadOutlined />}>Upload</Button>
-                    </Upload>
-                </Space>
-                <div className={cx("sendRating")}>
-                    <button>Viết đánh giá</button>
-                </div>
-            </div>
-            <div className={cx("stars2")}>
-                <p style={{ marginBottom: 10 }}>Bạn đã đánh giá:</p>
-                <div style={{ display: "flex" }}>
-                    <div>
-                        <i className={cx("fa-solid fa-star")} />
-                        <i className={cx("fa-solid fa-star")} />
-                        <i className={cx("fa-solid fa-star")} />
-                        <i className={cx("fa-solid fa-star")} />
-                        <i className={cx("fa-solid fa-star")} />
-                    </div>
-                    <div
+                        {dataFeedback?.noiDung}
+                    </p>
+                    <img
+                        className={cx("imgRated")}
                         style={{
-                            marginLeft: 30,
-                            lineHeight: 40,
+                            width: "20%",
+                            marginLeft: 7,
+                            paddingTop: 7,
+                            backgroundSize: "cover",
                         }}
-                        className={cx("textStar")}
+                        src={apiImage + dataFeedback?.anhDanhGia}
+                        alt=""
                     />
                 </div>
-                <p
-                    className={cx("commentRated")}
-                    style={{ marginLeft: 7, paddingTop: 3 }}
-                />
-                <img
-                    className={cx("imgRated")}
-                    style={{
-                        width: "20%",
-                        marginLeft: 7,
-                        paddingTop: 7,
-                        backgroundSize: "cover",
-                    }}
-                    src=""
-                    alt=""
-                />
-            </div>
+            ) : (
+                <div className={cx("ratingUser")}>
+                    <p>Đánh giá sản phẩm này:</p>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                        <Rate
+                            style={{ color: "#ff9c19", fontSize: "45px" }}
+                            allowHalf
+                            defaultValue={0}
+                            onChange={handleRateChange}
+                        />
+                        <div
+                            style={{ marginLeft: "30px", lineHeight: "40px" }}
+                            className="textStar"
+                        >
+                            {renderSatisfactionLevel(rating)}
+                        </div>
+                    </div>
+                    <p>Mô tả nhận xét:</p>
+                    <textarea
+                        name=""
+                        cols={10}
+                        rows={3}
+                        value={comment}
+                        onChange={handlerCommentRate}
+                    />
+                    <span>Chọn ảnh:</span>
+                    <Space
+                        direction="vertical"
+                        style={{ width: "100%", marginTop: "5px" }}
+                        size="large"
+                    >
+                        <Upload
+                            {...upload_props}
+                            listType="picture"
+                            maxCount={1}
+                            onChange={handleUploadChange}
+                            fileList={fileListAnhDaiDien}
+                        >
+                            <Button icon={<UploadOutlined />}>Upload</Button>
+                        </Upload>
+                    </Space>
+                    {user.mataikhoan && rating > 0 && (
+                        <div className={cx("sendRating")}>
+                            <button
+                                onClick={handleSendRate}
+                                style={{ marginTop: "10px" }}
+                            >
+                                Viết đánh giá
+                            </button>
+                        </div>
+                    )}
+                </div>
+            )}
             <div className={cx("btnNextRate")}>
                 <h2>Bình luận cho sản phẩm này</h2>
-                <span>
-                    <button ng-click="prevRate()" className={cx("prevRate")}>
-                        Trang trước
-                    </button>
-                    <span>|</span>
-                    <button ng-click="nextRate()" className={cx("nextRate")}>
-                        Trang Sau
-                    </button>
-                </span>
             </div>
             {dataRating.length == 0 ? (
                 <div
@@ -243,6 +364,13 @@ function Rating({ data, dataRating }: any) {
                             </div>
                         );
                     })}
+                    <Pagination
+                        current={currentPage}
+                        total={totalItems}
+                        pageSize={10}
+                        onChange={handlePageChange}
+                        style={{ marginTop: "16px", textAlign: "center" }}
+                    />
                 </div>
             )}
         </div>

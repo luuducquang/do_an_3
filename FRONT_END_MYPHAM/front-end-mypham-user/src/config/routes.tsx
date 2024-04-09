@@ -9,6 +9,9 @@ const routes = {
     forgot: "/forgot",
     new: "/new",
     newdetail: "/new/:id",
+    search: "/search/:valueSearch",
+    invoice: "/invoice",
+    changepassword: "/changepassword",
 };
 
 export default routes;

@@ -107,7 +107,9 @@ function Login() {
                 </Form.Item>
 
                 <Form.Item name="remember" valuePropName="checked">
-                    <Checkbox style={{color:'#fff'}}>Remember username</Checkbox>
+                    <Checkbox style={{ color: "#fff" }}>
+                        Remember username <Link to="/registry">Create account</Link>
+                    </Checkbox>
                 </Form.Item>
 
                 <Form.Item>

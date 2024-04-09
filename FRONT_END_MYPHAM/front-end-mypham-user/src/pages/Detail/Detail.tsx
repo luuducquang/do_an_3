@@ -71,8 +71,6 @@ function Detail() {
 
     const [dataRecomend, setDataRecomend] = useState([]);
 
-    const [dataRating, setDataRating] = useState([]);
-
     const [showMessage, setShowMessage] = useState(false);
 
     const [typeMessage, setTypeMessage] = useState(Boolean);
@@ -106,29 +104,26 @@ function Detail() {
         setAmountAdd(amountAdd + 1);
     };
 
+    async function loadData(id: any) {
+        let res = await getProductById(id);
+        setData(res);
+
+        let resRecomend = await getProductRecomend({
+            page: 1,
+            pageSize: 10,
+            TenDanhMuc: res.tenDanhMuc,
+        });
+        setDataRecomend(resRecomend.data);
+    }
+
+    async function loadDataDetail(id: any) {
+        let resImgDetail = await getImgProductDetail(id);
+        setImgDetail(resImgDetail);
+    }
+
     useEffect(() => {
-        async function loadData(id: any) {
-            let res = await getProductById(id);
-            setData(res);
-
-            let resImgDetail = await getImgProductDetail(id);
-            setImgDetail(resImgDetail);
-
-            let resRecomend = await getProductRecomend({
-                page: 1,
-                pageSize: 10,
-                TenDanhMuc: res.tenDanhMuc,
-            });
-            setDataRecomend(resRecomend.data);
-
-            let resRating = await getRatingProduct({
-                page: 1,
-                pageSize: 10,
-                MaSanPham: id,
-            });
-            setDataRating(resRating.data);
-        }
         loadData(id);
+        loadDataDetail(id);
     }, [id]);
 
     return (
@@ -490,7 +485,11 @@ function Detail() {
                         className={cx("information-product")}
                         dangerouslySetInnerHTML={{ __html: data.chiTiet }}
                     />
-                    <Rating data={data} dataRating={dataRating} />
+                    <Rating
+                        data={data}
+                        maSanPham={id}
+                        loadData={loadData}
+                    />
                 </div>
                 <div className={cx("information-right")}>
                     <div className={cx("recommend")}>

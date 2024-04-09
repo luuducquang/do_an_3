@@ -272,6 +272,7 @@
 
 .cartItem{
     position: relative;
+    width: 28px;
 }
 
 .value-cart{
@@ -289,3 +290,88 @@
 
 }
 
+.imgUser{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.imgUser img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+.OptionUser{
+    position: absolute;
+    background-color: #18a38d;
+    padding: 10px;
+    border-radius: 5px;
+    width: 200px;
+    right: 3%;
+    top: 85px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+    display: block;
+}
+
+.OptionUser li{
+    list-style: none;
+}
+
+.OptionUser li a {
+    text-decoration: none;
+    padding: 10px;
+    color: #fff;
+    width: 100%;
+    display: block;
+}
+
+.OptionUser li a:hover{
+    color: #18a38d;
+    background-color: #fff;
+    transition: .3s linear;
+    border-radius: 5px;
+}
+
+.helloUser{
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 10px;
+    color: black;
+}
+
+.custom-search .ant-btn-primary {
+    background-color: #18a38d;
+    border-color: #18a38d;
+    border: 1px solid #fff;
+  }
+  
+  .custom-search .ant-btn-primary:hover {
+    background-color: #127a6b !important;
+    border-color: #127a6b;
+    cursor: pointer;
+    border: 1px solid #fff;
+  }
+  
+  .custom-search .ant-btn-primary:focus {
+    background-color: #127a6b ;
+    border-color: #127a6b ;
+  }
+
+  .custom-search .ant-input{
+    border: solid 1px #fff !important;
+    height: 38px ;
+  }
+  
+  .custom-search .ant-input::placeholder {
+    color: #18a38d !important; 
+  }
+  .custom-search .ant-btn{
+    border: solid 1px #fff !important;
+    height: 38px ;
+    font-size: 20px;
+  }

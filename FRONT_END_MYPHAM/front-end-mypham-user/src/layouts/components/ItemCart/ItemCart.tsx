@@ -7,7 +7,6 @@ import styles from "./ItemCart.module.scss";
 import { Link } from "react-router-dom";
 import {
     HandlerTotalCart,
-    getTotalPrice,
     handlerCheckedCart,
     handlerInputCart,
     handlerMinusCart,

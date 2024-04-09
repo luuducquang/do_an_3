@@ -1,14 +1,16 @@
 import React, { createContext, useEffect, useState } from "react";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaBell } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import MenuHeder from "../MenuHeder";
 import "./Header.scss";
 import logo from "../../../assets/images/logo1.png";
-import { cartState } from "../../../constant/recoil";
+import { cartState, valueSearchState } from "../../../constant/recoil";
+import { apiImage } from "../../../constant/api";
+import Search from "antd/es/input/Search";
 
 export const isMenuContext = createContext<{
     isMenu: boolean;
@@ -18,14 +20,54 @@ export const isMenuContext = createContext<{
     setIsMenu: () => {},
 });
 
+type Img = {
+    taikhoan: any;
+    anhdaidien: any;
+    hoten: any;
+};
+
 function Header() {
     const valueCart: any = useRecoilValue(cartState);
 
+    const [loading, setLoading] = useState(false);
     const [isMenu, setIsMenu] = useState(false);
-    const [customer, setCustomer] = useState({});
+    const [customer, setCustomer] = useState<Img>({
+        taikhoan: null,
+        anhdaidien: null,
+        hoten: null,
+    });
+    const [isShowOption, setIsShowOption] = useState(false);
+    const [searchValue, setSearchValue] = useState("");
+
+    const navigate = useNavigate();
+
+    const valueSearchProduct: string = useRecoilValue(valueSearchState);
+
+    const handleSearch = (value: any) => {
+        if (value !== "") {
+            setLoading(true);
+            setTimeout(() => {
+                navigate(`/search/${value}`);
+                setLoading(false);
+            }, 1000);
+        } else {
+        }
+    };
+
+    const handleChange = (e: any) => {
+        setSearchValue(e.target.value);
+    };
 
     const handleMenu = () => {
         setIsMenu(!isMenu);
+    };
+
+    const handlerClickImg = () => {
+        setIsShowOption(!isShowOption);
+    };
+
+    const handlerLogout = () => {
+        localStorage.removeItem("customer");
     };
 
     const setCartValue = useSetRecoilState(cartState);
@@ -42,6 +84,10 @@ function Header() {
         setCustomer(customer);
     }, []);
 
+    useEffect(() => {
+        setSearchValue(String(valueSearchProduct));
+    }, [valueSearchProduct]);
+
     return (
         <isMenuContext.Provider value={{ isMenu, setIsMenu }}>
             <div id="header">
@@ -56,28 +102,22 @@ function Header() {
                 </div>
                 {/* --------------Search------------------- */}
                 <div className="wrap">
-                    <form className="search" method="post" id="searchForm">
-                        <input
-                            type="text"
-                            className="searchTerm"
-                            placeholder="Bạn muốn tìm gì?"
-                        />
-                        <button
-                            type="submit"
-                            className="searchButton"
-                            id="searchButton"
-                        >
-                            <FaMagnifyingGlass />
-                        </button>
-                    </form>
+                    <Search
+                        placeholder="Nhập từ khóa tìm kiếm"
+                        loading={loading}
+                        className="custom-search"
+                        enterButton
+                        onSearch={handleSearch}
+                        onChange={handleChange}
+                        onSubmit={handleSearch}
+                        value={searchValue}
+                    />
                     <span className="suggest">
-                        <a href="/searchProduct/1/Sữa rửa mặt">Sữa rửa mặt</a>
-                        <a href="/searchProduct/1/Serum">Serum</a>
-                        <a href="/searchProduct/1/Kem chống nắng">
-                            Kem chống nắng
-                        </a>
-                        <a href="/searchProduct/1/Tẩy trang">Tẩy trang</a>
-                        <a href="/searchProduct/1/Xịt khoáng">Xịt khoáng</a>
+                        <a href="/search/Sữa rửa mặt">Sữa rửa mặt</a>
+                        <a href="/search/Serum">Serum</a>
+                        <a href="/search/Kem chống nắng">Kem chống nắng</a>
+                        <a href="/search/Tẩy trang">Tẩy trang</a>
+                        <a href="/search/Xịt khoáng">Xịt khoáng</a>
                     </span>
                     <span className="home-search">
                         <div className="content-search">
@@ -107,51 +147,65 @@ function Header() {
       </div> */}
                 {/*---------------- Login, Registry -----------*/}
                 <div className="User">
-                    <ul className="Login">
-                        <li style={{ display: "flex" }}>
-                            <a href="/login">Đăng nhập</a>
-                        </li>
-                    </ul>
-                    <ul className="Registry">
-                        <li style={{ display: "flex" }}>
-                            <a href="/registry">Đăng ký</a>
-                        </li>
-                    </ul>
-                    {/* <div className="imgUser">
-                            <i title="Thông báo" className="fa-regular fa-bell" />
+                    {customer && Object.keys(customer).length === 0 ? (
+                        <>
+                            <ul className="Login">
+                                <li style={{ display: "flex" }}>
+                                    <a href="/login">Đăng nhập</a>
+                                </li>
+                            </ul>
+                            <ul className="Registry">
+                                <li style={{ display: "flex" }}>
+                                    <a href="/registry">Đăng ký</a>
+                                </li>
+                            </ul>
+                        </>
+                    ) : (
+                        <div className="imgUser">
                             <div>
                                 <img
-                                className="imgCustomer"
-                                title="{{customer.taikhoan}}"
-                                src="{{customer.anhdaidien}}"
-                                alt=""
+                                    className="imgCustomer"
+                                    title={customer.taikhoan}
+                                    src={apiImage + customer.anhdaidien}
+                                    alt=""
+                                    onClick={handlerClickImg}
                                 />
-                                <ul className="OptionUser">
-                                <li>
-                                    <a href="/invoice">Đơn hàng của bạn</a>
-                                </li>
-                                <li>
-                                    <a href="/information">Thông tin tài khoản</a>
-                                </li>
-                                <li>
-                                    <a href="/changepassword">Đổi mật khẩu</a>
-                                </li>
-                                <li>
-                                    <a href="./login.html">
-                                    Đăng xuất
-                                    </a>
-                                </li>
-                                </ul>
+                                {isShowOption ? (
+                                    <ul className="OptionUser">
+                                        <li>
+                                            <a href="/invoice">
+                                                Đơn hàng của bạn
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/information">
+                                                Thông tin tài khoản
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/changepassword">
+                                                Đổi mật khẩu
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                onClick={handlerLogout}
+                                                href="/login"
+                                            >
+                                                Đăng xuất
+                                            </a>
+                                        </li>
+                                    </ul>
+                                ) : (
+                                    ""
+                                )}
                             </div>
                             <div className="helloUser">
                                 <p>Xin chào,</p>
-                                <p>
-                                {"{"}
-                                {"{"}customer.hoten{"}"}
-                                {"}"}
-                                </p>
+                                <p>{customer?.hoten}</p>
                             </div>
-                            </div> */}
+                        </div>
+                    )}
                 </div>
             </div>
             <MenuHeder />
