@@ -12,6 +12,7 @@ const routes = {
     search: "/search/:valueSearch",
     invoice: "/invoice",
     changepassword: "/changepassword",
+    information: "/information",
 };
 
 export default routes;

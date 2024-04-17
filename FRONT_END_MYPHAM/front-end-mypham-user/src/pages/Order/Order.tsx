@@ -5,11 +5,21 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { apiImage } from "../../constant/api";
+import { Button, Form, Input, Select } from "antd";
 
 const cx = classNames.bind(styles);
 
+const { Option } = Select;
+
 function Order() {
     const [data, setData] = useState([]);
+
+    const onFinish = (values: any) => {
+        console.log("Received values:", values);
+        // Thực hiện xử lý khi người dùng nhấn nút gửi
+        // Điều hướng đến trang thanh toán và giao hàng
+    };
+
     useEffect(() => {
         let productBuyString = localStorage.getItem("listProductBuy");
         let dataBuy = productBuyString ? JSON.parse(productBuyString) : [];
@@ -251,134 +261,84 @@ function Order() {
             </div>
             <div className={cx("address-delivery")}>
                 <h2>Vui lòng chọn địa chỉ giao hàng</h2>
-                <form action="#">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    Họ tên:{" "}
-                                    <sup className={cx("war-name")}>*</sup>
-                                </td>
-                                <td>
-                                    Điện thoại:{" "}
-                                    <sup className={cx("war-tel")}>*</sup>
-                                </td>
-                                <td>
-                                    Email:{" "}
-                                    <sup className={cx("war-name")}>*</sup>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input
-                                        type="text"
-                                        name=""
-                                        id=""
-                                        className={cx("name-delivery")}
-                                    />
-                                </td>
-                                <td>
-                                    <input
-                                        id="sodienthoai"
-                                        type="text"
-                                        name=""
-                                        className={cx("tel-delivery")}
-                                    />
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        name=""
-                                        id=""
-                                        className={cx("email-delivery")}
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Tỉnh/TP:{" "}
-                                    <sup className={cx("war-city")}>*</sup>
-                                </td>
-                                <td>
-                                    Quận/Huyện:{" "}
-                                    <sup className={cx("war-province")}>*</sup>
-                                </td>
-                                <td>
-                                    Phường/Xã:{" "}
-                                    <sup className={cx("war-commune")}>*</sup>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <select
-                                        style={{ width: "90%", height: 30 }}
-                                        name=""
-                                        id="province"
-                                    >
-                                        <option value="">Vui lòng chọn</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select
-                                        style={{ width: "90%", height: 30 }}
-                                        name=""
-                                        id="district"
-                                    >
-                                        <option value="">Vui lòng chọn</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select
-                                        style={{ width: "90.5%", height: 30 }}
-                                        name=""
-                                        id="ward"
-                                    >
-                                        <option value="">Vui lòng chọn</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Địa chỉ:{" "}
-                                    <sup className={cx("war-address")}>*</sup>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colSpan={3}>
-                                    <input
-                                        style={{ width: "97.5%" }}
-                                        type="text"
-                                        name=""
-                                        id=""
-                                        className={cx("input-address")}
-                                    />
-                                </td>
-                            </tr>
-                            <tr className={cx("payment")}>
-                                <td
-                                    style={{ paddingTop: 20 }}
-                                    className={cx("back")}
-                                >
-                                    <div>
-                                        <i
-                                            className={cx(
-                                                "fa-solid fa-backward"
-                                            )}
-                                        />
-                                        Tiếp tục mua hàng
-                                    </div>
-                                </td>
-                                <td
-                                    ng-click="orderNow()"
-                                    style={{ paddingTop: 20, float: "right" }}
-                                    className={cx("let-go")}
-                                >
-                                    <div>Thanh toán và giao hàng</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>
+                <Form
+                    layout="vertical"
+                    style={{ padding: "0 20px 10px 20px" }}
+                    onFinish={onFinish}
+                >
+                    <Form.Item
+                        label="Họ tên"
+                        name="nameCustomer"
+                        rules={[
+                            {
+                                required: true,
+                                message: "Vui lòng nhập họ tên!",
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="Điện thoại"
+                        name="telCustomer"
+                        rules={[
+                            {
+                                required: true,
+                                message: "Vui lòng nhập số điện thoại!",
+                            },
+                            {
+                                pattern: /^[0-9]+$/,
+                                message: "Số điện thoại không hợp lệ!",
+                            },
+                        ]}
+                    >
+                        <Input maxLength={11} />
+                    </Form.Item>
+                    <Form.Item
+                        label="Email"
+                        name="emailCustomer"
+                        rules={[
+                            { required: true, message: "Vui lòng nhập email!" },
+                            { type: "email", message: "Email không hợp lệ!" },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item label="Tỉnh/TP" name="province">
+                        <Select placeholder="Vui lòng chọn">
+                            <Option value="tp_hcm">TP. Hồ Chí Minh</Option>
+                        </Select>
+                    </Form.Item>
+                    <Form.Item label="Quận/Huyện" name="district">
+                        <Select placeholder="Vui lòng chọn">
+                            <Option value="quan_1">Quận 1</Option>
+                        </Select>
+                    </Form.Item>
+                    <Form.Item label="Phường/Xã" name="ward">
+                        <Select placeholder="Vui lòng chọn">
+                            <Option value="phuong_1">Phường 1</Option>
+                        </Select>
+                    </Form.Item>
+                    <Form.Item
+                        label="Địa chỉ"
+                        name="address"
+                        rules={[
+                            {
+                                required: true,
+                                message: "Vui lòng nhập địa chỉ!",
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        style={{ display: "flex", justifyContent: "center" }}
+                    >
+                        <Button type="primary" htmlType="submit">
+                            Thanh toán và giao hàng
+                        </Button>
+                    </Form.Item>
+                </Form>
             </div>
         </div>
     );

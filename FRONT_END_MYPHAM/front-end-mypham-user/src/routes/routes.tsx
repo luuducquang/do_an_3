@@ -6,6 +6,7 @@ import ChangePassword from "../pages/ChangePassword";
 import Detail from "../pages/Detail";
 import Forgot from "../pages/Forgot";
 import Home from "../pages/Home";
+import Information from "../pages/Information";
 import Invoice from "../pages/Invoice";
 import Login from "../pages/Login";
 import New from "../pages/New";
@@ -31,6 +32,7 @@ const publicRoutes: RouteItem[] = [
     { path: config.routes.search, component: Search },
     { path: config.routes.invoice, component: Invoice },
     { path: config.routes.changepassword, component: ChangePassword },
+    { path: config.routes.information, component: Information },
     { path: config.routes.login, component: Login, layout: OnlyLayout },
     { path: config.routes.registry, component: Registry, layout: OnlyLayout },
     { path: config.routes.forgot, component: Forgot, layout: OnlyLayout },
