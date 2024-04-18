@@ -1,63 +1,182 @@
+import { Pagination, Table, TableColumnsType } from "antd";
+import { useEffect, useState } from "react";
+import { MdEditSquare } from "react-icons/md";
+import { getAllTypeAccount } from "../../service/typeaccount.service";
+import TypeAccountModal from "../../components/HandlerTypeAccount/TypeAccountModal";
+import TypeAccountDelete from "../../components/HandlerTypeAccount/TypeAccountDelete";
+
+interface DataType {
+    key: React.Key;
+    maLoaitaikhoan: any;
+    tenLoai: any;
+    moTa: any;
+}
+
 function TypeAccount() {
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [totalCategory, setTotalCategory] = useState(0);
+    const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+    const [listIdDelete, setListIdDelete] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [maLoaitaikhoan, setMaLoaitaikhoan] = useState();
+    const [dataRecord, setDataRecord] = useState<DataType>();
+    const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCancelIUModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCancelDeleteModal = () => {
+        setIsOpenDeleteModal(false);
+    };
+
+    const handleClearSelection = () => {
+        setSelectedRowKeys([]);
+    };
+
+    const columns: TableColumnsType<DataType> = [
+        {
+            title: "ID",
+            dataIndex: "maLoaitaikhoan",
+        },
+        {
+            title: "Tên Loại Tài Khoản",
+            dataIndex: "tenLoai",
+        },
+        {
+            title: "Mô Tả",
+            dataIndex: "moTa",
+        },
+        {
+            title: "Tuỳ Chọn",
+            align: "center",
+            render: (_, record) => (
+                <div
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                        setIsModalOpen(true);
+                        setMaLoaitaikhoan(record.maLoaitaikhoan);
+                        setDataRecord(record);
+                    }}
+                >
+                    <MdEditSquare style={{ fontSize: "20px" }} />
+                </div>
+            ),
+        },
+    ];
+
+    const rowSelection = {
+        onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
+            // console.log(
+            //     `selectedRowKeys: ${selectedRowKeys}`,
+            //     "selectedRows: ",
+            //     selectedRows
+            // );
+            setSelectedRowKeys(selectedRowKeys);
+            const listid: any = selectedRows.map(function (
+                value: any,
+                index: any
+            ) {
+                return value.maLoaitaikhoan;
+            });
+            setListIdDelete(listid);
+        },
+        getCheckboxProps: (record: DataType) => ({
+            // disabled: record.id === "Disabled User", // Column configuration not to be checked
+            // name: record.name,
+        }),
+    };
+
+    const fetchData = async () => {
+        setLoading(true);
+        let results = await getAllTypeAccount();
+        setData(results);
+        setTotalCategory(results.length);
+        setLoading(false);
+    };
+
+    const dataSet = data.map(function (value: any, index: any) {
+        return {
+            key: index + 1,
+            maLoaitaikhoan: value.maLoaitaikhoan,
+            tenLoai: value.tenLoai,
+            moTa: value.moTa,
+        };
+    });
+
+    useEffect(() => {
+        fetchData();
+    }, [currentPage]);
+
     return (
         <div className="container">
             <div className="button">
-                <button type="button" className="btn btn-success btn-add">
+                <button
+                    onClick={() => {
+                        showModal();
+                        setMaLoaitaikhoan(undefined);
+                    }}
+                    type="button"
+                    className="btn btn-success btn-add"
+                >
                     <i className="fa-solid fa-plus" /> Thêm Loại Tài Khoản
                 </button>
-                <button type="button" className="btn btn-danger btn-del mx-1">
+                <button
+                    onClick={() => {
+                        if (listIdDelete.length > 0) {
+                            setIsOpenDeleteModal(true);
+                        }
+                    }}
+                    type="button"
+                    className="btn btn-danger btn-del mx-1"
+                >
                     <i className="fa-solid fa-trash" /> Xoá Loại Tài Khoản
                 </button>
             </div>
-            <form action="">
-                <table className="table table-product table-hover">
-                    <thead>
-                        <tr className="text-center">
-                            <th scope="col">Chọn</th>
-                            <th>ID</th>
-                            <th scope="col">Tên Loại</th>
-                            <th scope="col">Mô Tả</th>
-                            <th scope="col">Hành Động</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className="text-center">
-                            <td>
-                                <input
-                                    className="form-check-input text-center"
-                                    ng-model="selected"
-                                    type="checkbox"
-                                    ng-click="toggleSelection(x)"
-                                    defaultValue=""
-                                    id="checkitem"
-                                />
-                            </td>
-                            <td>
-                                {"{"} {"{"}{" "}
-                                x.maLoaitaikhoan.toLocaleString('de-DE') {"}"}{" "}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"} {"{"} x.tenLoai {"}"} {"}"}
-                            </td>
-                            <td>
-                                {"{"} {"{"} x.moTa {"}"} {"}"}
-                            </td>
-                            <td>
-                                <a
-                                    style={{ cursor: "pointer" }}
-                                    className="edit text-decoration-none"
-                                >
-                                    <i
-                                        ng-click="edit(x)"
-                                        className="fa-solid fa-pen-to-square"
-                                    />
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
+            <Table
+                bordered={true}
+                rowSelection={{
+                    ...rowSelection,
+                    selectedRowKeys: selectedRowKeys,
+                }}
+                columns={columns}
+                dataSource={dataSet}
+                loading={loading}
+                rowClassName="hover-row"
+                pagination={false}
+            />
+            <Pagination
+                current={currentPage}
+                total={totalCategory}
+                pageSize={10}
+                onChange={handlePageChange}
+                style={{ marginTop: "16px", textAlign: "center" }}
+            />
+            <TypeAccountModal
+                showModal={showModal}
+                isModalOpen={isModalOpen}
+                handleCancelIUModal={handleCancelIUModal}
+                fetchData={fetchData}
+                maLoaitaikhoan={maLoaitaikhoan}
+                record={dataRecord}
+            />
+            <TypeAccountDelete
+                isOpenDeleteModal={isOpenDeleteModal}
+                fetchData={fetchData}
+                handleCancelDeleteModal={handleCancelDeleteModal}
+                listiddel={listIdDelete}
+                onDeleteSuccess={handleClearSelection}
+            />
         </div>
     );
 }
