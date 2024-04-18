@@ -19,6 +19,15 @@ export const createManufactor  = async (data:any):Promise<any> =>{
     return res?.data;
 }
 
+export const updateManufactor  = async (data:any):Promise<any> =>{
+    const res = await apiClient?.put(`/api-admin/HangSanXuat/update-hangsanxuat`,data,{
+        headers: {
+            "Authorization": "Bearer " + user.token,
+        }
+    });
+    return res?.data;
+}
+
 export const deleteManufactor = async (data: any): Promise<any> => {
     const res = await apiClient?.delete(`/api-admin/HangSanXuat/delete-hangsanxuat`, {
         headers: {

@@ -70,8 +70,8 @@ function CategoryOffer() {
 
     const columns: TableColumnsType<DataType> = [
         {
-            title: "STT",
-            dataIndex: "key",
+            title: "ID",
+            dataIndex: "madanhmucuudai",
         },
         {
             title: "Tên Danh Mục Ưu Đãi",

@@ -30,6 +30,7 @@ function New() {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [maTinTuc, setMaTinTuc] = useState();
+    const [dataRecord, setDataRecord] = useState<DataType>();
 
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
     const [listIdDelete, setListIdDelete] = useState([]);
@@ -56,8 +57,8 @@ function New() {
 
     const columns: TableColumnsType<DataType> = [
         {
-            title: "STT",
-            dataIndex: "key",
+            title: "ID",
+            dataIndex: "maTinTuc",
         },
         {
             title: "Hình Ảnh",
@@ -95,6 +96,7 @@ function New() {
                     onClick={() => {
                         setIsModalOpen(true);
                         setMaTinTuc(record.maTinTuc);
+                        setDataRecord(record);
                     }}
                 >
                     <MdEditSquare style={{ fontSize: "20px" }} />
@@ -225,6 +227,7 @@ function New() {
                 handleCancelIUModal={handleCancelIUModal}
                 fetchData={fetchData}
                 maTinTuc={maTinTuc}
+                record={dataRecord}
             />
             <NewDelete
                 isOpenDeleteModal={isOpenDeleteModal}

@@ -74,8 +74,8 @@ function Manufactor() {
 
     const columns: TableColumnsType<DataType> = [
         {
-            title: "STT",
-            dataIndex: "key",
+            title: "ID",
+            dataIndex: "maNhaSanXuat",
         },
         {
             title: "Hình Ảnh",

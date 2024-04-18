@@ -48,8 +48,8 @@ function Category() {
 
     const columns: TableColumnsType<DataType> = [
         {
-            title: "STT",
-            dataIndex: "key",
+            title: "ID",
+            dataIndex: "maDanhMuc",
         },
         {
             title: "Tên Danh Mục",

@@ -15,13 +15,10 @@ import { useEffect, useState } from "react";
 import { UploadOutlined } from "@ant-design/icons";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { createNew, getbyMaTinTuc } from "../../service/new.service";
+import { createNew, getbyMaTinTuc, updateNew } from "../../service/new.service";
 
 type NotificationType = "success" | "info" | "warning" | "error";
 const { Option } = Select;
-type Img = {
-    name: any;
-};
 
 type User = {
     mataikhoan: any;
@@ -35,11 +32,9 @@ function NewModal(props: any) {
 
     const [api, contextHolder] = notification.useNotification();
 
-    const [hinhAnh, setHinhAnh] = useState<Img[]>([]);
+    const [hinhAnh, setHinhAnh] = useState<UploadFile[]>([]);
 
     const [dataCkEditor, setDataCkEditor] = useState("");
-    
-    const [dataFetchById, setDataFetchById] = useState();
 
     const openNotificationWithIcon = (
         type: NotificationType,
@@ -52,32 +47,31 @@ function NewModal(props: any) {
     };
 
     const handleUploadChange = ({ fileList }: { fileList: any }) => {
-        const fileNames = fileList.map((file: any) => file.name);
         setHinhAnh(fileList);
     };
-
-    const mapImgToUploadFile = (imgs: Img[]): UploadFile<any>[] => {
-        return imgs.map((img, index) => ({
-            uid: String(index),
-            name: img.name,
-            status: "done",
-            url: `${apiImage}/img/${img.name}`,
-        }));
-    };
-
-    const fileListAnhDaiDien = mapImgToUploadFile(hinhAnh);
 
     const handleOk = () => {
         form.validateFields()
             .then(async (values: any) => {
+                if (!hinhAnh || hinhAnh.length === 0) {
+                    openNotificationWithIcon(
+                        "warning",
+                        "Ảnh không được để trống!"
+                    );
+                    return;
+                }
                 if (props.maTinTuc) {
                     props.handleCancelIUModal();
-                    debugger;
+                    await updateNew({
+                        MaTinTuc: props.maTinTuc,
+                        TieuDe: values.tieuDe,
+                        NoiDung: dataCkEditor,
+                        HinhAnh: `/img/${hinhAnh[0].name}`,
+                        MaTaiKhoan: dataUser.mataikhoan,
+                        TrangThai: values.trangThai,
+                    });
                     props.fetchData();
-                    openNotificationWithIcon(
-                        "success",
-                        "Cập nhật thành công!"
-                    );
+                    openNotificationWithIcon("success", "Cập nhật thành công!");
                 } else {
                     props.handleCancelIUModal();
                     await createNew({
@@ -88,10 +82,7 @@ function NewModal(props: any) {
                         TrangThai: values.trangThai,
                     });
                     props.fetchData();
-                    openNotificationWithIcon(
-                        "success",
-                        "Thêm thành công!"
-                    );
+                    openNotificationWithIcon("success", "Thêm thành công!");
                 }
             })
             .catch(async () => {
@@ -124,7 +115,6 @@ function NewModal(props: any) {
         let data = await getbyMaTinTuc(maTinTuc);
         form.setFieldsValue(data);
         setDataCkEditor(data.noiDung);
-        setDataFetchById(data);
     };
 
     useEffect(() => {
@@ -132,8 +122,17 @@ function NewModal(props: any) {
         setDataUser(user);
         if (props.maTinTuc !== "" && props.maTinTuc !== undefined) {
             fetchData(props.maTinTuc);
+            setHinhAnh([
+                {
+                    uid: "0",
+                    name: props.record.hinhAnh.slice(5),
+                    status: "done",
+                    url: apiImage + props.record.hinhAnh,
+                },
+            ]);
         } else {
             form.resetFields();
+            setHinhAnh([]);
             setDataCkEditor("");
         }
     }, [props.maTinTuc]);
@@ -204,7 +203,7 @@ function NewModal(props: any) {
                                 listType="picture"
                                 maxCount={1}
                                 onChange={handleUploadChange}
-                                fileList={fileListAnhDaiDien}
+                                fileList={hinhAnh}
                             >
                                 <Button icon={<UploadOutlined />}>
                                     Upload

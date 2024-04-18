@@ -50,8 +50,8 @@ function Distributor() {
 
     const columns: TableColumnsType<DataType> = [
         {
-            title: "STT",
-            dataIndex: "key",
+            title: "ID",
+            dataIndex: "maNhaPhanPhoi",
         },
         {
             title: "Tên Nhà Phân Phối",

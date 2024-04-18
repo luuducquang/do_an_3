@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
     Avatar,
@@ -12,12 +12,21 @@ import {
 } from "@mui/material";
 
 import { IconListCheck, IconMail, IconUser } from "@tabler/icons";
+import { apiImage } from "../../../constant/api";
 
 // import ProfileImg from "./assest/img/avt_default.jpg";
+
+type User = {
+    mataikhoan: any;
+    anhdaidien: any;
+    hoten: any;
+};
 
 const Profile = () => {
     const [anchorEl2, setAnchorEl2] = useState(null);
     const navigate = useNavigate();
+    const [dataUser, setDataUser] = useState<User>();
+
     const handleClick2 = (event: any) => {
         setAnchorEl2(event.currentTarget);
     };
@@ -31,6 +40,11 @@ const Profile = () => {
         }
         logout();
     };
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("user") || "{}");
+        setDataUser(user);
+    }, []);
 
     return (
         <Box>
@@ -48,13 +62,24 @@ const Profile = () => {
                 onClick={handleClick2}
             >
                 <Avatar
-                    // src={ProfileImg}
-                    // alt={ProfileImg}
+                    src={apiImage + dataUser?.anhdaidien}
                     sx={{
                         width: 35,
                         height: 35,
                     }}
                 />
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "flex-start",
+                        fontSize: "16px",
+                        marginLeft: "10px",
+                    }}
+                >
+                    <span>Xin chào,</span>
+                    <span>{dataUser?.hoten}</span>
+                </div>
             </IconButton>
             {/* ------------------------------------------- */}
             {/* Message Dropdown */}

@@ -92,8 +92,8 @@ function Product() {
 
     const columns: TableColumnsType<DataType> = [
         {
-            title: "STT",
-            dataIndex: "key",
+            title: "ID",
+            dataIndex: "maSanPham",
         },
         {
             title: "Tên Sản Phẩm",

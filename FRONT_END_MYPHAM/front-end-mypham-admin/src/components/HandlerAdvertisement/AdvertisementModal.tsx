@@ -15,14 +15,16 @@ import { useEffect, useState } from "react";
 import { UploadOutlined } from "@ant-design/icons";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { createManufactor } from "../../service/manufactor.service";
 import {
-    createManufactor,
-    updateManufactor,
-} from "../../service/manufactor.service";
+    createAdvertisement,
+    updateAdvertisement,
+} from "../../service/advertisement.service";
 
 type NotificationType = "success" | "info" | "warning" | "error";
+const { Option } = Select;
 
-function ManufactorModal(props: any) {
+function AdvertisementModal(props: any) {
     const [form] = Form.useForm();
 
     const [api, contextHolder] = notification.useNotification();
@@ -53,30 +55,29 @@ function ManufactorModal(props: any) {
                     );
                     return;
                 }
-                if (props.maNhaSanXuat) {
+                if (props.maQuangCao) {
                     props.handleCancelIUModal();
-                    await updateManufactor({
-                        MaNhaSanXuat: props.maNhaSanXuat,
-                        TenHang: values.tenHang,
-                        LinkWeb: values.linkWeb,
+                    await updateAdvertisement({
+                        Id: props.maQuangCao,
                         AnhDaiDien: `/img/${hinhAnh[0].name}`,
+                        LinkQuangCao: values.linkQuangCao,
+                        MoTa: values.moTa,
                     });
                     props.fetchData();
                     openNotificationWithIcon("success", "Cập nhật thành công!");
                 } else {
                     props.handleCancelIUModal();
-                    await createManufactor({
-                        TenHang: values.tenHang,
-                        LinkWeb: values.linkWeb,
+                    await createAdvertisement({
                         AnhDaiDien: `/img/${hinhAnh[0].name}`,
+                        LinkQuangCao: values.linkQuangCao,
+                        MoTa: values.moTa,
                     });
                     props.fetchData();
                     openNotificationWithIcon("success", "Thêm thành công!");
                 }
             })
-            .catch(async (e) => {
+            .catch(async () => {
                 openNotificationWithIcon("warning", "Thông tin chưa đủ!");
-                console.log(e);
             });
     };
 
@@ -102,7 +103,7 @@ function ManufactorModal(props: any) {
     };
 
     useEffect(() => {
-        if (props.maNhaSanXuat !== "" && props.maNhaSanXuat !== undefined) {
+        if (props.maQuangCao !== "" && props.maQuangCao !== undefined) {
             form.setFieldsValue(props.record);
             setHinhAnh([
                 {
@@ -116,7 +117,7 @@ function ManufactorModal(props: any) {
             form.resetFields();
             setHinhAnh([]);
         }
-    }, [props.maNhaSanXuat]);
+    }, [props.maQuangCao]);
 
     return (
         <>
@@ -144,33 +145,36 @@ function ManufactorModal(props: any) {
                 >
                     <Form.Item
                         style={{ visibility: "hidden" }}
-                        name="maNhaSanXuat"
-                        label="Mã nhà sản xuất"
+                        name="id"
+                        label="Mã quảng cáo"
                     >
                         <Input />
                     </Form.Item>
 
                     <Form.Item
-                        name="tenHang"
-                        label="Tên hãng sản xuất"
+                        name="moTa"
+                        label="Vị trí"
                         rules={[
                             {
                                 required: true,
-                                message:
-                                    "Tên hãng sản xuất không được để trống!",
+                                message: "Vị trí không được để trống!",
                             },
                         ]}
+                        initialValue="true"
                     >
-                        <Input />
+                        <Select placeholder="Chọn vị trí">
+                            <Option value="true">Bên phải</Option>
+                            <Option value="false">Bên trái</Option>
+                        </Select>
                     </Form.Item>
 
                     <Form.Item
-                        name="linkWeb"
-                        label="Link web hãng"
+                        name="linkQuangCao"
+                        label="Link quảng cáo"
                         rules={[
                             {
                                 required: true,
-                                message: "Link web hãng không được để trống!",
+                                message: "Link quảng cáo không được để trống!",
                             },
                         ]}
                     >
@@ -212,4 +216,4 @@ function ManufactorModal(props: any) {
     );
 }
 
-export default ManufactorModal;
+export default AdvertisementModal;

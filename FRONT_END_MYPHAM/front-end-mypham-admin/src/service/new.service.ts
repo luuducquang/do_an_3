@@ -19,6 +19,16 @@ export const createNew = async (data:any):Promise<any> =>{
     return res?.data;
 }
 
+export const updateNew = async (data: any): Promise<any> => {
+    const res = await apiClient?.put(`/api-admin/TinTuc/update-tintuc`, data, {
+        headers: {
+            Authorization: "Bearer " + user.token,
+        },
+    });
+    return res?.data;
+};
+
+
 export const getbyMaTinTuc = async (maTinTuc:any):Promise<any> =>{
     const res = await apiClient?.get("/api-admin/TinTuc/getbyid-tintuc/" + maTinTuc, {
         headers: {

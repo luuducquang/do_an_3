@@ -59,8 +59,8 @@ function Rate() {
 
     const columns: TableColumnsType<DataType> = [
         {
-            title: "STT",
-            dataIndex: "key",
+            title: "ID",
+            dataIndex: "maDanhGia",
         },
         {
             title: "Tên Người Dùng",
