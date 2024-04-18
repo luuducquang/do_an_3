@@ -24,18 +24,16 @@ import {
     getManufactor,
     getbyAnhChiTietSanPham,
     getbyMaSanPham,
+    updateProduct,
 } from "../../service/product.service";
 
 type NotificationType = "success" | "info" | "warning" | "error";
 const { Option } = Select;
 
-type Img = {
-    name: any;
-};
-
 type Product = {
     anhDaiDien: any;
     linkAnh: any;
+    maChiTietSanPham: any;
 };
 function ProductModal(props: any) {
     const [form] = Form.useForm();
@@ -43,8 +41,8 @@ function ProductModal(props: any) {
 
     const [dataCkEditor, setDataCkEditor] = useState("");
 
-    const [anhdaidien, setAnhDaiDien] = useState<Img[]>([]);
-    const [anhchitiet, setAnhChiTiet] = useState([]);
+    const [anhdaidien, setAnhDaiDien] = useState<UploadFile[]>([]);
+    const [anhchitiet, setAnhChiTiet] = useState<UploadFile[]>([]);
     const [category, setCategory] = useState([]);
     const [categoryOffer, setCategoryOffer] = useState([]);
     const [manufactor, setManufactor] = useState([]);
@@ -55,17 +53,6 @@ function ProductModal(props: any) {
     const [dataImgDetail, setDataImgDetail] = useState<Product[]>([]);
 
     const [api, contextHolder] = notification.useNotification();
-
-    const mapImgToUploadFile = (imgs: Img[]): UploadFile<any>[] => {
-        return imgs.map((img, index) => ({
-            uid: String(index),
-            name: img.name,
-            status: "done",
-            url: `${apiImage}/img/${img.name}`,
-        }));
-    };
-
-    const fileListAnhDaiDien = mapImgToUploadFile(anhdaidien);
 
     const openNotificationWithIcon = (
         type: NotificationType,
@@ -78,13 +65,120 @@ function ProductModal(props: any) {
     };
 
     const handleUploadChange = ({ fileList }: { fileList: any }) => {
-        const fileNames = fileList.map((file: any) => file.name);
         setAnhDaiDien(fileList);
     };
 
     const handleUploadChangeImageDetail = ({ fileList }: { fileList: any }) => {
-        const fileNames = fileList.map((file: any) => file.name);
-        setAnhChiTiet(fileList);
+        const uploadingFiles = fileList.filter(
+            (file: any) => file.lastModified
+        );
+        if (props.maSanPham) {
+            const listImgDetailAdd = uploadingFiles.map(function (value: any) {
+                return { LinkAnh: `/img/${value.name}`, status: 1 };
+            });
+            addImgDetailNow(listImgDetailAdd);
+        } else {
+            setAnhChiTiet(fileList);
+        }
+    };
+
+    const onRemove = async (e: any) => {
+        console.log(e);
+        form.validateFields()
+            .then(async (values: any) => {
+                await updateProduct({
+                    MaSanPham: props.maSanPham,
+                    MaDanhMuc: values.maDanhMuc,
+                    Madanhmucuudai: values.madanhmucuudai,
+                    TenSanPham: values.tenSanPham,
+                    AnhDaiDien: `/img/${anhdaidien[0].name}`,
+                    Gia: values.gia,
+                    GiaGiam: values.giaGiam,
+                    SoLuong: values.soLuong,
+                    TrongLuong: values.trongLuong,
+                    TrangThai: values.trangThai,
+                    XuatXu: values.xuatXu,
+                    list_json_chitiet_sanpham: [
+                        {
+                            MaChiTietSanPham: dataFetchById?.maChiTietSanPham,
+                            MaNhaSanXuat: values.maNhaSanXuat,
+                            MoTa: values.moTa,
+                            ChiTiet: dataCkEditor,
+                            status: 2,
+                        },
+                    ],
+                    list_json_sanpham_nhaphanphoi: [
+                        {
+                            MaSanPham: props.maSanPham,
+                            MaNhaPhanPhoi: values.maNhaPhanPhoi,
+                            status: 2,
+                        },
+                    ],
+                    list_json_anhsanpham: {
+                        Id: e.uid,
+                        status: 3,
+                    },
+                });
+                await fetchData(props.maSanPham);
+                openNotificationWithIcon("success", "Cập nhật thành công!");
+            })
+            .catch(async (e) => {
+                openNotificationWithIcon("warning", "Thông tin chưa đủ!");
+            });
+    };
+
+    const addImgDetailNow = (listImgDetailAdd: any) => {
+        form.validateFields()
+            .then(async (values: any) => {
+                if (
+                    !anhdaidien ||
+                    anhdaidien.length === 0 ||
+                    !anhchitiet ||
+                    anhchitiet.length === 0
+                ) {
+                    openNotificationWithIcon(
+                        "warning",
+                        "Ảnh không được để trống!"
+                    );
+                    return;
+                }
+
+                await updateProduct({
+                    MaSanPham: props.maSanPham,
+                    MaDanhMuc: values.maDanhMuc,
+                    Madanhmucuudai: values.madanhmucuudai,
+                    TenSanPham: values.tenSanPham,
+                    AnhDaiDien: `/img/${anhdaidien[0].name}`,
+                    Gia: values.gia,
+                    GiaGiam: values.giaGiam,
+                    SoLuong: values.soLuong,
+                    TrongLuong: values.trongLuong,
+                    TrangThai: values.trangThai,
+                    XuatXu: values.xuatXu,
+                    list_json_chitiet_sanpham: [
+                        {
+                            MaChiTietSanPham: dataFetchById?.maChiTietSanPham,
+                            MaNhaSanXuat: values.maNhaSanXuat,
+                            MoTa: values.moTa,
+                            ChiTiet: dataCkEditor,
+                            status: 2,
+                        },
+                    ],
+                    list_json_sanpham_nhaphanphoi: [
+                        {
+                            MaSanPham: props.maSanPham,
+                            MaNhaPhanPhoi: values.maNhaPhanPhoi,
+                            status: 2,
+                        },
+                    ],
+                    list_json_anhsanpham: listImgDetailAdd,
+                });
+                await fetchData(props.maSanPham);
+                openNotificationWithIcon("success", "Cập nhật thành công!");
+            })
+            .catch(async (e) => {
+                openNotificationWithIcon("warning", "Thông tin chưa đủ!");
+            });
     };
 
     const handleOk = () => {
@@ -94,10 +188,53 @@ function ProductModal(props: any) {
                     return { LinkAnh: `/img/${item.name}` };
                 });
 
+                if (
+                    !anhdaidien ||
+                    anhdaidien.length === 0 ||
+                    !anhchitiet ||
+                    anhchitiet.length === 0
+                ) {
+                    openNotificationWithIcon(
+                        "warning",
+                        "Ảnh không được để trống!"
+                    );
+                    return;
+                }
                 if (props.maSanPham) {
                     props.handleCancelIUModal();
-                    debugger;
-                    props.fetchData();
+                    await updateProduct({
+                        MaSanPham: props.maSanPham,
+                        MaDanhMuc: values.maDanhMuc,
+                        Madanhmucuudai: values.madanhmucuudai,
+                        TenSanPham: values.tenSanPham,
+                        AnhDaiDien: `/img/${anhdaidien[0].name}`,
+                        Gia: values.gia,
+                        GiaGiam: values.giaGiam,
+                        SoLuong: values.soLuong,
+                        TrongLuong: values.trongLuong,
+                        TrangThai: values.trangThai,
+                        XuatXu: values.xuatXu,
+                        list_json_chitiet_sanpham: [
+                            {
+                                MaChiTietSanPham:
+                                    dataFetchById?.maChiTietSanPham,
+                                MaNhaSanXuat: values.maNhaSanXuat,
+                                MoTa: values.moTa,
+                                ChiTiet: dataCkEditor,
+                                status: 2,
+                            },
+                        ],
+                        list_json_sanpham_nhaphanphoi: [
+                            {
+                                MaSanPham: props.maSanPham,
+                                MaNhaPhanPhoi: values.maNhaPhanPhoi,
+                                status: 2,
+                            },
+                        ],
+                        list_json_anhsanpham: listImgDetail,
+                    });
+                    console.log(dataFetchById);
+                    props.refreshData();
                     openNotificationWithIcon("success", "Cập nhật thành công!");
                 } else {
                     props.handleCancelIUModal();
@@ -130,8 +267,9 @@ function ProductModal(props: any) {
                     openNotificationWithIcon("success", "Thêm thành công!");
                 }
             })
-            .catch(async () => {
+            .catch(async (e) => {
                 openNotificationWithIcon("warning", "Thông tin chưa đủ!");
+                console.log(e);
             });
     };
 
@@ -177,6 +315,27 @@ function ProductModal(props: any) {
         setDataCkEditor(data.chiTiet);
         setDataFetchById(data);
         setDataImgDetail(dataImgDetail);
+        setAnhDaiDien([
+            {
+                uid: "0",
+                name: data.anhDaiDien.slice(5),
+                status: "done",
+                url: apiImage + data.anhDaiDien,
+            },
+        ]);
+
+        const listPreviewImgDetail = dataImgDetail.map(function (
+            value: any,
+            index: any
+        ) {
+            return {
+                uid: value.id,
+                name: value.linkAnh.slice(5),
+                status: "done",
+                url: apiImage + value.linkAnh,
+            };
+        });
+        setAnhChiTiet(listPreviewImgDetail);
     };
 
     useEffect(() => {
@@ -190,7 +349,6 @@ function ProductModal(props: any) {
             const resDistributor = await getDistributor();
             setDistributor(resDistributor);
 
-            // Thiết lập giá trị mặc định cho các trường trong form
             if (props.maSanPham !== "" && props.maSanPham !== undefined) {
                 fetchData(props.maSanPham);
             } else {
@@ -201,6 +359,8 @@ function ProductModal(props: any) {
                     soLuong: 0,
                 });
                 setDataCkEditor("");
+                setAnhDaiDien([]);
+                setAnhChiTiet([]);
             }
         }
         loaddata();
@@ -320,26 +480,12 @@ function ProductModal(props: any) {
                                 listType="picture"
                                 maxCount={1}
                                 onChange={handleUploadChange}
-                                fileList={fileListAnhDaiDien}
+                                fileList={anhdaidien}
                             >
                                 <Button icon={<UploadOutlined />}>
                                     Upload
                                 </Button>
                             </Upload>
-                            <div>
-                                {dataFetchById && (
-                                    <img
-                                        key={1}
-                                        src={
-                                            apiImage + dataFetchById.anhDaiDien
-                                        }
-                                        style={{
-                                            width: "100px",
-                                            height: "100px",
-                                        }}
-                                    />
-                                )}
-                            </div>
                         </Space>
                     </Form.Item>
 
@@ -348,7 +494,6 @@ function ProductModal(props: any) {
                         label="Ảnh Chi Tiết Sản Phẩm"
                         rules={[
                             {
-                                required: true,
                                 message:
                                     "Ảnh chi tiết sản phẩm không được để trống!",
                             },
@@ -366,24 +511,12 @@ function ProductModal(props: any) {
                                 multiple
                                 fileList={anhchitiet}
                                 onChange={handleUploadChangeImageDetail}
+                                onRemove={onRemove}
                             >
                                 <Button icon={<UploadOutlined />}>
                                     Upload
                                 </Button>
                             </Upload>
-                            {dataImgDetail &&
-                                dataImgDetail.map(
-                                    (product: Product, index: number) => (
-                                        <img
-                                            key={index}
-                                            src={`${apiImage}${product.linkAnh}`}
-                                            style={{
-                                                width: "100px",
-                                                height: "100px",
-                                            }}
-                                        />
-                                    )
-                                )}
                         </Space>
                     </Form.Item>
 

@@ -36,6 +36,15 @@ export const createProduct = async (data:any):Promise<any> =>{
     return res?.data;
 }
 
+export const updateProduct = async (data:any):Promise<any> =>{
+    const res = await apiClient?.put(`/api-admin/SanPham/update-sanpham`,data,{
+        headers: {
+            "Authorization": "Bearer " + user.token,
+        }
+    });
+    return res?.data;
+}
+
 export const getbyMaSanPham = async (maSanPham:any):Promise<any> =>{
     const res = await apiClient?.get("/api-admin/SanPham/getbyid-sanpham/" + maSanPham, {
         headers: {
