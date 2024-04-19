@@ -32,6 +32,7 @@ type User = {
 
 type DetailAccount = {
     maChitietTaiKhoan: any;
+    maLoaitaikhoan: any;
 };
 
 function AccountModal(props: any) {
@@ -42,7 +43,7 @@ function AccountModal(props: any) {
 
     const [idDetailAccount, setIdDetailAccount] = useState<DetailAccount[]>([]);
 
-    const [dataTypeAccount, setDataTypeAccount] = useState([]);
+    const [dataTypeAccount, setDataTypeAccount] = useState<DetailAccount[]>([]);
 
     const [api, contextHolder] = notification.useNotification();
 
@@ -279,7 +280,14 @@ function AccountModal(props: any) {
                             },
                         ]}
                     >
-                        <Select placeholder="Chọn loại tài khoản">
+                        <Select
+                            placeholder="Chọn loại tài khoản"
+                            defaultValue={
+                                dataTypeAccount.length > 0
+                                    ? dataTypeAccount[0].maLoaitaikhoan
+                                    : undefined
+                            }
+                        >
                             {dataTypeAccount.map(function (
                                 value: any,
                                 index: any

@@ -34,6 +34,10 @@ type Product = {
     anhDaiDien: any;
     linkAnh: any;
     maChiTietSanPham: any;
+    madanhmucuudai: any;
+    maDanhMuc: any;
+    maNhaSanXuat: any;
+    maNhaPhanPhoi: any;
 };
 function ProductModal(props: any) {
     const [form] = Form.useForm();
@@ -43,10 +47,10 @@ function ProductModal(props: any) {
 
     const [anhdaidien, setAnhDaiDien] = useState<UploadFile[]>([]);
     const [anhchitiet, setAnhChiTiet] = useState<UploadFile[]>([]);
-    const [category, setCategory] = useState([]);
-    const [categoryOffer, setCategoryOffer] = useState([]);
-    const [manufactor, setManufactor] = useState([]);
-    const [distributor, setDistributor] = useState([]);
+    const [category, setCategory] = useState<Product[]>([]);
+    const [categoryOffer, setCategoryOffer] = useState<Product[]>([]);
+    const [manufactor, setManufactor] = useState<Product[]>([]);
+    const [distributor, setDistributor] = useState<Product[]>([]);
 
     const [dataFetchById, setDataFetchById] = useState<Product>();
 
@@ -72,58 +76,72 @@ function ProductModal(props: any) {
         const uploadingFiles = fileList.filter(
             (file: any) => file.lastModified
         );
-        if (props.maSanPham) {
+        if (props.maSanPham && uploadingFiles.length > 0) {
             const listImgDetailAdd = uploadingFiles.map(function (value: any) {
                 return { LinkAnh: `/img/${value.name}`, status: 1 };
             });
             addImgDetailNow(listImgDetailAdd);
         } else {
-            setAnhChiTiet(fileList);
+            if (anhchitiet.length > 1) {
+                setAnhChiTiet(fileList);
+            }
         }
     };
 
-    const onRemove = async (e: any) => {
-        console.log(e);
+    const onRemove = async (file: UploadFile) => {
         form.validateFields()
             .then(async (values: any) => {
-                await updateProduct({
-                    MaSanPham: props.maSanPham,
-                    MaDanhMuc: values.maDanhMuc,
-                    Madanhmucuudai: values.madanhmucuudai,
-                    TenSanPham: values.tenSanPham,
-                    AnhDaiDien: `/img/${anhdaidien[0].name}`,
-                    Gia: values.gia,
-                    GiaGiam: values.giaGiam,
-                    SoLuong: values.soLuong,
-                    TrongLuong: values.trongLuong,
-                    TrangThai: values.trangThai,
-                    XuatXu: values.xuatXu,
-                    list_json_chitiet_sanpham: [
-                        {
-                            MaChiTietSanPham: dataFetchById?.maChiTietSanPham,
-                            MaNhaSanXuat: values.maNhaSanXuat,
-                            MoTa: values.moTa,
-                            ChiTiet: dataCkEditor,
-                            status: 2,
-                        },
-                    ],
-                    list_json_sanpham_nhaphanphoi: [
-                        {
-                            MaSanPham: props.maSanPham,
-                            MaNhaPhanPhoi: values.maNhaPhanPhoi,
-                            status: 2,
-                        },
-                    ],
-                    list_json_anhsanpham: {
-                        Id: e.uid,
-                        status: 3,
-                    },
-                });
-                await fetchData(props.maSanPham);
-                openNotificationWithIcon("success", "Cập nhật thành công!");
+                if (anhchitiet && anhchitiet.length > 1) {
+                    setAnhChiTiet((prevAnhChiTiet) =>
+                        prevAnhChiTiet.filter((item) => item.uid !== file.uid)
+                    );
+                    await updateProduct({
+                        MaSanPham: props.maSanPham,
+                        MaDanhMuc: values.maDanhMuc,
+                        Madanhmucuudai: values.madanhmucuudai,
+                        TenSanPham: values.tenSanPham,
+                        AnhDaiDien: `/img/${anhdaidien[0].name}`,
+                        Gia: values.gia,
+                        GiaGiam: values.giaGiam,
+                        SoLuong: values.soLuong,
+                        TrongLuong: values.trongLuong,
+                        TrangThai: values.trangThai,
+                        XuatXu: values.xuatXu,
+                        list_json_chitiet_sanpham: [
+                            {
+                                MaChiTietSanPham:
+                                    dataFetchById?.maChiTietSanPham,
+                                MaNhaSanXuat: values.maNhaSanXuat,
+                                MoTa: values.moTa,
+                                ChiTiet: dataCkEditor,
+                                status: 2,
+                            },
+                        ],
+                        list_json_sanpham_nhaphanphoi: [
+                            {
+                                MaSanPham: props.maSanPham,
+                                MaNhaPhanPhoi: values.maNhaPhanPhoi,
+                                status: 2,
+                            },
+                        ],
+                        list_json_anhsanpham: [
+                            {
+                                Id: file.uid,
+                                status: 3,
+                            },
+                        ],
+                    });
+                    openNotificationWithIcon("success", "Xoá thành công!");
+                } else {
+                    openNotificationWithIcon(
+                        "warning",
+                        "Không thể xoá ảnh cuối cùng!"
+                    );
+                }
             })
             .catch(async (e) => {
-                openNotificationWithIcon("warning", "Thông tin chưa đủ!");
+                openNotificationWithIcon("warning", "Lỗi!");
+                console.log(e);
             });
     };
 
@@ -233,7 +251,6 @@ function ProductModal(props: any) {
                         ],
                         list_json_anhsanpham: listImgDetail,
                     });
-                    console.log(dataFetchById);
                     props.refreshData();
                     openNotificationWithIcon("success", "Cập nhật thành công!");
                 } else {
@@ -324,10 +341,7 @@ function ProductModal(props: any) {
             },
         ]);
 
-        const listPreviewImgDetail = dataImgDetail.map(function (
-            value: any,
-            index: any
-        ) {
+        const listPreviewImgDetail = dataImgDetail.map(function (value: any) {
             return {
                 uid: value.id,
                 name: value.linkAnh.slice(5),
@@ -408,7 +422,14 @@ function ProductModal(props: any) {
                             },
                         ]}
                     >
-                        <Select placeholder="Chọn danh mục ưu đãi">
+                        <Select
+                            placeholder="Chọn danh mục ưu đãi"
+                            defaultValue={
+                                category.length > 0
+                                    ? category[0].maDanhMuc
+                                    : undefined
+                            }
+                        >
                             {category.map(function (value: any, index: any) {
                                 return (
                                     <Option key={index} value={value.maDanhMuc}>
@@ -429,7 +450,14 @@ function ProductModal(props: any) {
                             },
                         ]}
                     >
-                        <Select placeholder="Chọn danh mục ưu đãi">
+                        <Select
+                            placeholder="Chọn danh mục ưu đãi"
+                            defaultValue={
+                                categoryOffer.length > 0
+                                    ? categoryOffer[0].madanhmucuudai
+                                    : undefined
+                            }
+                        >
                             {categoryOffer.map(function (
                                 value: any,
                                 index: any
@@ -573,7 +601,14 @@ function ProductModal(props: any) {
                             },
                         ]}
                     >
-                        <Select placeholder="Chọn nhà sản xuất">
+                        <Select
+                            placeholder="Chọn nhà sản xuất"
+                            defaultValue={
+                                manufactor.length > 0
+                                    ? manufactor[0].maNhaSanXuat
+                                    : undefined
+                            }
+                        >
                             {manufactor.map(function (value: any, index: any) {
                                 return (
                                     <Option
@@ -596,7 +631,14 @@ function ProductModal(props: any) {
                             },
                         ]}
                     >
-                        <Select placeholder="Chọn nhà phân phối">
+                        <Select
+                            placeholder="Chọn nhà phân phối"
+                            defaultValue={
+                                distributor.length > 0
+                                    ? distributor[0].maNhaPhanPhoi
+                                    : undefined
+                            }
+                        >
                             {distributor.map(function (value: any, index: any) {
                                 return (
                                     <Option

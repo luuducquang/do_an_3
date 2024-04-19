@@ -4,7 +4,7 @@ import { searchProduct } from "../../service/product.service";
 import { useParams } from "react-router-dom";
 import { Table, TableColumnsType, Pagination } from "antd";
 import { apiImage } from "../../constant/api";
-import { FaInfoCircle } from "react-icons/fa";
+import { FaInfoCircle, FaStar } from "react-icons/fa";
 import ProductModal from "../../components/HandlerProduct/ProductModal";
 import ProductDelete from "../../components/HandlerProduct/ProductDelete";
 
@@ -28,7 +28,7 @@ function Product() {
     const [loading, setLoading] = useState(false);
     const [maSanPham, setMaSanPham] = useState();
     const [totalProducts, setTotalProducts] = useState(0);
-    
+
     const [currentPage, setCurrentPage] = useState(1);
 
     const handlePageChange = (page: number) => {
@@ -125,6 +125,20 @@ function Product() {
         {
             title: "Đánh Giá",
             dataIndex: "danhGia",
+            render: (danhGia: string) => {
+                return (
+                    <div>
+                        <span>{danhGia}</span>
+                        <FaStar
+                            style={{
+                                marginTop: "-3px",
+                                color: "#ff9c1a",
+                                marginLeft: "2px",
+                            }}
+                        />
+                    </div>
+                );
+            },
         },
         {
             title: "Trọng Lượng",
