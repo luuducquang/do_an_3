@@ -4,6 +4,7 @@ import { IoSearch } from "react-icons/io5";
 import { MdEditSquare } from "react-icons/md";
 import { searchBillSell } from "../../service/billsell.service";
 import BillSellModal from "../../components/HandlerBillSell/BillSellModal";
+import BillSellDelete from "../../components/HandlerBillSell/BillSellDelete";
 
 interface DataType {
     key: React.Key;
@@ -11,7 +12,7 @@ interface DataType {
     tenTaiKhoan: any;
     trangThai: any;
     ngayTao: any;
-    tongGia: any;
+    tongTien: any;
     tenKH: any;
     diaChi: any;
     email: any;
@@ -66,7 +67,7 @@ function BillSell() {
         },
         {
             title: "Tổng Giá",
-            dataIndex: "tongGia",
+            dataIndex: "tongTien",
         },
         {
             title: "Địa Chỉ Giao",
@@ -142,7 +143,7 @@ function BillSell() {
             tenTaiKhoan: value.tenTaiKhoan,
             trangThai: value.trangThai,
             ngayTao: value.ngayTao,
-            tongGia: value.tongGia,
+            tongTien: value.tongGia,
             tenKH: value.tenKH,
             diaChi: value.diaChi,
             email: value.email,
@@ -239,6 +240,13 @@ function BillSell() {
                 fetchData={fetchData}
                 maHoaDon={maHoaDon}
                 record={dataRecord}
+            />
+            <BillSellDelete
+                isOpenDeleteModal={isOpenDeleteModal}
+                fetchData={fetchData}
+                handleCancelDeleteModal={handleCancelDeleteModal}
+                listiddel={listIdDelete}
+                onDeleteSuccess={handleClearSelection}
             />
         </div>
     );

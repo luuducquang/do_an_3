@@ -13,24 +13,25 @@ import {
 import { useEffect, useState } from "react";
 import { createCategory, updateCategory } from "../../service/category.service";
 import moment from "moment";
-import { getAllProduct } from "../../service/billsell.service";
+import {
+    createBillSell,
+    getAllProduct,
+    getDetailBillById,
+    updateBillSell,
+} from "../../service/billsell.service";
 import { RiAddBoxFill } from "react-icons/ri";
 import { apiImage } from "../../constant/api";
 import { MdDelete, MdEditSquare } from "react-icons/md";
 
+import "./BillSellModal.scss";
+
 type NotificationType = "success" | "info" | "warning" | "error";
 const { Option } = Select;
 
-interface DataType {
-    key: React.Key;
-    maDanhMuc: any;
-    tenDanhMuc: any;
-    dacBiet: any;
-    noiDung: any;
-}
-
 interface Product {
+    key: React.Key;
     maSanPham: any;
+    maChiTietHoaDon: any;
     tenSanPham: any;
     giaGiam: any;
     anhDaiDien: any;
@@ -44,12 +45,14 @@ function BillSellModal(props: any) {
     const { TextArea } = Input;
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
     const [listIdDelete, setListIdDelete] = useState([]);
+    const [listIdDetailDelete, setListIdDetailDelete] = useState([]);
 
     const [loading, setLoading] = useState(false);
     const [product, setProduct] = useState<Product[]>([]);
 
     const [selectedProduct, setSelectedProduct] = useState<any>(null);
     const [dataSet, SetDataSet] = useState<Product[]>([]);
+    const [dataSetTemp, SetDataSetTemp] = useState<Product[]>([]);
 
     const [api, contextHolder] = notification.useNotification();
 
@@ -63,28 +66,89 @@ function BillSellModal(props: any) {
         });
     };
 
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+
     const handleOk = () => {
         form.validateFields()
             .then(async (values: any) => {
-                if (props.maHoaDon) {
-                    props.handleCancelIUModal();
-                    await updateCategory({
-                        maHoaDon: props.maHoaDon,
-                        TenDanhMuc: values.tenDanhMuc,
-                        DacBiet: values.dacBiet === "Hoạt động",
-                        NoiDung: values.noiDung,
-                    });
-                    props.fetchData();
-                    openNotificationWithIcon("success", "Cập nhật thành công!");
+                if (dataSet.length === 0) {
+                    openNotificationWithIcon(
+                        "warning",
+                        "Bạn cần thêm sản phẩm!"
+                    );
                 } else {
-                    props.handleCancelIUModal();
-                    await createCategory({
-                        TenDanhMuc: values.tenDanhMuc,
-                        DacBiet: values.dacBiet === "Hoạt động",
-                        NoiDung: values.noiDung,
-                    });
-                    props.fetchData();
-                    openNotificationWithIcon("success", "Thêm thành công!");
+                    if (props.maHoaDon) {
+                        props.handleCancelIUModal();
+                        const updatedDataSet: Product[] = dataSet.filter(
+                            (item) =>
+                                dataSetTemp.some(
+                                    (tempItem) =>
+                                        tempItem.maSanPham !== item.maSanPham
+                                )
+                        );
+                        const itemadd =
+                            updatedDataSet.length > 0
+                                ? updatedDataSet.map((value: any) => {
+                                      return {
+                                          MaSanPham: value.maSanPham,
+                                          SoLuong: Number(value.soLuong),
+                                          SoLuongTon: Number(value.soLuong),
+                                          DonGia: Number(value.donGia),
+                                          TongGia: Number(value.tongGia),
+                                          status: 1,
+                                      };
+                                  })
+                                : [
+                                      {
+                                          MaChiTietHoaDon: 0,
+                                          MaSanPham: 0,
+                                          SoLuong: 0,
+                                          TongGia: 0,
+                                          status: 0,
+                                      },
+                                  ];
+                        console.log(itemadd);
+                        await updateBillSell({
+                            MaHoaDon: props.maHoaDon,
+                            TrangThai: values.trangThai,
+                            TongGia: String(values.tongTien).replace(/\./g, ""),
+                            TenKH: values.tenKH,
+                            DiaChi: values.diaChiGiaoHang,
+                            Email: values.email,
+                            SDT: values.sdt,
+                            DiaChiGiaoHang: values.diaChiGiaoHang,
+                            MaTaiKhoan: user.mataikhoan,
+                            list_json_chitiet_hoadon: itemadd,
+                        });
+                        props.fetchData();
+                        openNotificationWithIcon(
+                            "success",
+                            "Cập nhật thành công!"
+                        );
+                    } else {
+                        const listDataProduct = dataSet.map((value: any) => {
+                            return {
+                                MaSanPham: value.maSanPham,
+                                SoLuong: value.soLuong,
+                                DonGia: value.donGia,
+                                TongGia: value.tongGia,
+                            };
+                        });
+                        props.handleCancelIUModal();
+                        await createBillSell({
+                            TrangThai: values.trangThai,
+                            TongGia: String(values.tongTien).replace(/\./g, ""),
+                            TenKH: values.tenKH,
+                            DiaChi: values.diaChiGiaoHang,
+                            Email: values.email,
+                            SDT: values.sdt,
+                            DiaChiGiaoHang: values.diaChiGiaoHang,
+                            MaTaiKhoan: user.mataikhoan,
+                            list_json_chitiet_hoadon: listDataProduct,
+                        });
+                        props.fetchData();
+                        openNotificationWithIcon("success", "Thêm thành công!");
+                    }
                 }
             })
             .catch(async () => {
@@ -99,19 +163,45 @@ function BillSellModal(props: any) {
     async function fetchData() {
         const resProduct = await getAllProduct();
         setProduct(resProduct);
-        console.log(resProduct);
+    }
+
+    async function fetchDetail(maHoaDon: any) {
+        const resDetailBill = await getDetailBillById(maHoaDon);
+        const dataSetDetail = resDetailBill.map((value: any, index: any) => {
+            return {
+                key: index + 1,
+                maChiTietHoaDon: value.maChiTietHoaDon,
+                maSanPham: value.maSanPham,
+                tenSanPham: value.tenSanPham,
+                giaGiam: value.giaGiam,
+                anhDaiDien: apiImage + value.anhDaiDien,
+                soLuong: value.soLuong,
+                donGia: value.donGia,
+                tongGia: value.tongGia,
+            };
+        });
+        SetDataSet(dataSetDetail);
+        SetDataSetTemp(dataSetDetail);
     }
 
     useEffect(() => {
         if (props.maHoaDon !== "" && props.maHoaDon !== undefined) {
             form.setFieldsValue(props.record);
+            form.setFieldsValue({
+                maSanPham: "",
+                soLuong: 1,
+                donGia: "",
+                tongGia: "",
+            });
+            fetchDetail(props.maHoaDon);
         } else {
             form.resetFields();
+            SetDataSet([]);
         }
         fetchData();
     }, [props.maHoaDon, props.record]);
 
-    const columns: TableColumnsType<DataType> = [
+    const columns: TableColumnsType<Product> = [
         {
             title: "STT",
             dataIndex: "key",
@@ -132,6 +222,17 @@ function BillSellModal(props: any) {
             title: "Số lượng",
             dataIndex: "soLuong",
             align: "center",
+            render: (_, record) => (
+                <Input
+                    type="number"
+                    min={1}
+                    value={record.soLuong}
+                    onChange={(e) =>
+                        handleQuantityChangeItem(e.target.value, record)
+                    }
+                    style={{ width: "60px" }}
+                />
+            ),
         },
         {
             title: "Đơn giá",
@@ -149,10 +250,38 @@ function BillSellModal(props: any) {
             render: (_, record) => (
                 <div
                     style={{ cursor: "pointer" }}
-                    onClick={() => {
-                        // setIsModalOpen(true);
-                        // setMaDanhMuc(record.maDanhMuc);
-                        // setDataRecord(record);
+                    onClick={async () => {
+                        const dataProductLast = dataSetTemp.find(
+                            (item) => item.maSanPham === record.maSanPham
+                        );
+                        await updateBillSell({
+                            MaHoaDon: props.maHoaDon,
+                            TrangThai: form.getFieldValue("trangThai"),
+                            TongGia: form.getFieldValue("tongTien"),
+                            TenKH: form.getFieldValue("tenKH"),
+                            DiaChi: form.getFieldValue("diaChiGiaoHang"),
+                            Email: form.getFieldValue("email"),
+                            SDT: form.getFieldValue("sdt"),
+                            DiaChiGiaoHang:
+                                form.getFieldValue("diaChiGiaoHang"),
+                            list_json_chitiet_hoadon: [
+                                {
+                                    MaChiTietHoaDon: record.maChiTietHoaDon,
+                                    MaSanPham: record.maSanPham,
+                                    SoLuong: Number(record.soLuong),
+                                    SoLuongTon:
+                                        Number(record.soLuong) -
+                                        Number(dataProductLast?.soLuong),
+                                    DonGia: Number(record.donGia),
+                                    TongGia: Number(record.tongGia),
+                                    status: 2,
+                                },
+                            ],
+                        });
+                        openNotificationWithIcon(
+                            "success",
+                            "Chỉnh sửa thành công!"
+                        );
                     }}
                 >
                     <MdEditSquare style={{ fontSize: "20px" }} />
@@ -162,17 +291,23 @@ function BillSellModal(props: any) {
     ];
 
     const rowSelection = {
-        onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
+        onChange: (selectedRowKeys: React.Key[], selectedRows: Product[]) => {
             setSelectedRowKeys(selectedRowKeys);
-            const listid: any = selectedRows.map(function (
-                value: any,
-                index: any
-            ) {
+            const listid: any = selectedRows.map(function (value: any) {
                 return value.maSanPham;
             });
+            const listiddetail: any = selectedRows.map(function (value: any) {
+                return {
+                    MaChiTietHoaDon: value.maChiTietHoaDon,
+                    MaSanPham: value.maSanPham,
+                    SoLuongTon: value.soLuong,
+                    status: 3,
+                };
+            });
             setListIdDelete(listid);
+            setListIdDetailDelete(listiddetail);
         },
-        getCheckboxProps: (record: DataType) => ({
+        getCheckboxProps: (record: Product) => ({
             // disabled: record.id === "Disabled User", // Column configuration not to be checked
             // name: record.name,
         }),
@@ -190,9 +325,36 @@ function BillSellModal(props: any) {
     };
 
     const handleQuantityChange = (value: any) => {
+        if (value === "0") {
+            form.setFieldsValue({
+                soLuong: 1,
+            });
+        }
         const donGia = form.getFieldValue("donGia");
         form.setFieldsValue({
             tongGia: donGia * value,
+        });
+    };
+
+    const handleQuantityChangeItem = (value: any, record: any) => {
+        if (value === "0") {
+            value = "1";
+        }
+        const updatedDataSet = dataSet.map((item) => {
+            if (item.key === record.key) {
+                const newSoLuong = Number(value);
+                const newTongGia = Number(newSoLuong) * Number(item.donGia);
+
+                return { ...item, soLuong: newSoLuong, tongGia: newTongGia };
+            }
+            return item;
+        });
+        SetDataSet(updatedDataSet);
+        const totalPrice = updatedDataSet.reduce((accumulator, value) => {
+            return accumulator + Number(value.donGia) * Number(value.soLuong);
+        }, 0);
+        form.setFieldsValue({
+            tongTien: totalPrice,
         });
     };
 
@@ -205,17 +367,34 @@ function BillSellModal(props: any) {
                     );
 
                     if (existingIndex !== -1) {
-                        const updatedDataSet = [...dataSet];
-                        updatedDataSet[existingIndex].soLuong =
-                            Number(updatedDataSet[existingIndex].soLuong) +
-                            Number(values.soLuong);
-                        updatedDataSet[existingIndex].tongGia =
-                            Number(updatedDataSet[existingIndex].tongGia) +
-                            Number(values.tongGia);
-                        SetDataSet(updatedDataSet);
+                        // const updatedDataSet = [...dataSet];
+                        // updatedDataSet[existingIndex].soLuong =
+                        //     Number(updatedDataSet[existingIndex].soLuong) +
+                        //     Number(values.soLuong);
+                        // updatedDataSet[existingIndex].tongGia =
+                        //     Number(updatedDataSet[existingIndex].tongGia) +
+                        //     Number(values.tongGia);
+                        // SetDataSet(updatedDataSet);
+                        // const totalPrice = updatedDataSet.reduce(
+                        //     (accumulator, value) => {
+                        //         return (
+                        //             accumulator +
+                        //             Number(value.donGia) * Number(value.soLuong)
+                        //         );
+                        //     },
+                        //     0
+                        // );
+                        // form.setFieldsValue({
+                        //     tongTien: totalPrice,
+                        // });
+                        openNotificationWithIcon(
+                            "warning",
+                            "Sản phẩm đã có vui lòng sửa số lượng!"
+                        );
                     } else {
                         const dataTemp = {
                             key: dataSet.length + 1,
+                            maChiTietHoaDon: 0,
                             maSanPham: selectedProduct.maSanPham,
                             tenSanPham: selectedProduct.tenSanPham,
                             giaGiam: selectedProduct.giaGiam,
@@ -227,6 +406,19 @@ function BillSellModal(props: any) {
 
                         const newData = [...dataSet, dataTemp];
                         SetDataSet(newData);
+
+                        const totalPrice = newData.reduce(
+                            (accumulator, value) => {
+                                return (
+                                    accumulator +
+                                    Number(value.donGia) * Number(value.soLuong)
+                                );
+                            },
+                            0
+                        );
+                        form.setFieldsValue({
+                            tongTien: totalPrice,
+                        });
                     }
                 }
             })
@@ -236,15 +428,42 @@ function BillSellModal(props: any) {
             });
     };
 
-    const removeItemsByMaSanPham = (maSanPhamList: any) => {
-        const updatedDataSet = dataSet.filter(
-            (item) => !maSanPhamList.includes(item.maSanPham)
-        );
-        SetDataSet(updatedDataSet);
+    const removeItemsByMaSanPham = (
+        maSanPhamList: any,
+        listChiTietHoaDonDelete: any
+    ) => {
+        if (maSanPhamList) {
+            const updatedDataSet = dataSet.filter(
+                (item) => !maSanPhamList.includes(item.maSanPham)
+            );
+            SetDataSet(updatedDataSet);
+            const totalPrice = updatedDataSet.reduce((accumulator, value) => {
+                return (
+                    accumulator + Number(value.donGia) * Number(value.soLuong)
+                );
+            }, 0);
+            form.setFieldsValue({
+                tongTien: totalPrice,
+            });
+        }
+        if (listChiTietHoaDonDelete) {
+            updateBillSell({
+                MaHoaDon: props.maHoaDon,
+                TrangThai: form.getFieldValue("trangThai"),
+                TongGia: form.getFieldValue("tongTien"),
+                TenKH: form.getFieldValue("tenKH"),
+                DiaChi: form.getFieldValue("diaChiGiaoHang"),
+                Email: form.getFieldValue("email"),
+                SDT: form.getFieldValue("sdt"),
+                DiaChiGiaoHang: form.getFieldValue("diaChiGiaoHang"),
+                list_json_chitiet_hoadon: listChiTietHoaDonDelete,
+            });
+            openNotificationWithIcon("success", "Xoá thành công");
+        }
     };
 
     const handleDelItem = () => {
-        removeItemsByMaSanPham(listIdDelete);
+        removeItemsByMaSanPham(listIdDelete, listIdDetailDelete);
     };
 
     return (
@@ -333,19 +552,15 @@ function BillSellModal(props: any) {
 
                     <Form.Item
                         name="tongTien"
-                        label="Tổng giá"
+                        label="Tổng tiền"
                         rules={[
                             {
-                                required: true,
+                                required: false,
                                 message: "Tổng giá không được để trống!",
                             },
                         ]}
                     >
-                        <Input />
-                    </Form.Item>
-
-                    <Form.Item label="DatePicker">
-                        <DatePicker />
+                        <Input readOnly type="number" />
                     </Form.Item>
 
                     <Form.Item
@@ -359,7 +574,15 @@ function BillSellModal(props: any) {
                         ]}
                         initialValue={"Đang xử lý"}
                     >
-                        <Select placeholder="Chọn trạng thái">
+                        <Select
+                            placeholder="Chọn trạng thái"
+                            disabled={
+                                props.maHoaDon !== "" &&
+                                props.maHoaDon !== undefined
+                                    ? false
+                                    : true
+                            }
+                        >
                             <Option value="" disabled>
                                 Chọn trạng thái
                             </Option>
@@ -389,7 +612,7 @@ function BillSellModal(props: any) {
                         label="Tên sản phẩm"
                         rules={[
                             {
-                                required: true,
+                                required: false,
                                 message: "Sản phẩm không được để trống!",
                             },
                         ]}
@@ -418,7 +641,7 @@ function BillSellModal(props: any) {
                         label="Số lượng"
                         rules={[
                             {
-                                required: true,
+                                required: false,
                                 message: "Số lượng không được để trống!",
                             },
                         ]}
@@ -437,7 +660,7 @@ function BillSellModal(props: any) {
                         label="Đơn giá"
                         rules={[
                             {
-                                required: true,
+                                required: false,
                                 message: "Đơn giá không được để trống!",
                             },
                         ]}
@@ -447,10 +670,10 @@ function BillSellModal(props: any) {
 
                     <Form.Item
                         name="tongGia"
-                        label="Tổng tiền"
+                        label="Tổng giá"
                         rules={[
                             {
-                                required: true,
+                                required: false,
                                 message: "Tổng giá không được để trống!",
                             },
                         ]}
@@ -460,21 +683,11 @@ function BillSellModal(props: any) {
 
                     <div>
                         <MdDelete
-                            style={{
-                                float: "right",
-                                fontSize: "30px",
-                                cursor: "pointer",
-                                color: "#e62e2e",
-                            }}
+                            className="icon-container_delete"
                             onClick={handleDelItem}
                         />
                         <RiAddBoxFill
-                            style={{
-                                float: "right",
-                                fontSize: "30px",
-                                cursor: "pointer",
-                                color: "#5acf0b",
-                            }}
+                            className="icon-container_add"
                             onClick={handleAddItem}
                         />
                     </div>

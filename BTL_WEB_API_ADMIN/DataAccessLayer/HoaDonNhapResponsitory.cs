@@ -42,7 +42,6 @@ namespace DataAccessLayer
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_create_hoadon_nhap",
                     "@MaNhaPhanPhoi", model.MaNhaPhanPhoi,
-                    "@NgayTao", model.NgayTao,
                     "@KieuThanhToan", model.KieuThanhToan,
                     "@TongTien", model.TongTien,
                     "@MaTaiKhoan", model.MaTaiKhoan,
@@ -68,7 +67,6 @@ namespace DataAccessLayer
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_update_hoadon_nhap",
                     "@MaHoaDon",model.MaHoaDon,
                     "@MaNhaPhanPhoi", model.MaNhaPhanPhoi,
-                    "@NgayTao", model.NgayTao,
                     "@KieuThanhToan", model.KieuThanhToan,
                     "@TongTien", model.TongTien,
                     "@list_json_chitiethoadonnhap", model.list_json_chitiethoadonnhap != null ? MessageConvert.SerializeObject(model.list_json_chitiethoadonnhap) : null);
