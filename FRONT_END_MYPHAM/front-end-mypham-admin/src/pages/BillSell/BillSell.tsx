@@ -1,6 +1,160 @@
+import { Pagination, Table, TableColumnsType } from "antd";
+import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
+import { MdEditSquare } from "react-icons/md";
+import { searchBillSell } from "../../service/billsell.service";
+import BillSellModal from "../../components/HandlerBillSell/BillSellModal";
+
+interface DataType {
+    key: React.Key;
+    maHoaDon: any;
+    tenTaiKhoan: any;
+    trangThai: any;
+    ngayTao: any;
+    tongGia: any;
+    tenKH: any;
+    diaChi: any;
+    email: any;
+    sdt: any;
+    diaChiGiaoHang: any;
+}
 
 function BillSell() {
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [totalBillSell, setTotalBillSell] = useState(0);
+    const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+    const [listIdDelete, setListIdDelete] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [maHoaDon, setMaHoaDon] = useState();
+    const [dataRecord, setDataRecord] = useState<DataType>();
+    const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCancelIUModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCancelDeleteModal = () => {
+        setIsOpenDeleteModal(false);
+    };
+
+    const handleClearSelection = () => {
+        setSelectedRowKeys([]);
+    };
+
+    const columns: TableColumnsType<DataType> = [
+        {
+            title: "ID",
+            dataIndex: "maHoaDon",
+        },
+        {
+            title: "Tên Khách Hàng",
+            dataIndex: "tenKH",
+        },
+        {
+            title: "Tài Khoản Tạo",
+            dataIndex: "tenTaiKhoan",
+        },
+        {
+            title: "Tổng Giá",
+            dataIndex: "tongGia",
+        },
+        {
+            title: "Địa Chỉ Giao",
+            dataIndex: "diaChiGiaoHang",
+        },
+        {
+            title: "Số Điện Thoại",
+            dataIndex: "sdt",
+        },
+        {
+            title: "Ngày Tạo",
+            dataIndex: "ngayTao",
+        },
+        {
+            title: "Trạng Thái",
+            dataIndex: "trangThai",
+        },
+        {
+            title: "Tuỳ Chọn",
+            align: "center",
+            render: (_, record) => (
+                <div
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                        setIsModalOpen(true);
+                        setMaHoaDon(record.maHoaDon);
+                        setDataRecord(record);
+                    }}
+                >
+                    <MdEditSquare style={{ fontSize: "20px" }} />
+                </div>
+            ),
+        },
+    ];
+
+    const rowSelection = {
+        onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
+            // console.log(
+            //     `selectedRowKeys: ${selectedRowKeys}`,
+            //     "selectedRows: ",
+            //     selectedRows
+            // );
+            setSelectedRowKeys(selectedRowKeys);
+            const listid: any = selectedRows.map(function (
+                value: any,
+                index: any
+            ) {
+                return value.maHoaDon;
+            });
+            setListIdDelete(listid);
+        },
+        getCheckboxProps: (record: DataType) => ({
+            // disabled: record.id === "Disabled User", // Column configuration not to be checked
+            // name: record.name,
+        }),
+    };
+
+    const fetchData = async () => {
+        setLoading(true);
+        let results = await searchBillSell({
+            page: currentPage,
+            pageSize: 10,
+        });
+        setData(results.data);
+        setTotalBillSell(results.totalItems);
+        setLoading(false);
+    };
+
+    const dataSet = data.map(function (value: any, index: any) {
+        return {
+            key: index + 1,
+            maHoaDon: value.maHoaDon,
+            tenTaiKhoan: value.tenTaiKhoan,
+            trangThai: value.trangThai,
+            ngayTao: value.ngayTao,
+            tongGia: value.tongGia,
+            tenKH: value.tenKH,
+            diaChi: value.diaChi,
+            email: value.email,
+            sdt: value.sdt,
+            diaChiGiaoHang: value.diaChiGiaoHang,
+        };
+    });
+
+    useEffect(() => {
+        fetchData();
+    }, [currentPage]);
+
     return (
         <div className="container">
             <form className="form-group">
@@ -37,106 +191,55 @@ function BillSell() {
             </form>
 
             <div className="button mt-3">
-                <button className="btn btn-success btn-add ">
+                <button
+                    onClick={() => {
+                        showModal();
+                        setMaHoaDon(undefined);
+                    }}
+                    className="btn btn-success btn-add "
+                >
                     <i className="fa-solid fa-plus" />
                     Thêm Hoá Đơn Bán
                 </button>
-                <button className="btn btn-danger btn-del mx-1">
+                <button
+                    onClick={() => {
+                        if (listIdDelete.length > 0) {
+                            setIsOpenDeleteModal(true);
+                        }
+                    }}
+                    className="btn btn-danger btn-del mx-1"
+                >
                     <i className="fa-solid fa-trash" />
                     Xoá Hoá Đơn Bán
                 </button>
             </div>
-            <form action="">
-                <table className="table table-hover">
-                    <thead className="thead-dark">
-                        <tr className="text-center">
-                            <th>Chọn</th>
-                            <th>ID</th>
-                            <th>Tên Khách Hàng</th>
-                            <th>Tài Khoản Tạo</th>
-                            <th>Tổng Giá</th>
-                            <th>Địa chỉ giao</th>
-                            <th>Số điện thoại</th>
-                            <th>Ngày tạo</th>
-                            <th>Trạng Thái</th>
-                            <th>Hành Động</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className="text-center">
-                            <td>
-                                <input
-                                    className="form-check-input"
-                                    ng-checked="all"
-                                    ng-model="selected"
-                                    type="checkbox"
-                                    ng-click="toggleSelection(x)"
-                                />
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.maHoaDon{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.tenKH{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.tenTaiKhoan{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.tongGia{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.diaChiGiaoHang{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.sdt{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                {"{"}
-                                {"{"}x.ngayTao{"}"}
-                                {"}"}
-                            </td>
-                            <td ng-style="{'color': x.trangThai === 'Đang xử lý' ? '#FFCC00' : (x.trangThai === 'Huỷ đơn' ? '#FF3300' : '#33CC00')}">
-                                {"{"}
-                                {"{"}x.trangThai{"}"}
-                                {"}"}
-                            </td>
-                            <td>
-                                <a className="edit text-decoration-none">
-                                    <i
-                                        title="Chi tiết"
-                                        ng-click="edit(x)"
-                                        className="fa-solid fa-circle-info"
-                                    />
-                                </a>
-                                <a
-                                    title="Kiết xuất"
-                                    target="_blank"
-                                    href="./exportInvoiceToPdf.html"
-                                >
-                                    <i
-                                        style={{ marginLeft: 15 }}
-                                        ng-click="export(x)"
-                                        className="fa-solid fa-file-export"
-                                    />
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
+            <Table
+                bordered={true}
+                rowSelection={{
+                    ...rowSelection,
+                    selectedRowKeys: selectedRowKeys,
+                }}
+                columns={columns}
+                dataSource={dataSet}
+                loading={loading}
+                rowClassName="hover-row"
+                pagination={false}
+            />
+            <Pagination
+                current={currentPage}
+                total={totalBillSell}
+                pageSize={10}
+                onChange={handlePageChange}
+                style={{ marginTop: "16px", textAlign: "center" }}
+            />
+            <BillSellModal
+                showModal={showModal}
+                isModalOpen={isModalOpen}
+                handleCancelIUModal={handleCancelIUModal}
+                fetchData={fetchData}
+                maHoaDon={maHoaDon}
+                record={dataRecord}
+            />
         </div>
     );
 }
