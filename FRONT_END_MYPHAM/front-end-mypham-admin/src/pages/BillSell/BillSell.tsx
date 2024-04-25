@@ -82,6 +82,7 @@ function BillSell() {
         {
             title: "Tổng Giá",
             dataIndex: "tongTien",
+            render: (text: string) => parseInt(text).toLocaleString("en-US"),
         },
         {
             title: "Địa Chỉ Giao",

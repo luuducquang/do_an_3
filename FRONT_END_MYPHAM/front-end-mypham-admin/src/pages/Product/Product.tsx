@@ -113,6 +113,7 @@ function Product() {
         {
             title: "Giá Bán",
             dataIndex: "gia",
+            render: (text: string) => parseInt(text).toLocaleString("en-US"),
         },
         {
             title: "Số Lượng",

@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { MdEditSquare } from "react-icons/md";
 import { searchImportBill } from "../../service/importbill.service";
+import ImportBillDelete from "../../components/HandlerImportBill/ImportBillDelete";
+import ImportBillModal from "../../components/HandlerImportBill/ImportBillModal";
 
 interface DataType {
     key: React.Key;
@@ -71,6 +73,7 @@ function ImportBill() {
         {
             title: "Tổng Tiền",
             dataIndex: "tongTien",
+            render: (text: string) => parseInt(text).toLocaleString("en-US"),
         },
         {
             title: "Tuỳ Chọn",
@@ -118,7 +121,6 @@ function ImportBill() {
             page: currentPage,
             pageSize: 10,
         });
-        console.log(results.data);
         setData(results.data);
         setTotalImportBill(results.totalItems);
         setLoading(false);
@@ -183,11 +185,24 @@ function ImportBill() {
                 </div>
             </form>
             <div className="button mt-3">
-                <button className="btn btn-success btn-add">
+                <button
+                    onClick={() => {
+                        showModal();
+                        setMaHoaDon(undefined);
+                    }}
+                    className="btn btn-success btn-add"
+                >
                     <i className="fa-solid fa-plus" />
                     Thêm Hoá Đơn Nhập
                 </button>
-                <button className="btn btn-danger btn-del mx-1">
+                <button
+                    onClick={() => {
+                        if (listIdDelete.length > 0) {
+                            setIsOpenDeleteModal(true);
+                        }
+                    }}
+                    className="btn btn-danger btn-del mx-1"
+                >
                     <i className="fa-solid fa-trash" />
                     Xoá Hoá Đơn Nhập
                 </button>
@@ -210,6 +225,21 @@ function ImportBill() {
                 pageSize={10}
                 onChange={handlePageChange}
                 style={{ marginTop: "16px", textAlign: "center" }}
+            />
+            <ImportBillModal
+                showModal={showModal}
+                isModalOpen={isModalOpen}
+                handleCancelIUModal={handleCancelIUModal}
+                fetchData={fetchData}
+                maHoaDon={maHoaDon}
+                record={dataRecord}
+            />
+            <ImportBillDelete
+                isOpenDeleteModal={isOpenDeleteModal}
+                fetchData={fetchData}
+                handleCancelDeleteModal={handleCancelDeleteModal}
+                listiddel={listIdDelete}
+                onDeleteSuccess={handleClearSelection}
             />
         </div>
     );

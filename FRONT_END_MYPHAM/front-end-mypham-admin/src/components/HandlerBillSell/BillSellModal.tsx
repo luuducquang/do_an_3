@@ -365,7 +365,7 @@ function BillSellModal(props: any) {
     };
 
     const handleQuantityChange = (value: any) => {
-        if (value === "0") {
+        if (value === "0" || value==="") {
             form.setFieldsValue({
                 soLuong: 1,
             });
@@ -377,7 +377,7 @@ function BillSellModal(props: any) {
     };
 
     const handleQuantityChangeItem = (value: any, record: any) => {
-        if (value === "0") {
+        if (value === "0" || value==="") {
             value = "1";
         }
         const updatedDataSet = dataSet.map((item) => {
