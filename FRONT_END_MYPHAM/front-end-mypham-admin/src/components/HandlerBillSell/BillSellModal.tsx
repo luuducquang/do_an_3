@@ -68,98 +68,6 @@ function BillSellModal(props: any) {
 
     const user = JSON.parse(localStorage.getItem("user") || "{}");
 
-    const handleOk = () => {
-        form.validateFields()
-            .then(async (values: any) => {
-                if (dataSet.length === 0) {
-                    openNotificationWithIcon(
-                        "warning",
-                        "Bạn cần thêm sản phẩm!"
-                    );
-                } else {
-                    if (props.maHoaDon) {
-                        props.handleCancelIUModal();
-                        const updatedDataSet: Product[] = dataSet.filter(
-                            (item) =>
-                                dataSetTemp.some(
-                                    (tempItem) =>
-                                        tempItem.maSanPham !== item.maSanPham
-                                )
-                        );
-                        const itemadd =
-                            updatedDataSet.length > 0
-                                ? updatedDataSet.map((value: any) => {
-                                      return {
-                                          MaSanPham: value.maSanPham,
-                                          SoLuong: Number(value.soLuong),
-                                          SoLuongTon: Number(value.soLuong),
-                                          DonGia: Number(value.donGia),
-                                          TongGia: Number(value.tongGia),
-                                          status: 1,
-                                      };
-                                  })
-                                : [
-                                      {
-                                          MaChiTietHoaDon: 0,
-                                          MaSanPham: 0,
-                                          SoLuong: 0,
-                                          TongGia: 0,
-                                          status: 0,
-                                      },
-                                  ];
-                        console.log(itemadd);
-                        await updateBillSell({
-                            MaHoaDon: props.maHoaDon,
-                            TrangThai: values.trangThai,
-                            TongGia: String(values.tongTien).replace(/\./g, ""),
-                            TenKH: values.tenKH,
-                            DiaChi: values.diaChiGiaoHang,
-                            Email: values.email,
-                            SDT: values.sdt,
-                            DiaChiGiaoHang: values.diaChiGiaoHang,
-                            MaTaiKhoan: user.mataikhoan,
-                            list_json_chitiet_hoadon: itemadd,
-                        });
-                        props.fetchData();
-                        openNotificationWithIcon(
-                            "success",
-                            "Cập nhật thành công!"
-                        );
-                    } else {
-                        const listDataProduct = dataSet.map((value: any) => {
-                            return {
-                                MaSanPham: value.maSanPham,
-                                SoLuong: value.soLuong,
-                                DonGia: value.donGia,
-                                TongGia: value.tongGia,
-                            };
-                        });
-                        props.handleCancelIUModal();
-                        await createBillSell({
-                            TrangThai: values.trangThai,
-                            TongGia: String(values.tongTien).replace(/\./g, ""),
-                            TenKH: values.tenKH,
-                            DiaChi: values.diaChiGiaoHang,
-                            Email: values.email,
-                            SDT: values.sdt,
-                            DiaChiGiaoHang: values.diaChiGiaoHang,
-                            MaTaiKhoan: user.mataikhoan,
-                            list_json_chitiet_hoadon: listDataProduct,
-                        });
-                        props.fetchData();
-                        openNotificationWithIcon("success", "Thêm thành công!");
-                    }
-                }
-            })
-            .catch(async () => {
-                openNotificationWithIcon("warning", "Thông tin chưa đủ!");
-            });
-    };
-
-    const handleCancel = () => {
-        props.handleCancelIUModal();
-    };
-
     async function fetchData() {
         const resProduct = await getAllProduct();
         setProduct(resProduct);
@@ -194,12 +102,120 @@ function BillSellModal(props: any) {
                 tongGia: "",
             });
             fetchDetail(props.maHoaDon);
+            setSelectedProduct(null);
         } else {
             form.resetFields();
             SetDataSet([]);
+            setSelectedProduct(null);
         }
         fetchData();
     }, [props.maHoaDon, props.record]);
+
+    const handleOk = () => {
+        form.validateFields()
+            .then(async (values: any) => {
+                if (dataSet.length === 0) {
+                    openNotificationWithIcon(
+                        "warning",
+                        "Bạn cần thêm sản phẩm!"
+                    );
+                } else {
+                    if (props.maHoaDon) {
+                        props.handleCancelIUModal();
+                        if (values.trangThai === "Huỷ đơn") {
+                            const listitemDeleted = dataSet.map(
+                                (value: any) => {
+                                    return {
+                                        MaChiTietHoaDon: value.maChiTietHoaDon,
+                                        MaSanPham: value.maSanPham,
+                                        SoLuongTon: value.soLuong,
+                                        Status: 4,
+                                    };
+                                }
+                            );
+                            await updateBillSell({
+                                MaHoaDon: props.maHoaDon,
+                                TrangThai: values.trangThai,
+                                TongGia: String(values.tongTien).replace(
+                                    /\./g,
+                                    ""
+                                ),
+                                TenKH: values.tenKH,
+                                DiaChi: values.diaChiGiaoHang,
+                                Email: values.email,
+                                SDT: values.sdt,
+                                DiaChiGiaoHang: values.diaChiGiaoHang,
+                                MaTaiKhoan: user.mataikhoan,
+                                list_json_chitiet_hoadon: listitemDeleted,
+                            });
+                            openNotificationWithIcon(
+                                "success",
+                                "Huỷ đơn thành công!"
+                            );
+                        } else {
+                            await updateBillSell({
+                                MaHoaDon: props.maHoaDon,
+                                TrangThai: values.trangThai,
+                                TongGia: String(values.tongTien).replace(
+                                    /\./g,
+                                    ""
+                                ),
+                                TenKH: values.tenKH,
+                                DiaChi: values.diaChiGiaoHang,
+                                Email: values.email,
+                                SDT: values.sdt,
+                                DiaChiGiaoHang: values.diaChiGiaoHang,
+                                MaTaiKhoan: user.mataikhoan,
+                                list_json_chitiet_hoadon: [
+                                    {
+                                        MaChiTietHoaDon: 0,
+                                        MaSanPham: 0,
+                                        SoLuong: 0,
+                                        TongGia: 0,
+                                        status: 0,
+                                    },
+                                ],
+                            });
+                            openNotificationWithIcon(
+                                "success",
+                                "Cập nhật thành công!"
+                            );
+                        }
+                        props.fetchData();
+                    } else {
+                        const listDataProduct = dataSet.map((value: any) => {
+                            return {
+                                MaSanPham: value.maSanPham,
+                                SoLuong: Number(values.soLuong),
+                                DonGia: Number(values.donGia),
+                                TongGia: Number(values.tongGia),
+                            };
+                        });
+                        props.handleCancelIUModal();
+                        await createBillSell({
+                            TrangThai: values.trangThai,
+                            TongGia: String(values.tongTien).replace(/\./g, ""),
+                            TenKH: values.tenKH,
+                            DiaChi: values.diaChiGiaoHang,
+                            Email: values.email,
+                            SDT: values.sdt,
+                            DiaChiGiaoHang: values.diaChiGiaoHang,
+                            MaTaiKhoan: user.mataikhoan,
+                            list_json_chitiet_hoadon: listDataProduct,
+                        });
+                        props.fetchData();
+                        openNotificationWithIcon("success", "Thêm thành công!");
+                    }
+                }
+            })
+            .catch(async () => {
+                openNotificationWithIcon("warning", "Thông tin chưa đủ!");
+            });
+    };
+
+    const handleCancel = () => {
+        props.handleCancelIUModal();
+    };
 
     const columns: TableColumnsType<Product> = [
         {
@@ -254,6 +270,21 @@ function BillSellModal(props: any) {
                         const dataProductLast = dataSetTemp.find(
                             (item) => item.maSanPham === record.maSanPham
                         );
+                        const updatedDataSetTemp = dataSetTemp.map((item) => {
+                            if (item.maSanPham === record.maSanPham) {
+                                return {
+                                    ...item,
+                                    soLuong: Number(record.soLuong),
+                                    tongGia:
+                                        Number(record.soLuong) *
+                                        Number(record.donGia),
+                                };
+                            }
+                            return item;
+                        });
+                        SetDataSetTemp(updatedDataSetTemp);
+                        SetDataSet(updatedDataSetTemp);
+
                         await updateBillSell({
                             MaHoaDon: props.maHoaDon,
                             TrangThai: form.getFieldValue("trangThai"),
@@ -273,15 +304,19 @@ function BillSellModal(props: any) {
                                         Number(record.soLuong) -
                                         Number(dataProductLast?.soLuong),
                                     DonGia: Number(record.donGia),
-                                    TongGia: Number(record.tongGia),
+                                    TongGia:
+                                        Number(record.donGia) *
+                                        Number(record.soLuong),
                                     status: 2,
                                 },
                             ],
                         });
+
                         openNotificationWithIcon(
                             "success",
                             "Chỉnh sửa thành công!"
                         );
+                        props.fetchData();
                     }}
                 >
                     <MdEditSquare style={{ fontSize: "20px" }} />
@@ -296,11 +331,16 @@ function BillSellModal(props: any) {
             const listid: any = selectedRows.map(function (value: any) {
                 return value.maSanPham;
             });
-            const listiddetail: any = selectedRows.map(function (value: any) {
+
+            const itemDelOld = dataSetTemp.filter((item: any) =>
+                listid.includes(item.maSanPham)
+            );
+
+            const listiddetail: any = itemDelOld.map(function (value: any) {
                 return {
                     MaChiTietHoaDon: value.maChiTietHoaDon,
                     MaSanPham: value.maSanPham,
-                    SoLuongTon: value.soLuong,
+                    SoLuongTon: Number(value.soLuong),
                     status: 3,
                 };
             });
@@ -358,6 +398,20 @@ function BillSellModal(props: any) {
         });
     };
 
+    function arraysAreEqual(arr1: any, arr2: any) {
+        if (arr1.length !== arr2.length) {
+            return false;
+        }
+
+        for (let i = 0; i < arr1.length; i++) {
+            if (arr1[i] !== arr2[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     const handleAddItem = () => {
         form.validateFields()
             .then(async (values: any) => {
@@ -392,34 +446,111 @@ function BillSellModal(props: any) {
                             "Sản phẩm đã có vui lòng sửa số lượng!"
                         );
                     } else {
-                        const dataTemp = {
-                            key: dataSet.length + 1,
-                            maChiTietHoaDon: 0,
-                            maSanPham: selectedProduct.maSanPham,
-                            tenSanPham: selectedProduct.tenSanPham,
-                            giaGiam: selectedProduct.giaGiam,
-                            anhDaiDien: apiImage + selectedProduct.anhDaiDien,
-                            soLuong: values.soLuong,
-                            donGia: values.donGia,
-                            tongGia: values.tongGia,
-                        };
+                        if (props.maHoaDon) {
+                            if (arraysAreEqual(dataSet, dataSetTemp)) {
+                                const dataTemp = {
+                                    key: dataSet.length + 1,
+                                    maChiTietHoaDon: 0,
+                                    maSanPham: selectedProduct.maSanPham,
+                                    tenSanPham: selectedProduct.tenSanPham,
+                                    giaGiam: selectedProduct.giaGiam,
+                                    anhDaiDien:
+                                        apiImage + selectedProduct.anhDaiDien,
+                                    soLuong: Number(values.soLuong),
+                                    donGia: Number(values.donGia),
+                                    tongGia: Number(values.tongGia),
+                                };
 
-                        const newData = [...dataSet, dataTemp];
-                        SetDataSet(newData);
+                                const newData = [...dataSet, dataTemp];
+                                SetDataSet(newData);
+                                SetDataSetTemp(newData);
 
-                        const totalPrice = newData.reduce(
-                            (accumulator, value) => {
-                                return (
-                                    accumulator +
-                                    Number(value.donGia) * Number(value.soLuong)
+                                const totalPrice = newData.reduce(
+                                    (accumulator, value) => {
+                                        return (
+                                            accumulator +
+                                            Number(value.donGia) *
+                                                Number(value.soLuong)
+                                        );
+                                    },
+                                    0
                                 );
-                            },
-                            0
-                        );
-                        form.setFieldsValue({
-                            tongTien: totalPrice,
-                        });
+                                form.setFieldsValue({
+                                    tongTien: totalPrice,
+                                });
+
+                                await updateBillSell({
+                                    MaHoaDon: props.maHoaDon,
+                                    TrangThai: values.trangThai,
+                                    TongGia: totalPrice,
+                                    TenKH: values.tenKH,
+                                    DiaChi: values.diaChiGiaoHang,
+                                    Email: values.email,
+                                    SDT: values.sdt,
+                                    DiaChiGiaoHang: values.diaChiGiaoHang,
+                                    MaTaiKhoan: user.mataikhoan,
+                                    list_json_chitiet_hoadon: [
+                                        {
+                                            MaSanPham:
+                                                selectedProduct.maSanPham,
+                                            SoLuong: Number(values.soLuong),
+                                            SoLuongTon: Number(values.soLuong),
+                                            DonGia: Number(values.donGia),
+                                            TongGia: Number(values.tongGia),
+                                            status: 1,
+                                        },
+                                    ],
+                                });
+                                openNotificationWithIcon(
+                                    "success",
+                                    "Thêm sản phẩm thành công!"
+                                );
+                                props.fetchData();
+                                fetchDetail(props.maHoaDon);
+                            } else {
+                                openNotificationWithIcon(
+                                    "warning",
+                                    "Vui lòng cập nhật số lượng sản phẩm đã thêm!"
+                                );
+                            }
+                        } else {
+                            const dataTemp = {
+                                key: dataSet.length + 1,
+                                maChiTietHoaDon: 0,
+                                maSanPham: selectedProduct.maSanPham,
+                                tenSanPham: selectedProduct.tenSanPham,
+                                giaGiam: selectedProduct.giaGiam,
+                                anhDaiDien:
+                                    apiImage + selectedProduct.anhDaiDien,
+                                soLuong: Number(values.soLuong),
+                                donGia: Number(values.donGia),
+                                tongGia: Number(values.tongGia),
+                            };
+
+                            const newData = [...dataSet, dataTemp];
+                            SetDataSet(newData);
+                            SetDataSetTemp(newData);
+
+                            const totalPrice = newData.reduce(
+                                (accumulator, value) => {
+                                    return (
+                                        accumulator +
+                                        Number(value.donGia) *
+                                            Number(value.soLuong)
+                                    );
+                                },
+                                0
+                            );
+                            form.setFieldsValue({
+                                tongTien: totalPrice,
+                            });
+                        }
                     }
+                } else {
+                    openNotificationWithIcon(
+                        "warning",
+                        "Vui lòng chọn sản phẩm!"
+                    );
                 }
             })
             .catch(async (e) => {
@@ -437,6 +568,7 @@ function BillSellModal(props: any) {
                 (item) => !maSanPhamList.includes(item.maSanPham)
             );
             SetDataSet(updatedDataSet);
+            SetDataSetTemp(updatedDataSet);
             const totalPrice = updatedDataSet.reduce((accumulator, value) => {
                 return (
                     accumulator + Number(value.donGia) * Number(value.soLuong)
@@ -446,19 +578,28 @@ function BillSellModal(props: any) {
                 tongTien: totalPrice,
             });
         }
-        if (listChiTietHoaDonDelete) {
-            updateBillSell({
-                MaHoaDon: props.maHoaDon,
-                TrangThai: form.getFieldValue("trangThai"),
-                TongGia: form.getFieldValue("tongTien"),
-                TenKH: form.getFieldValue("tenKH"),
-                DiaChi: form.getFieldValue("diaChiGiaoHang"),
-                Email: form.getFieldValue("email"),
-                SDT: form.getFieldValue("sdt"),
-                DiaChiGiaoHang: form.getFieldValue("diaChiGiaoHang"),
-                list_json_chitiet_hoadon: listChiTietHoaDonDelete,
-            });
-            openNotificationWithIcon("success", "Xoá thành công");
+        if (props.maHoaDon) {
+            if (listChiTietHoaDonDelete.length > 0) {
+                updateBillSell({
+                    MaHoaDon: props.maHoaDon,
+                    TrangThai: form.getFieldValue("trangThai"),
+                    TongGia: form.getFieldValue("tongTien"),
+                    TenKH: form.getFieldValue("tenKH"),
+                    DiaChi: form.getFieldValue("diaChiGiaoHang"),
+                    Email: form.getFieldValue("email"),
+                    SDT: form.getFieldValue("sdt"),
+                    DiaChiGiaoHang: form.getFieldValue("diaChiGiaoHang"),
+                    list_json_chitiet_hoadon: listChiTietHoaDonDelete,
+                });
+                props.fetchData();
+                openNotificationWithIcon("success", "Xoá thành công");
+            }
+        }
+        if (selectedRowKeys.length === 0) {
+            openNotificationWithIcon(
+                "warning",
+                "Bạn chưa chọn sản phẩm để xoá"
+            );
         }
     };
 

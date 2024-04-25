@@ -1,4 +1,4 @@
-import { Pagination, Table, TableColumnsType } from "antd";
+import { Pagination, Table, TableColumnsType, notification } from "antd";
 import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { MdEditSquare } from "react-icons/md";
@@ -20,6 +20,8 @@ interface DataType {
     diaChiGiaoHang: any;
 }
 
+type NotificationType = "success" | "info" | "warning" | "error";
+
 function BillSell() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -31,6 +33,18 @@ function BillSell() {
     const [maHoaDon, setMaHoaDon] = useState();
     const [dataRecord, setDataRecord] = useState<DataType>();
     const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = (
+        type: NotificationType,
+        content: string
+    ) => {
+        api[type]({
+            message: "Thông báo",
+            description: content,
+        });
+    };
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
@@ -92,9 +106,16 @@ function BillSell() {
                 <div
                     style={{ cursor: "pointer" }}
                     onClick={() => {
-                        setIsModalOpen(true);
-                        setMaHoaDon(record.maHoaDon);
-                        setDataRecord(record);
+                        if (record.trangThai === "Huỷ đơn") {
+                            openNotificationWithIcon(
+                                "warning",
+                                "Đơn đã huỷ không thế xem!"
+                            );
+                        } else {
+                            setIsModalOpen(true);
+                            setMaHoaDon(record.maHoaDon);
+                            setDataRecord(record);
+                        }
                     }}
                 >
                     <MdEditSquare style={{ fontSize: "20px" }} />
@@ -157,98 +178,101 @@ function BillSell() {
     }, [currentPage]);
 
     return (
-        <div className="container">
-            <form className="form-group">
-                <div className="row g-2 align-items-center mb-3">
-                    <div className="col">
-                        <input
-                            className="form-control"
-                            type="text"
-                            placeholder="Nhập từ khoá cần tìm"
-                        />
+        <>
+            {contextHolder}
+            <div className="container">
+                <form className="form-group">
+                    <div className="row g-2 align-items-center mb-3">
+                        <div className="col">
+                            <input
+                                className="form-control"
+                                type="text"
+                                placeholder="Nhập từ khoá cần tìm"
+                            />
+                        </div>
+                        <div className="col-auto">
+                            <select
+                                className="form-select"
+                                aria-label="Default select example"
+                            >
+                                <option value="" disabled>
+                                    Tìm kiếm theo
+                                </option>
+                                <option value="TenKH">Tên Khách Hàng</option>
+                                <option value="SDT">Số Điện Thoại</option>
+                                <option value="TrangThai">Trạng Thái</option>
+                            </select>
+                        </div>
+                        <div className="col-auto">
+                            <button
+                                className="btn btn-primary d-flex align-items-center w-100"
+                                type="button"
+                            >
+                                <IoSearch className="mr-1" /> Tìm kiếm
+                            </button>
+                        </div>
                     </div>
-                    <div className="col-auto">
-                        <select
-                            className="form-select"
-                            aria-label="Default select example"
-                        >
-                            <option value="" disabled>
-                                Tìm kiếm theo
-                            </option>
-                            <option value="TenKH">Tên Khách Hàng</option>
-                            <option value="SDT">Số Điện Thoại</option>
-                            <option value="TrangThai">Trạng Thái</option>
-                        </select>
-                    </div>
-                    <div className="col-auto">
-                        <button
-                            className="btn btn-primary d-flex align-items-center w-100"
-                            type="button"
-                        >
-                            <IoSearch className="mr-1" /> Tìm kiếm
-                        </button>
-                    </div>
-                </div>
-            </form>
+                </form>
 
-            <div className="button mt-3">
-                <button
-                    onClick={() => {
-                        showModal();
-                        setMaHoaDon(undefined);
+                <div className="button mt-3">
+                    <button
+                        onClick={() => {
+                            showModal();
+                            setMaHoaDon(undefined);
+                        }}
+                        className="btn btn-success btn-add "
+                    >
+                        <i className="fa-solid fa-plus" />
+                        Thêm Hoá Đơn Bán
+                    </button>
+                    <button
+                        onClick={() => {
+                            if (listIdDelete.length > 0) {
+                                setIsOpenDeleteModal(true);
+                            }
+                        }}
+                        className="btn btn-danger btn-del mx-1"
+                    >
+                        <i className="fa-solid fa-trash" />
+                        Xoá Hoá Đơn Bán
+                    </button>
+                </div>
+                <Table
+                    bordered={true}
+                    rowSelection={{
+                        ...rowSelection,
+                        selectedRowKeys: selectedRowKeys,
                     }}
-                    className="btn btn-success btn-add "
-                >
-                    <i className="fa-solid fa-plus" />
-                    Thêm Hoá Đơn Bán
-                </button>
-                <button
-                    onClick={() => {
-                        if (listIdDelete.length > 0) {
-                            setIsOpenDeleteModal(true);
-                        }
-                    }}
-                    className="btn btn-danger btn-del mx-1"
-                >
-                    <i className="fa-solid fa-trash" />
-                    Xoá Hoá Đơn Bán
-                </button>
+                    columns={columns}
+                    dataSource={dataSet}
+                    loading={loading}
+                    rowClassName="hover-row"
+                    pagination={false}
+                />
+                <Pagination
+                    current={currentPage}
+                    total={totalBillSell}
+                    pageSize={10}
+                    onChange={handlePageChange}
+                    style={{ marginTop: "16px", textAlign: "center" }}
+                />
+                <BillSellModal
+                    showModal={showModal}
+                    isModalOpen={isModalOpen}
+                    handleCancelIUModal={handleCancelIUModal}
+                    fetchData={fetchData}
+                    maHoaDon={maHoaDon}
+                    record={dataRecord}
+                />
+                <BillSellDelete
+                    isOpenDeleteModal={isOpenDeleteModal}
+                    fetchData={fetchData}
+                    handleCancelDeleteModal={handleCancelDeleteModal}
+                    listiddel={listIdDelete}
+                    onDeleteSuccess={handleClearSelection}
+                />
             </div>
-            <Table
-                bordered={true}
-                rowSelection={{
-                    ...rowSelection,
-                    selectedRowKeys: selectedRowKeys,
-                }}
-                columns={columns}
-                dataSource={dataSet}
-                loading={loading}
-                rowClassName="hover-row"
-                pagination={false}
-            />
-            <Pagination
-                current={currentPage}
-                total={totalBillSell}
-                pageSize={10}
-                onChange={handlePageChange}
-                style={{ marginTop: "16px", textAlign: "center" }}
-            />
-            <BillSellModal
-                showModal={showModal}
-                isModalOpen={isModalOpen}
-                handleCancelIUModal={handleCancelIUModal}
-                fetchData={fetchData}
-                maHoaDon={maHoaDon}
-                record={dataRecord}
-            />
-            <BillSellDelete
-                isOpenDeleteModal={isOpenDeleteModal}
-                fetchData={fetchData}
-                handleCancelDeleteModal={handleCancelDeleteModal}
-                listiddel={listIdDelete}
-                onDeleteSuccess={handleClearSelection}
-            />
-        </div>
+        </>
     );
 }
 
