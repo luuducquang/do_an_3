@@ -30,6 +30,8 @@ function Manufactor() {
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
     const [listIdDelete, setListIdDelete] = useState([]);
 
+    const [valueSearch, setValueSearch] = useState("");
+
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
@@ -115,11 +117,12 @@ function Manufactor() {
         },
     ];
 
-    const fetchData = async () => {
+    const fetchData = async (valueSearch: any) => {
         setLoading(true);
         let results = await searchManufactor({
             page: currentPage,
             pageSize: 10,
+            TenHang: valueSearch,
         });
         setData(results.data);
         setTotalManufactor(results.totalItems);
@@ -127,8 +130,13 @@ function Manufactor() {
     };
 
     useEffect(() => {
-        fetchData();
+        fetchData(valueSearch);
     }, [currentPage]);
+
+    const handleSearch = (event: any) => {
+        event.preventDefault();
+        fetchData(valueSearch);
+    };
 
     const dataSet = data.map(function (value: any, index: any) {
         return {
@@ -143,7 +151,7 @@ function Manufactor() {
     return (
         <>
             <div className="container">
-                <form className="form-group">
+                <form className="form-group" onSubmit={handleSearch}>
                     <div className="row g-2 mb-3">
                         <div className="col">
                             <div className="input-group">
@@ -151,6 +159,10 @@ function Manufactor() {
                                     className="form-control"
                                     type="text"
                                     placeholder="Nhập tên hãng sản xuất bạn cần tìm"
+                                    value={valueSearch}
+                                    onChange={(e) =>
+                                        setValueSearch(e.target.value)
+                                    }
                                 />
                             </div>
                         </div>
@@ -158,6 +170,7 @@ function Manufactor() {
                             <button
                                 className="btn btn-primary d-flex align-items-center"
                                 type="button"
+                                onClick={handleSearch}
                             >
                                 <IoSearch className="mr-1" /> Tìm kiếm
                             </button>

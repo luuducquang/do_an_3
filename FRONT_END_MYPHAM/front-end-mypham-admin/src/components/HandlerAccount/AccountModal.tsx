@@ -282,12 +282,11 @@ function AccountModal(props: any) {
                     >
                         <Select
                             placeholder="Chọn loại tài khoản"
-                            defaultValue={
-                                dataTypeAccount.length > 0
-                                    ? dataTypeAccount[0].maLoaitaikhoan
-                                    : undefined
-                            }
+                            defaultValue={""}
                         >
+                            <Option value={""} disabled>
+                                Chọn loại tài khoản
+                            </Option>
                             {dataTypeAccount.map(function (
                                 value: any,
                                 index: any

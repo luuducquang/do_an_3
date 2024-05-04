@@ -1,4 +1,4 @@
-import { Pagination, Table, TableColumnsType } from "antd";
+import { Pagination, Table, TableColumnsType, notification } from "antd";
 import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { apiImage } from "../../constant/api";
@@ -25,6 +25,8 @@ interface DataType {
     soDienThoai: any;
 }
 
+type NotificationType = "success" | "info" | "warning" | "error";
+
 function Rate() {
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
     const [listIdDelete, setListIdDelete] = useState([]);
@@ -36,6 +38,22 @@ function Rate() {
     const [currentPage, setCurrentPage] = useState(1);
     const [record, setRecord] = useState<DataType>();
     const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
+    const [keySearch, setKeySearch] = useState(0);
+
+    const [valueSearch, setValueSearch] = useState("");
+
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = (
+        type: NotificationType,
+        content: string
+    ) => {
+        api[type]({
+            message: "Thông báo",
+            description: content,
+        });
+    };
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
@@ -163,11 +181,13 @@ function Rate() {
         }),
     };
 
-    const fetchData = async () => {
+    const fetchData = async (keySearch: number, valueSearch: any) => {
         setLoading(true);
         let results = await searchRate({
             page: currentPage,
             pageSize: 10,
+            ChatLuong: keySearch,
+            NoiDung: valueSearch,
         });
         setData(results.data);
         setTotalRate(results.totalItems);
@@ -175,8 +195,13 @@ function Rate() {
     };
 
     useEffect(() => {
-        fetchData();
+        fetchData(keySearch, valueSearch);
     }, [currentPage]);
+
+    const handleSearch = (event: any) => {
+        event.preventDefault();
+        fetchData(keySearch, valueSearch);
+    };
 
     const dataSet = data.map(function (value: any, index: any) {
         const thoiGianDate = value.thoiGian ? new Date(value.thoiGian) : null;
@@ -205,24 +230,29 @@ function Rate() {
 
     return (
         <div className="container">
-            <form className="form-group">
+            <form className="form-group" onSubmit={handleSearch}>
                 <div className="row g-2 align-items-center mb-3">
                     <div className="col">
                         <input
                             className="form-control"
                             type="text"
                             placeholder="Nhập nội dung cần tìm"
+                            value={valueSearch}
+                            onChange={(e) => setValueSearch(e.target.value)}
                         />
                     </div>
                     <div className="col-auto">
                         <select
                             className="form-select mr-2"
                             aria-label="Default select example"
-                            defaultValue={""}
+                            defaultValue=""
+                            value={keySearch}
+                            onChange={(e: any) => setKeySearch(e.target.value)}
                         >
-                            <option disabled value="">
+                            <option disabled selected>
                                 Chất lượng
                             </option>
+                            <option value={0}>Không</option>
                             <option value={1}>1 Sao</option>
                             <option value={2}>2 Sao</option>
                             <option value={3}>3 Sao</option>
@@ -234,6 +264,7 @@ function Rate() {
                         <button
                             className="btn btn-primary d-flex align-items-center w-100"
                             type="button"
+                            onClick={handleSearch}
                         >
                             <IoSearch className="mr-1" /> Tìm kiếm
                         </button>

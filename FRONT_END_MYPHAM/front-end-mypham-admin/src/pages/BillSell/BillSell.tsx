@@ -34,6 +34,10 @@ function BillSell() {
     const [dataRecord, setDataRecord] = useState<DataType>();
     const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
 
+    const [keySearch, setKeySearch] = useState("TenKH");
+
+    const [valueSearch, setValueSearch] = useState("");
+
     const [api, contextHolder] = notification.useNotification();
 
     const openNotificationWithIcon = (
@@ -147,15 +151,25 @@ function BillSell() {
         }),
     };
 
-    const fetchData = async () => {
+    const fetchData = async (keySearch: string, valueSearch: any) => {
         setLoading(true);
         let results = await searchBillSell({
             page: currentPage,
             pageSize: 10,
+            [keySearch]: valueSearch,
         });
         setData(results.data);
         setTotalBillSell(results.totalItems);
         setLoading(false);
+    };
+
+    const handleSearch = (event: any) => {
+        event.preventDefault();
+        if (keySearch != "") {
+            fetchData(keySearch, valueSearch);
+        } else {
+            openNotificationWithIcon("warning", "Vui lòng chọn loại tìm kiếm!");
+        }
     };
 
     const dataSet = data.map(function (value: any, index: any) {
@@ -175,26 +189,30 @@ function BillSell() {
     });
 
     useEffect(() => {
-        fetchData();
+        fetchData(keySearch, valueSearch);
     }, [currentPage]);
 
     return (
         <>
             {contextHolder}
             <div className="container">
-                <form className="form-group">
+                <form className="form-group" onSubmit={handleSearch}>
                     <div className="row g-2 align-items-center mb-3">
                         <div className="col">
                             <input
                                 className="form-control"
                                 type="text"
                                 placeholder="Nhập từ khoá cần tìm"
+                                value={valueSearch}
+                                onChange={(e) => setValueSearch(e.target.value)}
                             />
                         </div>
                         <div className="col-auto">
                             <select
                                 className="form-select"
                                 aria-label="Default select example"
+                                value={keySearch}
+                                onChange={(e) => setKeySearch(e.target.value)}
                             >
                                 <option value="" disabled>
                                     Tìm kiếm theo
@@ -208,6 +226,7 @@ function BillSell() {
                             <button
                                 className="btn btn-primary d-flex align-items-center w-100"
                                 type="button"
+                                onClick={handleSearch}
                             >
                                 <IoSearch className="mr-1" /> Tìm kiếm
                             </button>

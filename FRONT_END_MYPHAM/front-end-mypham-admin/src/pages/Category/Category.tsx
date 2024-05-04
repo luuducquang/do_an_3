@@ -1,4 +1,4 @@
-import { Pagination, Table, TableColumnsType } from "antd";
+import { Pagination, Table, TableColumnsType, notification } from "antd";
 import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { searchCategory } from "../../service/category.service";
@@ -14,6 +14,8 @@ interface DataType {
     noiDung: any;
 }
 
+type NotificationType = "success" | "info" | "warning" | "error";
+
 function Category() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -25,6 +27,8 @@ function Category() {
     const [maDanhMuc, setMaDanhMuc] = useState();
     const [dataRecord, setDataRecord] = useState<DataType>();
     const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
+    const [valueSearch, setValueSearch] = useState("");
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
@@ -103,11 +107,12 @@ function Category() {
         }),
     };
 
-    const fetchData = async () => {
+    const fetchData = async (valueSearch: any) => {
         setLoading(true);
         let results = await searchCategory({
             page: currentPage,
             pageSize: 10,
+            TenDanhMuc: valueSearch,
         });
         setData(results.data);
         setTotalCategory(results.totalItems);
@@ -125,13 +130,18 @@ function Category() {
     });
 
     useEffect(() => {
-        fetchData();
+        fetchData(valueSearch);
     }, [currentPage]);
+
+    const handleSearch = (event: any) => {
+        event.preventDefault();
+        fetchData(valueSearch);
+    };
 
     return (
         <>
             <div className="container">
-                <form className="form-group">
+                <form className="form-group" onSubmit={handleSearch}>
                     <div className="row g-2 mb-3">
                         <div className="col">
                             <div className="input-group">
@@ -139,6 +149,10 @@ function Category() {
                                     className="form-control"
                                     type="text"
                                     placeholder="Nhập tên danh mục bạn cần tìm"
+                                    value={valueSearch}
+                                    onChange={(e) =>
+                                        setValueSearch(e.target.value)
+                                    }
                                 />
                             </div>
                         </div>
@@ -146,6 +160,7 @@ function Category() {
                             <button
                                 className="btn btn-primary d-flex align-items-center"
                                 type="button"
+                                onClick={handleSearch}
                             >
                                 <IoSearch className="mr-1" /> Tìm kiếm
                             </button>

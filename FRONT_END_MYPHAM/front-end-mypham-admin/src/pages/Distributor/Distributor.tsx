@@ -28,6 +28,8 @@ function Distributor() {
     const [dataRecord, setDataRecord] = useState<DataType>();
     const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
 
+    const [valueSearch, setValueSearch] = useState("");
+
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
@@ -114,11 +116,12 @@ function Distributor() {
         }),
     };
 
-    const fetchData = async () => {
+    const fetchData = async (valueSearch: any) => {
         setLoading(true);
         let results = await searchDistributor({
             page: currentPage,
             pageSize: 10,
+            TenNhaPhanPhoi: valueSearch,
         });
         setData(results.data);
         setTotalDistributor(results.totalItems);
@@ -138,12 +141,17 @@ function Distributor() {
     });
 
     useEffect(() => {
-        fetchData();
+        fetchData(valueSearch);
     }, [currentPage]);
+
+    const handleSearch = (event: any) => {
+        event.preventDefault();
+        fetchData(valueSearch);
+    };
 
     return (
         <div className="container">
-            <form className="form-group">
+            <form className="form-group" onSubmit={handleSearch}>
                 <div className="row g-2 mb-3">
                     <div className="col">
                         <div className="input-group">
@@ -151,6 +159,8 @@ function Distributor() {
                                 className="form-control"
                                 type="text"
                                 placeholder="Nhập tên nhà phân phối bạn cần tìm"
+                                value={valueSearch}
+                                onChange={(e) => setValueSearch(e.target.value)}
                             />
                         </div>
                     </div>
@@ -158,6 +168,7 @@ function Distributor() {
                         <button
                             className="btn btn-primary d-flex align-items-center"
                             type="button"
+                            onClick={handleSearch}
                         >
                             <IoSearch className="mr-1" /> Tìm kiếm
                         </button>

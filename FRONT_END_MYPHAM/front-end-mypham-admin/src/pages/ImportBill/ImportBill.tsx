@@ -1,4 +1,4 @@
-import { Pagination, Table, TableColumnsType } from "antd";
+import { Pagination, Table, TableColumnsType, notification } from "antd";
 import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { MdEditSquare } from "react-icons/md";
@@ -17,6 +17,8 @@ interface DataType {
     tenTaiKhoan: any;
 }
 
+type NotificationType = "success" | "info" | "warning" | "error";
+
 function ImportBill() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -28,6 +30,22 @@ function ImportBill() {
     const [maHoaDon, setMaHoaDon] = useState();
     const [dataRecord, setDataRecord] = useState<DataType>();
     const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
+    const [keySearch, setKeySearch] = useState("NhaPhanPhoi");
+
+    const [valueSearch, setValueSearch] = useState("");
+
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = (
+        type: NotificationType,
+        content: string
+    ) => {
+        api[type]({
+            message: "Thông báo",
+            description: content,
+        });
+    };
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
@@ -115,11 +133,12 @@ function ImportBill() {
         }),
     };
 
-    const fetchData = async () => {
+    const fetchData = async (keySearch: string, valueSearch: any) => {
         setLoading(true);
         let results = await searchImportBill({
             page: currentPage,
             pageSize: 10,
+            [keySearch]: valueSearch,
         });
         setData(results.data);
         setTotalImportBill(results.totalItems);
@@ -140,31 +159,43 @@ function ImportBill() {
     });
 
     useEffect(() => {
-        fetchData();
+        fetchData(keySearch, valueSearch);
     }, [currentPage]);
+
+    const handleSearch = (event: any) => {
+        event.preventDefault();
+        if (keySearch != "") {
+            fetchData(keySearch, valueSearch);
+        } else {
+            openNotificationWithIcon("warning", "Vui lòng chọn loại tìm kiếm!");
+        }
+    };
 
     return (
         <div className="container">
-            <form className="form-group">
+            <form className="form-group" onSubmit={handleSearch}>
                 <div className="row g-2 align-items-center mb-3">
                     <div className="col">
                         <input
                             className="form-control"
                             type="text"
                             placeholder="Nhập tên nhà phân phối cần tìm"
+                            value={valueSearch}
+                            onChange={(e) => setValueSearch(e.target.value)}
                         />
                     </div>
                     <div className="col-auto">
                         <button
                             className="btn btn-primary d-flex align-items-center"
                             type="button"
+                            onClick={handleSearch}
                         >
                             <IoSearch className="mr-1" /> Tìm kiếm
                         </button>
                     </div>
                 </div>
 
-                <div className="row g-3 align-items-center mb-3">
+                {/* <div className="row g-3 align-items-center mb-3">
                     <div className="col-auto">Từ ngày</div>
                     <div className="col">
                         <input
@@ -182,7 +213,7 @@ function ImportBill() {
                             className="form-control"
                         />
                     </div>
-                </div>
+                </div> */}
             </form>
             <div className="button mt-3">
                 <button

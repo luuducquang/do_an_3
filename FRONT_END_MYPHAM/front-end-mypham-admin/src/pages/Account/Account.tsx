@@ -1,4 +1,4 @@
-import { Pagination, Table, TableColumnsType } from "antd";
+import { Pagination, Table, TableColumnsType, notification } from "antd";
 import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { MdEditSquare } from "react-icons/md";
@@ -14,6 +14,8 @@ interface DataType {
     matKhau: any;
 }
 
+type NotificationType = "success" | "info" | "warning" | "error";
+
 function Account() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -25,6 +27,22 @@ function Account() {
     const [maTaiKhoan, setMaTaiKhoan] = useState();
     const [dataRecord, setDataRecord] = useState<DataType>();
     const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
+    const [keySearch, setKeySearch] = useState("TenTaiKhoan");
+
+    const [valueSearch, setValueSearch] = useState("");
+
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = (
+        type: NotificationType,
+        content: string
+    ) => {
+        api[type]({
+            message: "Thông báo",
+            description: content,
+        });
+    };
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
@@ -99,11 +117,12 @@ function Account() {
         }),
     };
 
-    const fetchData = async () => {
+    const fetchData = async (keySearch: string, valueSearch: any) => {
         setLoading(true);
         let results = await searchAccount({
             page: currentPage,
             pageSize: 10,
+            [keySearch]: valueSearch,
         });
         setData(results.data);
         setTotalAccount(results.totalItems);
@@ -121,103 +140,124 @@ function Account() {
     });
 
     useEffect(() => {
-        fetchData();
+        fetchData(keySearch, valueSearch);
     }, [currentPage]);
+
+    const handleSearch = (event: any) => {
+        event.preventDefault();
+        if (keySearch != "") {
+            fetchData(keySearch, valueSearch);
+        } else {
+            openNotificationWithIcon("warning", "Vui lòng chọn loại tìm kiếm!");
+        }
+    };
+
     return (
-        <div className="container">
-            <form className="row g-2 align-items-center">
-                <div className="col">
-                    <input
-                        className="form-control"
-                        type="text"
-                        placeholder="Nhập từ khoá cần tìm"
-                    />
-                </div>
-                <div className="col-auto">
-                    <select
-                        className="form-select"
-                        aria-label="Default select example"
-                        defaultValue=""
-                    >
-                        <option disabled value="">
-                            Tìm kiếm theo
-                        </option>
-                        <option value="TenTaiKhoan">Tên Tài Khoản</option>
-                        <option value="Email">Email</option>
-                        <option value="HoTen">Họ Tên</option>
-                        <option value="SoDienThoai">Số Điện Thoại</option>
-                    </select>
-                </div>
-                <div className="col-auto">
+        <>
+            {contextHolder}
+            <div className="container">
+                <form
+                    className="row g-2 align-items-center"
+                    onSubmit={handleSearch}
+                >
+                    <div className="col">
+                        <input
+                            className="form-control"
+                            type="text"
+                            placeholder="Nhập từ khoá cần tìm"
+                            value={valueSearch}
+                            onChange={(e) => setValueSearch(e.target.value)}
+                        />
+                    </div>
+                    <div className="col-auto">
+                        <select
+                            className="form-select"
+                            aria-label="Default select example"
+                            defaultValue=""
+                            value={keySearch}
+                            onChange={(e) => setKeySearch(e.target.value)}
+                        >
+                            <option disabled value="">
+                                Tìm kiếm theo
+                            </option>
+                            <option value="TenTaiKhoan">Tên Tài Khoản</option>
+                            <option value="Email">Email</option>
+                            <option value="HoTen">Họ Tên</option>
+                            <option value="SoDienThoai">Số Điện Thoại</option>
+                        </select>
+                    </div>
+                    <div className="col-auto">
+                        <button
+                            className="btn btn-primary d-flex align-items-center"
+                            type="button"
+                            onClick={handleSearch}
+                        >
+                            <IoSearch className="mr-1" /> Tìm kiếm
+                        </button>
+                    </div>
+                </form>
+
+                <div className="button mt-3">
                     <button
-                        className="btn btn-primary d-flex align-items-center"
+                        onClick={() => {
+                            showModal();
+                            setMaTaiKhoan(undefined);
+                        }}
                         type="button"
+                        className="btn btn-success btn-add"
                     >
-                        <IoSearch className="mr-1" /> Tìm kiếm
+                        <i className="fa-solid fa-plus" />
+                        Thêm Tài Khoản
+                    </button>
+                    <button
+                        onClick={() => {
+                            if (listIdDelete.length > 0) {
+                                setIsOpenDeleteModal(true);
+                            }
+                        }}
+                        type="button"
+                        className="btn btn-danger btn-del mx-1"
+                    >
+                        <i className="fa-solid fa-trash" />
+                        Xoá Tài Khoản
                     </button>
                 </div>
-            </form>
-
-            <div className="button mt-3">
-                <button
-                    onClick={() => {
-                        showModal();
-                        setMaTaiKhoan(undefined);
+                <Table
+                    bordered={true}
+                    rowSelection={{
+                        ...rowSelection,
+                        selectedRowKeys: selectedRowKeys,
                     }}
-                    type="button"
-                    className="btn btn-success btn-add"
-                >
-                    <i className="fa-solid fa-plus" />
-                    Thêm Tài Khoản
-                </button>
-                <button
-                    onClick={() => {
-                        if (listIdDelete.length > 0) {
-                            setIsOpenDeleteModal(true);
-                        }
-                    }}
-                    type="button"
-                    className="btn btn-danger btn-del mx-1"
-                >
-                    <i className="fa-solid fa-trash" />
-                    Xoá Tài Khoản
-                </button>
+                    columns={columns}
+                    dataSource={dataSet}
+                    loading={loading}
+                    rowClassName="hover-row"
+                    pagination={false}
+                />
+                <Pagination
+                    current={currentPage}
+                    total={totalAccount}
+                    pageSize={10}
+                    onChange={handlePageChange}
+                    style={{ marginTop: "16px", textAlign: "center" }}
+                />
+                <AccountModal
+                    showModal={showModal}
+                    isModalOpen={isModalOpen}
+                    handleCancelIUModal={handleCancelIUModal}
+                    fetchData={fetchData}
+                    maTaiKhoan={maTaiKhoan}
+                    record={dataRecord}
+                />
+                <AccountDelete
+                    isOpenDeleteModal={isOpenDeleteModal}
+                    fetchData={fetchData}
+                    handleCancelDeleteModal={handleCancelDeleteModal}
+                    listiddel={listIdDelete}
+                    onDeleteSuccess={handleClearSelection}
+                />
             </div>
-            <Table
-                bordered={true}
-                rowSelection={{
-                    ...rowSelection,
-                    selectedRowKeys: selectedRowKeys,
-                }}
-                columns={columns}
-                dataSource={dataSet}
-                loading={loading}
-                rowClassName="hover-row"
-                pagination={false}
-            />
-            <Pagination
-                current={currentPage}
-                total={totalAccount}
-                pageSize={10}
-                onChange={handlePageChange}
-                style={{ marginTop: "16px", textAlign: "center" }}
-            />
-            <AccountModal
-                showModal={showModal}
-                isModalOpen={isModalOpen}
-                handleCancelIUModal={handleCancelIUModal}
-                fetchData={fetchData}
-                maTaiKhoan={maTaiKhoan}
-                record={dataRecord}
-            />
-            <AccountDelete
-                isOpenDeleteModal={isOpenDeleteModal}
-                fetchData={fetchData}
-                handleCancelDeleteModal={handleCancelDeleteModal}
-                listiddel={listIdDelete}
-                onDeleteSuccess={handleClearSelection}
-            />
-        </div>
+        </>
     );
 }
 

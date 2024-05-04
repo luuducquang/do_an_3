@@ -1,4 +1,4 @@
-import { Pagination, Table, TableColumnsType } from "antd";
+import { Pagination, Table, TableColumnsType, notification } from "antd";
 import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { MdEditSquare } from "react-icons/md";
@@ -19,6 +19,8 @@ interface DataType {
     trangThai: any;
 }
 
+type NotificationType = "success" | "info" | "warning" | "error";
+
 function New() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -34,6 +36,22 @@ function New() {
 
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
     const [listIdDelete, setListIdDelete] = useState([]);
+
+    const [keySearch, setKeySearch] = useState("TieuDe");
+
+    const [valueSearch, setValueSearch] = useState("");
+
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = (
+        type: NotificationType,
+        content: string
+    ) => {
+        api[type]({
+            message: "Thông báo",
+            description: content,
+        });
+    };
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
@@ -105,11 +123,12 @@ function New() {
         },
     ];
 
-    const fetchData = async () => {
+    const fetchData = async (keySearch: string, valueSearch: any) => {
         setLoading(true);
         let results = await searchNew({
             page: currentPage,
             pageSize: 10,
+            [keySearch]: valueSearch,
         });
         setData(results.data);
         setTotalNews(results.totalItems);
@@ -117,8 +136,17 @@ function New() {
     };
 
     useEffect(() => {
-        fetchData();
+        fetchData(keySearch, valueSearch);
     }, [currentPage]);
+
+    const handleSearch = (event: any) => {
+        event.preventDefault();
+        if (keySearch != "") {
+            fetchData(keySearch, valueSearch);
+        } else {
+            openNotificationWithIcon("warning", "Vui lòng chọn loại tìm kiếm!");
+        }
+    };
 
     const dataSet = data.map(function (value: any, index: any) {
         return {
@@ -157,19 +185,22 @@ function New() {
     };
     return (
         <div className="container">
-            <form className="form-group">
+            <form className="form-group" onSubmit={handleSearch}>
                 <div className="row g-2 align-items-center mb-3">
                     <div className="col">
                         <input
                             className="form-control"
                             type="text"
                             placeholder="Nhập tiêu đề bạn cần tìm"
+                            value={valueSearch}
+                                onChange={(e) => setValueSearch(e.target.value)}
                         />
                     </div>
                     <div className="col-auto">
                         <button
                             className="btn btn-primary d-flex align-items-center"
                             type="button"
+                            onClick={handleSearch}
                         >
                             <IoSearch className="mr-1" /> Tìm kiếm
                         </button>

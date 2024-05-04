@@ -82,9 +82,9 @@ function ProductModal(props: any) {
             });
             addImgDetailNow(listImgDetailAdd);
         } else {
-            if (anhchitiet.length > 1) {
-                setAnhChiTiet(fileList);
-            }
+            // if (anhchitiet.length > 1) {
+            setAnhChiTiet(fileList);
+            // }
         }
     };
 
@@ -422,14 +422,10 @@ function ProductModal(props: any) {
                             },
                         ]}
                     >
-                        <Select
-                            placeholder="Chọn danh mục ưu đãi"
-                            defaultValue={
-                                category.length > 0
-                                    ? category[0].maDanhMuc
-                                    : undefined
-                            }
-                        >
+                        <Select placeholder="Chọn danh mục" defaultValue={""}>
+                            <Option value={""} disabled>
+                                Chọn danh mục
+                            </Option>
                             {category.map(function (value: any, index: any) {
                                 return (
                                     <Option key={index} value={value.maDanhMuc}>
@@ -452,12 +448,11 @@ function ProductModal(props: any) {
                     >
                         <Select
                             placeholder="Chọn danh mục ưu đãi"
-                            defaultValue={
-                                categoryOffer.length > 0
-                                    ? categoryOffer[0].madanhmucuudai
-                                    : undefined
-                            }
+                            defaultValue={""}
                         >
+                            <Option value={""} disabled>
+                                Chọn danh mục ưu đãi
+                            </Option>
                             {categoryOffer.map(function (
                                 value: any,
                                 index: any
@@ -603,12 +598,11 @@ function ProductModal(props: any) {
                     >
                         <Select
                             placeholder="Chọn nhà sản xuất"
-                            defaultValue={
-                                manufactor.length > 0
-                                    ? manufactor[0].maNhaSanXuat
-                                    : undefined
-                            }
+                            defaultValue={""}
                         >
+                            <Option value={""} disabled>
+                                Chọn nhà sản xuất
+                            </Option>
                             {manufactor.map(function (value: any, index: any) {
                                 return (
                                     <Option
@@ -633,12 +627,11 @@ function ProductModal(props: any) {
                     >
                         <Select
                             placeholder="Chọn nhà phân phối"
-                            defaultValue={
-                                distributor.length > 0
-                                    ? distributor[0].maNhaPhanPhoi
-                                    : undefined
-                            }
+                            defaultValue={""}
                         >
+                            <Option value={""} disabled>
+                                Chọn nhà phân phối
+                            </Option>
                             {distributor.map(function (value: any, index: any) {
                                 return (
                                     <Option
