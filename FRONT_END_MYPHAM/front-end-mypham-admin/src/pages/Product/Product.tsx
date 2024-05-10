@@ -1,8 +1,20 @@
 import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
-import { searchProduct } from "../../service/product.service";
+import {
+    down5persen,
+    searchProduct,
+    up5persen,
+} from "../../service/product.service";
 import { useParams } from "react-router-dom";
-import { Table, TableColumnsType, Pagination, notification } from "antd";
+import {
+    Table,
+    TableColumnsType,
+    Pagination,
+    notification,
+    Popconfirm,
+    PopconfirmProps,
+    message,
+} from "antd";
 import { apiImage } from "../../constant/api";
 import { FaInfoCircle, FaStar } from "react-icons/fa";
 import ProductModal from "../../components/HandlerProduct/ProductModal";
@@ -13,7 +25,7 @@ interface DataType {
     maSanPham: any;
     tenSanPham: any;
     anhDaiDien: any;
-    gia: any;
+    giaGiam: any;
     soLuong: any;
     luotBan: any;
     danhGia: any;
@@ -88,6 +100,18 @@ function Product() {
         setLoading(false);
     };
 
+    const confirmUp: PopconfirmProps["onConfirm"] = async (e) => {
+        await up5persen();
+        fetchData(keySearch, valueSearch);
+        message.success("Đã tăng giá tất cả sản phầm lên 5%");
+    };
+
+    const confirmDown: PopconfirmProps["onConfirm"] = async (e) => {
+        await down5persen();
+        fetchData(keySearch, valueSearch);
+        message.success("Đã giảm giá tất cả sản phầm lên 5%");
+    };
+
     useEffect(() => {
         fetchData(keySearch, valueSearch);
     }, [currentPage]);
@@ -107,7 +131,7 @@ function Product() {
             maSanPham: value.maSanPham,
             tenSanPham: value.tenSanPham,
             anhDaiDien: apiImage + value.anhDaiDien,
-            gia: value.gia,
+            giaGiam: value.giaGiam,
             soLuong: value.soLuong,
             luotBan: value.luotBan,
             danhGia: value.danhGia,
@@ -140,7 +164,7 @@ function Product() {
         },
         {
             title: "Giá Bán",
-            dataIndex: "gia",
+            dataIndex: "giaGiam",
             render: (text: string) => parseInt(text).toLocaleString("en-US"),
         },
         {
@@ -273,7 +297,7 @@ function Product() {
                             </button>
                         </div>
                     </div>
-                    <div
+                    {/* <div
                         className="row"
                         style={{ width: "50%", marginLeft: 3 }}
                     >
@@ -311,7 +335,7 @@ function Product() {
                                 4999999
                             </span>
                         </div>
-                    </div>
+                    </div> */}
                 </form>
 
                 <div className="button mb-3">
@@ -336,19 +360,38 @@ function Product() {
                     >
                         <i className="fa-solid fa-trash" /> Xoá sản phẩm
                     </button>
-                    <button
-                        type="button"
-                        className="btn btn-primary btn-up5 mx-1"
+
+                    <Popconfirm
+                        title="Thông báo"
+                        description="Bạn có muốn tăng giá sản phẩm lên 5% ?"
+                        onConfirm={confirmUp}
+                        okText="Yes"
+                        cancelText="No"
                     >
-                        <i className="fa-solid fa-circle-up" /> Tăng 5% giá bán
-                    </button>
-                    <button
-                        type="button"
-                        className="btn btn-secondary btn-down5"
+                        <button
+                            type="button"
+                            className="btn btn-primary btn-up5 mx-1"
+                        >
+                            <i className="fa-solid fa-circle-up" /> Tăng 5% giá
+                            bán
+                        </button>
+                    </Popconfirm>
+
+                    <Popconfirm
+                        title="Thông báo"
+                        description="Bạn có muốn giảm giá sản phẩm lên 5% ?"
+                        onConfirm={confirmDown}
+                        okText="Yes"
+                        cancelText="No"
                     >
-                        <i className="fa-solid fa-circle-down" /> Giảm 5% giá
-                        bán
-                    </button>
+                        <button
+                            type="button"
+                            className="btn btn-secondary btn-down5"
+                        >
+                            <i className="fa-solid fa-circle-down" /> Giảm 5%
+                            giá bán
+                        </button>
+                    </Popconfirm>
                 </div>
                 <Table
                     bordered={true}

@@ -7,6 +7,24 @@ export const searchProduct = async (data:any):Promise<any> =>{
     return res?.data;
 }
 
+export const up5persen = async ():Promise<any> =>{
+    const res = await apiClient?.get("/api-admin/SanPham/tang-5-persen",{
+        headers: {
+            "Authorization": "Bearer " + user.token,
+        }
+    });
+    return res?.data;
+}
+
+export const down5persen = async ():Promise<any> =>{
+    const res = await apiClient?.get("/api-admin/SanPham/giam-5-persen",{
+        headers: {
+            "Authorization": "Bearer " + user.token,
+        }
+    });
+    return res?.data;
+}
+
 export const getCategory = async ():Promise<any> =>{
     const res = await apiClient?.get("/api-admin/DanhMuc/get-all-danhmuc");
     return res?.data;

@@ -19,7 +19,6 @@ import {
     getImgProductDetail,
     getProductById,
     getProductRecomend,
-    getRatingProduct,
 } from "../../services/detail.service";
 import { apiImage } from "../../constant/api";
 import Rating from "../../layouts/components/Rating";
@@ -340,9 +339,8 @@ function Detail() {
                                                     justifyContent: "center",
                                                     alignItems: "center",
                                                     outline: "none",
-                                                    backgroundColor: "#ddd",
-                                                    border: "none",
                                                     cursor: "pointer",
+                                                    border: "1px solid rgb(221, 221, 221)",
                                                 }}
                                                 className={cx("minus")}
                                                 onClick={
@@ -354,7 +352,7 @@ function Detail() {
                                                     width: 30,
                                                     height: 30,
                                                     textAlign: "center",
-                                                    border: "none",
+                                                    border: "1px solid rgb(221, 221, 221)",
                                                 }}
                                                 type="text"
                                                 min={1}
@@ -380,9 +378,8 @@ function Detail() {
                                                     justifyContent: "center",
                                                     alignItems: "center",
                                                     outline: "none",
-                                                    backgroundColor: "#ddd",
-                                                    border: "none",
                                                     cursor: "pointer",
+                                                    border: "1px solid rgb(221, 221, 221)",
                                                 }}
                                                 className={cx("plus")}
                                                 onClick={
@@ -485,11 +482,7 @@ function Detail() {
                         className={cx("information-product")}
                         dangerouslySetInnerHTML={{ __html: data.chiTiet }}
                     />
-                    <Rating
-                        data={data}
-                        maSanPham={id}
-                        loadData={loadData}
-                    />
+                    <Rating data={data} maSanPham={id} loadData={loadData} />
                 </div>
                 <div className={cx("information-right")}>
                     <div className={cx("recommend")}>

@@ -134,7 +134,7 @@ function Login() {
             >
                 <div style={{ color: "#fff", fontSize: 11, marginTop: 25 }}>
                     Phần mềm quản lý mỹ phẩm{" "}
-                    <i className="fa-solid fa-copyright" /> SkinCare 2023 by
+                    <i className="fa-solid fa-copyright" /> SkinCare 2024 ReactJs by
                     LuuDucQuang{" "}
                 </div>
             </div>

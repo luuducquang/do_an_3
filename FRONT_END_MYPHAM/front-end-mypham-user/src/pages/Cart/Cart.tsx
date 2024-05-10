@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaLongArrowAltRight, FaStar } from "react-icons/fa";
+import { FaLongArrowAltRight, FaShippingFast, FaStar } from "react-icons/fa";
 import classNames from "classnames/bind";
 
 import styles from "./Cart.module.scss";
@@ -50,12 +50,15 @@ function Cart() {
                                     style={{ color: "#ee4d2d" }}
                                     className={cx("totalPriceCart")}
                                 >
-                                    {totalPriceCart.toLocaleString("DE-de")}
+                                    {totalPriceCart
+                                        ? totalPriceCart.toLocaleString("DE-de")
+                                        : Number(0)}
                                 </span>
                                 <sup style={{ color: "#ee4d2d" }}>đ</sup>
                             </p>
                         </div>
-                        {totalPriceCart === 0 ? (
+                        {totalPriceCart === 0 ||
+                        totalPriceCart === undefined ? (
                             ""
                         ) : (
                             <Link
@@ -87,7 +90,9 @@ function Cart() {
                                     />
                                 </div>
                                 <span className={cx("product-recommend-price")}>
-                                    {value.giaGiam.toLocaleString("DE-de")}
+                                    {value.giaGiam
+                                        ? value.giaGiam.toLocaleString("DE-de")
+                                        : ""}
                                     <sup>đ</sup>
                                 </span>
                                 <span
@@ -95,15 +100,20 @@ function Cart() {
                                         "product-recommend-price-old"
                                     )}
                                 >
-                                    {value.gia.toLocaleString("DE-de")}
+                                    {value.gia
+                                        ? value.gia.toLocaleString("DE-de")
+                                        : ""}
                                     <sup>đ</sup>
                                 </span>
                                 <div className={cx("sale-off")}>
-                                    {(
-                                        100 -
-                                        (value.giaGiam / value.gia) * 100
-                                    ).toFixed(0)}{" "}
-                                    <sup>%</sup>
+                                    <sup>
+                                        {(
+                                            100 -
+                                            (value.giaGiam / value.gia) * 100
+                                        ).toFixed(0)}{" "}
+                                        %
+                                    </sup>
+                                    <span>Giảm</span>
                                 </div>
                                 <div className={cx("product-recommend-name")}>
                                     {value.tenSanPham}
@@ -124,10 +134,21 @@ function Cart() {
                                 ) : (
                                     ""
                                 )}
-                                <FaShop />
-                                <span className={cx("amount-product")}>
-                                    {value.soLuong}
+                                <span title="Đã bán">
+                                    <FaShop className={cx("mtop3")} />
                                 </span>
+                                <span
+                                    title="Đã bán"
+                                    className={cx("amount-product")}
+                                >
+                                    {value.luotBan}
+                                </span>
+                                <span
+                                    className={cx(
+                                        "fa-solid fa-truck-fast free-ship"
+                                    )}
+                                />
+                                <FaShippingFast className={cx("free-ship")} />
                             </div>
                             <div
                                 style={{ marginBottom: "-8px" }}
