@@ -7,6 +7,11 @@ import { useEffect, useState } from "react";
 import { apiImage } from "../../constant/api";
 import { Button, Form, Input, Select, notification } from "antd";
 import { getInformationOrder, sendOrder } from "../../services/order.service";
+import {
+    getCountry,
+    getDistrict,
+    getWard,
+} from "../../services/rating.service";
 
 const cx = classNames.bind(styles);
 
@@ -20,6 +25,11 @@ function Order() {
     const [totalPrice, setTotalPrice] = useState(0);
     const naigate = useNavigate();
     const [api, contextHolder] = notification.useNotification();
+    const [country, setCountry] = useState([]);
+    const [district, setDistrict] = useState([]);
+    const [ward, setWard] = useState([]);
+    const [keyCountry, setKeyCountry] = useState("");
+    const [keyDistrict, setKeyDistrict] = useState("");
 
     const openNotificationWithIcon = (
         type: NotificationType,
@@ -50,7 +60,7 @@ function Order() {
                     NgayTao: gmt7ISODate,
                     TongGia: totalPrice,
                     TenKH: values.hoTen,
-                    DiaChi: values.diaChi,
+                    DiaChi: `${values.province}-${values.district}-${values.ward}`,
                     Email: values.email,
                     SDT: values.soDienThoai,
                     DiaChiGiaoHang: values.diaChi,
@@ -120,7 +130,61 @@ function Order() {
             });
         }
         getData(user.mataikhoan);
+
+        function fetchAndConvertCountryToString() {
+            getCountry()
+                .then((countryData) => {
+                    setCountry(countryData.results);
+                    return countryData;
+                })
+                .catch((error) => {
+                    console.error("Error fetching country data:", error);
+                    return "";
+                });
+        }
+        fetchAndConvertCountryToString();
     }, []);
+
+    const handlerClickCountry = () => {
+        form.setFieldValue("district", "");
+        form.setFieldValue("ward", "");
+        form.validateFields()
+            .then(async (values: any) => {
+                setKeyCountry(values.province);
+            })
+            .catch(async (e: any) => {});
+    };
+
+    const handlerClickDistrict = () => {
+        form.setFieldValue("ward", "");
+        form.validateFields()
+            .then(async (values: any) => {
+                setKeyDistrict(values.district);
+            })
+            .catch(async (e: any) => {});
+    };
+
+    useEffect(() => {
+        getDistrict(keyCountry)
+            .then((districtData) => {
+                setDistrict(districtData.results);
+                return districtData;
+            })
+            .catch((error) => {
+                console.error("Error fetching district data:", error);
+                return "";
+            });
+
+        getWard(keyDistrict)
+            .then((wardData) => {
+                setWard(wardData.results);
+                return wardData;
+            })
+            .catch((error) => {
+                console.error("Error fetching ward data:", error);
+                return "";
+            });
+    }, [keyCountry, keyDistrict]);
     return (
         <>
             {contextHolder}
@@ -428,18 +492,63 @@ function Order() {
                             <Input />
                         </Form.Item>
                         <Form.Item label="Tỉnh/TP" name="province">
-                            <Select placeholder="Vui lòng chọn">
-                                <Option value="tp_hcm">TP. Hồ Chí Minh</Option>
+                            <Select
+                                onChange={handlerClickCountry}
+                                placeholder="Vui lòng chọn"
+                            >
+                                <Option value="" selected disabled>
+                                    Vui lòng chọn
+                                </Option>
+                                {country.map(function (value: any, index: any) {
+                                    return (
+                                        <Option
+                                            key={index}
+                                            value={value.province_id}
+                                        >
+                                            {value.province_name}
+                                        </Option>
+                                    );
+                                })}
                             </Select>
                         </Form.Item>
                         <Form.Item label="Quận/Huyện" name="district">
-                            <Select placeholder="Vui lòng chọn">
-                                <Option value="quan_1">Quận 1</Option>
+                            <Select
+                                onChange={handlerClickDistrict}
+                                placeholder="Vui lòng chọn"
+                            >
+                                <Option value="" disabled>
+                                    Vui lòng chọn
+                                </Option>
+                                {district.map(function (
+                                    value: any,
+                                    index: any
+                                ) {
+                                    return (
+                                        <Option
+                                            key={index}
+                                            value={value.district_id}
+                                        >
+                                            {value.district_name}
+                                        </Option>
+                                    );
+                                })}
                             </Select>
                         </Form.Item>
                         <Form.Item label="Phường/Xã" name="ward">
                             <Select placeholder="Vui lòng chọn">
-                                <Option value="phuong_1">Phường 1</Option>
+                                <Option value="" disabled>
+                                    Vui lòng chọn
+                                </Option>
+                                {ward.map(function (value: any, index: any) {
+                                    return (
+                                        <Option
+                                            key={index}
+                                            value={value.ward_id}
+                                        >
+                                            {value.ward_name}
+                                        </Option>
+                                    );
+                                })}
                             </Select>
                         </Form.Item>
                         <Form.Item

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { apiClient } from "../constant/api";
 
 
@@ -26,5 +27,20 @@ export const createRating = async (data: any): Promise<any> => {
             "Authorization": "Bearer " + user.token,
         }
     });
+    return res?.data;
+}
+
+export const getCountry = async (): Promise<any> => {
+    const res = await axios('https://vapi.vnappmob.com/api/province');
+    return res?.data;
+}
+
+export const getDistrict = async (province_id:any): Promise<any> => {
+    const res = await axios(`https://vapi.vnappmob.com/api/province/district/${province_id}`);
+    return res?.data;
+}
+
+export const getWard = async (district_id:any): Promise<any> => {
+    const res = await axios(`https://vapi.vnappmob.com/api/province/ward/${district_id}`);
     return res?.data;
 }
