@@ -5,6 +5,8 @@ import { MdEditSquare } from "react-icons/md";
 import { searchBillSell } from "../../service/billsell.service";
 import BillSellModal from "../../components/HandlerBillSell/BillSellModal";
 import BillSellDelete from "../../components/HandlerBillSell/BillSellDelete";
+import InvoiceModal from "../../components/HandlerBillSell/InvoiceModal";
+import { FaFileExport } from "react-icons/fa";
 
 interface DataType {
     key: React.Key;
@@ -30,6 +32,7 @@ function BillSell() {
     const [listIdDelete, setListIdDelete] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpenInvoice, setIsModalOpenInvoice] = useState(false);
     const [maHoaDon, setMaHoaDon] = useState();
     const [dataRecord, setDataRecord] = useState<DataType>();
     const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
@@ -60,6 +63,10 @@ function BillSell() {
 
     const handleCancelIUModal = () => {
         setIsModalOpen(false);
+    };
+
+    const handleCancelIUModalInvoice = () => {
+        setIsModalOpenInvoice(false);
     };
 
     const handleCancelDeleteModal = () => {
@@ -109,21 +116,35 @@ function BillSell() {
             align: "center",
             render: (_, record) => (
                 <div
-                    style={{ cursor: "pointer" }}
-                    onClick={() => {
-                        if (record.trangThai === "Huỷ đơn") {
-                            openNotificationWithIcon(
-                                "warning",
-                                "Đơn đã huỷ không thế xem!"
-                            );
-                        } else {
-                            setIsModalOpen(true);
-                            setMaHoaDon(record.maHoaDon);
-                            setDataRecord(record);
-                        }
+                    style={{
+                        cursor: "pointer",
+                        display: "flex",
+                        justifyContent: "space-between",
                     }}
                 >
-                    <MdEditSquare style={{ fontSize: "20px" }} />
+                    <MdEditSquare
+                        onClick={() => {
+                            if (record.trangThai === "Huỷ đơn") {
+                                openNotificationWithIcon(
+                                    "warning",
+                                    "Đơn đã huỷ không thế xem!"
+                                );
+                            } else {
+                                setIsModalOpen(true);
+                                setMaHoaDon(record.maHoaDon);
+                                setDataRecord(record);
+                            }
+                        }}
+                        style={{ fontSize: "20px" }}
+                    />
+                    <FaFileExport
+                        onClick={() => {
+                            setIsModalOpenInvoice(true);
+                            setMaHoaDon(record.maHoaDon);
+                            setDataRecord(record);
+                        }}
+                        style={{ fontSize: "20px" }}
+                    />
                 </div>
             ),
         },
@@ -290,6 +311,13 @@ function BillSell() {
                     handleCancelDeleteModal={handleCancelDeleteModal}
                     listiddel={listIdDelete}
                     onDeleteSuccess={handleClearSelection}
+                />
+
+                <InvoiceModal
+                    isModalOpen={isModalOpenInvoice}
+                    handleCancelIUModal={handleCancelIUModalInvoice}
+                    maHoaDon={maHoaDon}
+                    record={dataRecord}
                 />
             </div>
         </>

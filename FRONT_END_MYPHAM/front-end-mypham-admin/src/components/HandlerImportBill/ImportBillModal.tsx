@@ -42,6 +42,7 @@ interface Product {
     donViTinh: any;
     giaNhap: any;
     tongGia: any;
+    giaGiam?: any;
 }
 
 interface NhaPhanPhoi {
@@ -302,12 +303,14 @@ function ImportBillModal(props: any) {
             });
     };
 
-
     const handleProductChange = (value: any) => {
         const selectedProduct = product.find(
             (item) => item.maSanPham === value
         );
         setSelectedProduct(selectedProduct);
+        form.setFieldsValue({
+            giaNhap: selectedProduct ? selectedProduct?.giaGiam : null,
+        });
     };
 
     const handleQuantityChange = (value: any) => {
@@ -523,7 +526,7 @@ function ImportBillModal(props: any) {
             // name: record.name,
         }),
     };
-    
+
     const removeItemsByMaSanPham = (
         maSanPhamList: any,
         listChiTietHoaDonDelete: any

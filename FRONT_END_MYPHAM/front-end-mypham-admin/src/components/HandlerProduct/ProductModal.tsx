@@ -328,6 +328,7 @@ function ProductModal(props: any) {
     const fetchData = async (maSanPham: any) => {
         let data = await getbyMaSanPham(maSanPham);
         let dataImgDetail = await getbyAnhChiTietSanPham(maSanPham);
+        form.setFieldValue("gianhap", data.gia / (1 + 0.5));
         form.setFieldsValue(data);
         setDataCkEditor(data.chiTiet);
         setDataFetchById(data);
@@ -543,11 +544,15 @@ function ProductModal(props: any) {
                         </Space>
                     </Form.Item>
 
-                    <Form.Item name="gia" label="Giá (Giá Nhập)">
+                    <Form.Item name="gianhap" label="Giá Nhập">
                         <Input type="number" disabled />
                     </Form.Item>
 
-                    <Form.Item name="giaGiam" label="Giá Giảm">
+                    <Form.Item name="gia" label="Giá (Giá nhập + 50%)">
+                        <Input type="number" disabled />
+                    </Form.Item>
+
+                    <Form.Item name="giaGiam" label="Giá Giảm (Giá nhập + 30%)">
                         <Input type="number" defaultValue={Number(0)} />
                     </Form.Item>
 
