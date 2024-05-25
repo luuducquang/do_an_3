@@ -63,44 +63,48 @@ const Information = () => {
     const handleUpdateInformation = async () => {
         form.validateFields()
             .then(async (values: any) => {
-                await updateInformation({
-                    MaTaiKhoan: infor?.maTaiKhoan,
-                    TenTaiKhoan: infor?.tenTaiKhoan,
-                    MatKhau: infor?.matKhau,
-                    Email: values.email,
-                    list_json_chitiet_taikhoan: [
-                        {
-                            MaChitietTaiKhoan: infor?.maChitietTaiKhoan,
-                            MaLoaitaikhoan: infor?.maLoaitaikhoan,
-                            AnhDaiDien:
-                                fileList.length > 0
-                                    ? `/img/${fileList[0].name}`
-                                    : "/img/user.jpg",
-                            HoTen: values.hoTen,
-                            DiaChi: values.diaChi,
-                            SoDienThoai: values.soDienThoai,
-                            status: 2,
-                        },
-                    ],
-                });
-                const customerData = localStorage.getItem("customer");
-                const customerObject = customerData
-                    ? JSON.parse(customerData)
-                    : {};
-                customerObject.hoten = values.hoTen;
-                customerObject.anhdaidien =
-                    (fileList.length > 0
-                        ? `/img/${fileList[0].name}`
-                        : "/img/user.jpg");
+                if (fileList.length === 0) {
+                    openNotificationWithIcon("warning", "Bạn chưa thêm ảnh");
+                } else {
+                    await updateInformation({
+                        MaTaiKhoan: infor?.maTaiKhoan,
+                        TenTaiKhoan: infor?.tenTaiKhoan,
+                        MatKhau: infor?.matKhau,
+                        Email: values.email,
+                        list_json_chitiet_taikhoan: [
+                            {
+                                MaChitietTaiKhoan: infor?.maChitietTaiKhoan,
+                                MaLoaitaikhoan: infor?.maLoaitaikhoan,
+                                AnhDaiDien:
+                                    fileList.length > 0
+                                        ? `/img/${fileList[0].name}`
+                                        : "/img/user.jpg",
+                                HoTen: values.hoTen,
+                                DiaChi: values.diaChi,
+                                SoDienThoai: values.soDienThoai,
+                                status: 2,
+                            },
+                        ],
+                    });
+                    const customerData = localStorage.getItem("customer");
+                    const customerObject = customerData
+                        ? JSON.parse(customerData)
+                        : {};
+                    customerObject.hoten = values.hoTen;
+                    customerObject.anhdaidien =
+                        fileList.length > 0
+                            ? `/img/${fileList[0].name}`
+                            : "/img/user.jpg";
 
-                customerObject.sodienthoai = values.soDienThoai;
-                customerObject.email = values.email;
-                const updatedCustomerData = JSON.stringify(customerObject);
-                localStorage.setItem("customer", updatedCustomerData);
-                openNotificationWithIcon(
-                    "success",
-                    "Cập nhật thành công! Load lại trang để thay đổi"
-                );
+                    customerObject.sodienthoai = values.soDienThoai;
+                    customerObject.email = values.email;
+                    const updatedCustomerData = JSON.stringify(customerObject);
+                    localStorage.setItem("customer", updatedCustomerData);
+                    openNotificationWithIcon(
+                        "success",
+                        "Cập nhật thành công! Load lại trang để thay đổi"
+                    );
+                }
             })
             .catch(async (e: any) => {
                 openNotificationWithIcon(

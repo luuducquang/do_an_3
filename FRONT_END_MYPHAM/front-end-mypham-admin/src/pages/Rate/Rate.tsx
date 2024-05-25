@@ -1,4 +1,4 @@
-import { Pagination, Table, TableColumnsType, notification } from "antd";
+import { Flex, Pagination, Table, TableColumnsType, notification } from "antd";
 import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { apiImage } from "../../constant/api";
@@ -101,7 +101,7 @@ function Rate() {
             dataIndex: "chatLuong",
             render: (chatLuong: string) => {
                 return (
-                    <div>
+                    <Flex justify="center" align="center">
                         <span>{chatLuong}</span>
                         <FaStar
                             style={{
@@ -110,7 +110,7 @@ function Rate() {
                                 marginLeft: "2px",
                             }}
                         />
-                    </div>
+                    </Flex>
                 );
             },
         },

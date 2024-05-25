@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
-import type { StatisticProps } from "antd";
-import { Card, Col, Flex, Row, Select, Statistic } from "antd";
+import type { StatisticProps, TableColumnsType } from "antd";
+import { Card, Col, Flex, Row, Select, Statistic, Table } from "antd";
 import CountUp from "react-countup";
-import { getOverview, getProductByDay } from "../../service/overview.service";
+import {
+    getOverview,
+    getProductByDay,
+    getProductRunOut,
+} from "../../service/overview.service";
 import {
     LineChart,
     Line,
@@ -12,6 +16,8 @@ import {
     Tooltip,
     ResponsiveContainer,
 } from "recharts";
+import { FaStar } from "react-icons/fa";
+import { apiImage } from "../../constant/api";
 
 const { Option } = Select;
 
@@ -43,15 +49,29 @@ interface DataType {
     doanhThu: any;
 }
 
+interface DataTypeProduct {
+    key: React.Key;
+    maSanPham: any;
+    tenSanPham: any;
+    anhDaiDien: any;
+    giaGiam: any;
+    soLuong: any;
+    luotBan: any;
+    danhGia: any;
+    trongLuong: any;
+}
+
 function Overview() {
     const [data, setData] = useState<DataType>();
+    const [dataProductRunOut, setDataRunOut] = useState([]);
 
     const [dataProductByDay, setDataProductByDay] = useState([]);
 
     async function fetchData() {
         const res = await getOverview();
-        // console.log(res);
+        const resProductRunout = await getProductRunOut();
         setData(res);
+        setDataRunOut(resProductRunout);
     }
 
     async function ChartDataByDay(day: any) {
@@ -75,6 +95,77 @@ function Overview() {
     const handleChangeDay = (e: any) => {
         ChartDataByDay(e);
     };
+
+    const dataSet = dataProductRunOut.map(function (value: any, index: any) {
+        return {
+            key: index + 1,
+            maSanPham: value.maSanPham,
+            tenSanPham: value.tenSanPham,
+            anhDaiDien: apiImage + value.anhDaiDien,
+            giaGiam: value.giaGiam,
+            soLuong: value.soLuong,
+            luotBan: value.luotBan,
+            danhGia: value.danhGia,
+            trongLuong: value.trongLuong,
+        };
+    });
+
+    const columns: TableColumnsType<DataTypeProduct> = [
+        {
+            title: "ID",
+            dataIndex: "maSanPham",
+        },
+        {
+            title: "Tên Sản Phẩm",
+            dataIndex: "tenSanPham",
+        },
+        {
+            title: "Hình Ảnh",
+            dataIndex: "anhDaiDien",
+            render: (anhDaiDien: string) => (
+                <img
+                    src={anhDaiDien}
+                    alt="Hình Ảnh"
+                    style={{ width: "100px" }}
+                />
+            ),
+        },
+        {
+            title: "Giá Bán",
+            dataIndex: "giaGiam",
+            render: (text: string) => parseInt(text).toLocaleString("en-US"),
+        },
+        {
+            title: "Đã Bán",
+            dataIndex: "luotBan",
+        },
+        {
+            title: "Đánh Giá",
+            dataIndex: "danhGia",
+            render: (danhGia: string) => {
+                return (
+                    <Flex justify="center" align="center">
+                        <span>{danhGia}</span>
+                        <FaStar
+                            style={{
+                                marginTop: "-3px",
+                                color: "#ff9c1a",
+                                marginLeft: "2px",
+                            }}
+                        />
+                    </Flex>
+                );
+            },
+        },
+        {
+            title: "Trọng Lượng",
+            dataIndex: "trongLuong",
+        },
+        {
+            title: "Còn lại",
+            dataIndex: "soLuong",
+        },
+    ];
 
     return (
         <>
@@ -250,6 +341,26 @@ function Overview() {
                     </Card>
                 </Col>
             </Row>
+
+            <p
+                style={{
+                    fontSize: "20px",
+                    height: "10px",
+                    marginTop: "20px",
+                    marginLeft: "2px",
+                    color: "#ed0505",
+                }}
+            >
+                Sản phẩm sắp hết
+            </p>
+
+            <Table
+                bordered={true}
+                columns={columns}
+                dataSource={dataSet}
+                rowClassName="hover-row"
+                pagination={false}
+            />
 
             <Flex justify="center" align="center" style={{ marginTop: "25px" }}>
                 <p

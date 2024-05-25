@@ -14,6 +14,7 @@ import {
     Popconfirm,
     PopconfirmProps,
     message,
+    Flex,
 } from "antd";
 import { apiImage } from "../../constant/api";
 import { FaInfoCircle, FaStar } from "react-icons/fa";
@@ -180,7 +181,7 @@ function Product() {
             dataIndex: "danhGia",
             render: (danhGia: string) => {
                 return (
-                    <div>
+                    <Flex justify="center" align="center">
                         <span>{danhGia}</span>
                         <FaStar
                             style={{
@@ -189,7 +190,7 @@ function Product() {
                                 marginLeft: "2px",
                             }}
                         />
-                    </div>
+                    </Flex>
                 );
             },
         },

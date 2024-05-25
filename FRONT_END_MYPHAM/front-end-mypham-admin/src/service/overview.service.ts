@@ -17,3 +17,11 @@ export const getProductByDay = async (ngay:any):Promise<any> =>{
         }});
     return res?.data;
 }
+
+export const getProductRunOut = async ():Promise<any> =>{
+    const res = await apiClient?.get(`/api-admin/Overview/sp-saphet`,{
+        headers: {
+            "Authorization": "Bearer " + user.token,
+        }});
+    return res?.data;
+}

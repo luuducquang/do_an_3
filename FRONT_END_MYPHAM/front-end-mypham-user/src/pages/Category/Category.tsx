@@ -13,7 +13,13 @@ import {
 } from "react-icons/fa";
 import { apiImage } from "../../constant/api";
 import { Pagination } from "antd";
-import { getProductCategory } from "../../services/category.service";
+import {
+    GetProductDown,
+    GetProductUp,
+    getProductCategory,
+    getProductSelling,
+    getProductViewMost,
+} from "../../services/category.service";
 
 const cx = classNames.bind(styles);
 
@@ -32,10 +38,76 @@ function Category() {
     };
 
     const [data, setData] = useState([]);
+    const [activeLink, setActiveLink] = useState("newest");
 
     const fetchData = async () => {
         try {
             const response = await getProductCategory({
+                page: currentPage,
+                pageSize: 10,
+                TenDanhMuc: nameCategory,
+            });
+            setData(response.data);
+            setTotalDataLength(response.totalItems);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
+    const handlerNew = () => {
+        setActiveLink("newest");
+        fetchData();
+    };
+
+    const handlerSelling = async () => {
+        setActiveLink("selling");
+        try {
+            const response = await getProductSelling({
+                page: currentPage,
+                pageSize: 10,
+                TenDanhMuc: nameCategory,
+            });
+            setData(response.data);
+            setTotalDataLength(response.totalItems);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
+    const handlerViewMost = async () => {
+        setActiveLink("viewMost");
+        try {
+            const response = await getProductViewMost({
+                page: currentPage,
+                pageSize: 10,
+                TenDanhMuc: nameCategory,
+            });
+            setData(response.data);
+            setTotalDataLength(response.totalItems);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
+    const handlerPriceUp = async () => {
+        setActiveLink("priceUp");
+        try {
+            const response = await GetProductUp({
+                page: currentPage,
+                pageSize: 10,
+                TenDanhMuc: nameCategory,
+            });
+            setData(response.data);
+            setTotalDataLength(response.totalItems);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
+    const handlerPriceDown = async () => {
+        setActiveLink("priceDown");
+        try {
+            const response = await GetProductDown({
                 page: currentPage,
                 pageSize: 10,
                 TenDanhMuc: nameCategory,
@@ -57,9 +129,7 @@ function Category() {
                 <div style={{ marginTop: 10 }} className={cx("type")}>
                     <Link to="/">Trang chủ</Link>
                     <FaLongArrowAltRight className={cx("arrow-item")} />
-                    <Link to={`/category/1/${nameCategory}`}>
-                        {nameCategory}
-                    </Link>
+                    <Link to={`/category/${nameCategory}`}>{nameCategory}</Link>
                 </div>
                 <div className={cx("searchCategory")}>
                     <div className={cx("searchPriceAbout")}>
@@ -78,36 +148,45 @@ function Category() {
                                 name=""
                                 id=""
                             />
-                            <button>Tìm kiếm</button>
+                            {/* <button>Tìm kiếm</button> */}
                         </form>
                         <a
-                            href="category/1/{{tendanhmucsearch}}"
-                            className={cx("Defaut")}
+                            onClick={handlerNew}
+                            className={cx("Defaut", {
+                                active: activeLink === "newest",
+                            })}
                         >
                             Mới nhất
                         </a>
                         <a
-                            href="category/1/{{tendanhmucsearch}}/selling"
-                            ng-click="selling()"
-                            className={cx("Defaut")}
+                            onClick={handlerSelling}
+                            className={cx("Defaut", {
+                                active: activeLink === "selling",
+                            })}
                         >
                             Bán chạy
                         </a>
                         <a
-                            href="category/1/{{tendanhmucsearch}}/view"
-                            className={cx("Defaut")}
+                            onClick={handlerViewMost}
+                            className={cx("Defaut", {
+                                active: activeLink === "viewMost",
+                            })}
                         >
                             Lượt xem
                         </a>
                         <a
-                            href="category/1/{{tendanhmucsearch}}/up"
-                            className={cx("searchLowToHigh")}
+                            onClick={handlerPriceUp}
+                            className={cx("searchLowToHigh", {
+                                active: activeLink === "priceUp",
+                            })}
                         >
                             Giá từ thấp đến cao
                         </a>
                         <a
-                            href="category/1/{{tendanhmucsearch}}/down"
-                            className={cx("searchHighToLow")}
+                            onClick={handlerPriceDown}
+                            className={cx("searchHighToLow", {
+                                active: activeLink === "priceDown",
+                            })}
                         >
                             Giá từ cao đến thấp
                         </a>
