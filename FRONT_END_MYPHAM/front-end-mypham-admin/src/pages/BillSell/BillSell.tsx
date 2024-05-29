@@ -1,4 +1,10 @@
-import { Pagination, Table, TableColumnsType, notification } from "antd";
+import {
+    Pagination,
+    Segmented,
+    Table,
+    TableColumnsType,
+    notification,
+} from "antd";
 import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { MdEditSquare } from "react-icons/md";
@@ -40,6 +46,8 @@ function BillSell() {
     const [keySearch, setKeySearch] = useState("TenKH");
 
     const [valueSearch, setValueSearch] = useState("");
+
+    const [state, setState] = useState("Đang xử lý");
 
     const [api, contextHolder] = notification.useNotification();
 
@@ -110,6 +118,11 @@ function BillSell() {
         {
             title: "Trạng Thái",
             dataIndex: "trangThai",
+            render: (text: string) => (
+                <div style={{ color: text === "Huỷ đơn" ? "#EE0000" : "#33CC00" }}>
+                    {text}
+                </div>
+            ),
         },
         {
             title: "Tuỳ Chọn",
@@ -177,6 +190,7 @@ function BillSell() {
         let results = await searchBillSell({
             page: currentPage,
             pageSize: 10,
+            TrangThai: state,
             [keySearch]: valueSearch,
         });
         setData(results.data);
@@ -211,7 +225,7 @@ function BillSell() {
 
     useEffect(() => {
         fetchData(keySearch, valueSearch);
-    }, [currentPage]);
+    }, [currentPage, state]);
 
     return (
         <>
@@ -240,7 +254,6 @@ function BillSell() {
                                 </option>
                                 <option value="TenKH">Tên Khách Hàng</option>
                                 <option value="SDT">Số Điện Thoại</option>
-                                <option value="TrangThai">Trạng Thái</option>
                             </select>
                         </div>
                         <div className="col-auto">
@@ -278,6 +291,25 @@ function BillSell() {
                         Xoá Hoá Đơn Bán
                     </button>
                 </div>
+
+                <Segmented
+                    style={{ margin: "15px 0" }}
+                    options={[
+                        "Đang xử lý",
+                        "Đang giao hàng",
+                        "Đã giao hàng",
+                        "Đổi hàng",
+                        "Trả hàng",
+                        "Hoàn tất",
+                        "Huỷ đơn",
+                    ]}
+                    block
+                    onChange={(e) => {
+                        setState(e);
+                        setCurrentPage(1);
+                    }}
+                />
+
                 <Table
                     bordered={true}
                     rowSelection={{
