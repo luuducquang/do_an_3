@@ -168,6 +168,7 @@ function Order() {
         getDistrict(keyCountry)
             .then((districtData) => {
                 setDistrict(districtData.results);
+                console.log(districtData.results);
                 return districtData;
             })
             .catch((error) => {

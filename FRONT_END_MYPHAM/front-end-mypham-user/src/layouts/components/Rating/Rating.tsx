@@ -234,7 +234,7 @@ function Rating({ data, maSanPham, loadData }: any) {
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <Rate
                             style={{ color: "#ff9c19", fontSize: "45px" }}
-                            allowHalf
+                            // allowHalf
                             defaultValue={0}
                             onChange={handleRateChange}
                         />
