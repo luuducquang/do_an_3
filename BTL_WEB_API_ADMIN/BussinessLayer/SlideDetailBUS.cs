@@ -17,6 +17,11 @@ namespace BussinessLayer
             _res = res;
         }
 
+        public SlideDetailModel Getbyid(int id)
+        {
+            return _res.Getbyid(id);
+        }
+
         public List<SlideDetailModel> GetAllSlide()
         {
             return _res.GetAllSlide();

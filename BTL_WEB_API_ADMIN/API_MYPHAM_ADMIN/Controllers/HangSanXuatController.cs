@@ -20,6 +20,14 @@ namespace API_MYPHAM.Controllers
         }
 
         [AllowAnonymous]
+        [Route("getbyid-hangsanxuat/{id}")]
+        [HttpGet]
+        public HangSanXuatModel GetByID(int id)
+        {
+            return _hangSanXuatBUS.Getbyid(id);
+        }
+
+        [AllowAnonymous]
         [Route("get-all-hangsanxuat")]
         [HttpGet]
         public IEnumerable<HangSanXuatModel> GetDataAll()

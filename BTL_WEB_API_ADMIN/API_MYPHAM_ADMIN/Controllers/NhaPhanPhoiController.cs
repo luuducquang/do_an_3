@@ -21,6 +21,14 @@ namespace API_MYPHAM.Controllers
         }
 
         [AllowAnonymous]
+        [Route("getbyid-nhaphanphoi/{id}")]
+        [HttpGet]
+        public NhaPhanPhoiModel GetByID(int id)
+        {
+            return _nhaPhanPhoiBUS.Getbyid(id);
+        }
+
+        [AllowAnonymous]
         [Route("get-all-nhaphanphoi")]
         [HttpGet]
         public IEnumerable<NhaPhanPhoiModel> GetDataAll()

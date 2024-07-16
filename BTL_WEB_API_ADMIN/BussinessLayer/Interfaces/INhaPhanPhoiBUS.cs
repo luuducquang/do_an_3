@@ -9,8 +9,8 @@ namespace BussinessLayer.Interfaces
 {
     public partial interface INhaPhanPhoiBUS
     {
+        NhaPhanPhoiModel Getbyid(int id);
         List<NhaPhanPhoiModel> GetNhaPhanPhois();
-
         public bool Create(NhaPhanPhoiModel model);
         public bool Update(NhaPhanPhoiModel model);
         public bool Delete(int manhaphanphoi);

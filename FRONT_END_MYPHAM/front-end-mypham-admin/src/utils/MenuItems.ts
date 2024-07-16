@@ -58,7 +58,7 @@ const Menuitems = [
     href: '/categoryoffer',
   },
   {
-    id: uniqueId(),
+    id: uniqueId(), 
     title: 'Hãng Sản Xuất',
     icon: FaIndustry ,
     href: '/manufacter',

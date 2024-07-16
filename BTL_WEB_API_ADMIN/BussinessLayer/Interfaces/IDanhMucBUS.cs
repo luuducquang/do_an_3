@@ -9,6 +9,7 @@ namespace BussinessLayer.Interfaces
 {
     public partial interface IDanhMucBUS
     {
+        DanhMucModel Getbyid(int id);
         List<DanhMucModel> GetAllDanhmucs();
         public bool Create(DanhMucModel model);
         public bool Update(DanhMucModel model);

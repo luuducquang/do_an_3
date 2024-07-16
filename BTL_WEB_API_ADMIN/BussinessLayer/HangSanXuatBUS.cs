@@ -17,6 +17,10 @@ namespace BussinessLayer
             _res = res;
         }
 
+        public HangSanXuatModel Getbyid(int id)
+        {
+            return _res.Getbyid(id);
+        }
         public List<HangSanXuatModel> GetHangSanXuats()
         {
             return _res.GetHangSanXuats();

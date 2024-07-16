@@ -18,6 +18,11 @@ namespace BussinessLayer
         {
             _res = danhgiaResponsitory;
         }
+
+        public DanhGiaModel Getbyid(int id)
+        {
+            return _res.Getbyid(id);
+        }
         public List<DanhGiaModel> Getbyids(int pageIndex, int pageSize, out long total, int MaSanPham, int ChatLuong, string NoiDung, DateTime? fr_NgayTao, DateTime? to_NgayTao)
         {
             return _res.Getbyids(pageIndex, pageSize, out total, MaSanPham,ChatLuong,NoiDung,fr_NgayTao,to_NgayTao);

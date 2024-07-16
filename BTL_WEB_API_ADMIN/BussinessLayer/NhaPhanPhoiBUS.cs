@@ -17,6 +17,10 @@ namespace BussinessLayer
             _res = res;
         }
 
+        public NhaPhanPhoiModel Getbyid(int id)
+        {
+            return _res.Getbyid(id);
+        }
         public List<NhaPhanPhoiModel> GetNhaPhanPhois()
         {
             return _res.GetNhaPhanPhois();

@@ -17,6 +17,11 @@ namespace BussinessLayer
             _res = res;
         }
 
+        public QuangCaoModel Getbyid(int id)
+        {
+            return _res.Getbyid(id);
+        }
+
         public List<QuangCaoModel> GetDataAll()
         {
             return _res.GetDataAll();

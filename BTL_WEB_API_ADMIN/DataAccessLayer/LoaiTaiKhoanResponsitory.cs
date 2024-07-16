@@ -19,6 +19,22 @@ namespace DataAccessLayer
             _dbHelper = dbHelper;
         }
 
+        public LoaiTaiKhoanModel Getbyid(int id)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getbyidloaitaikhoan",
+                     "@MaLoaitaikhoan", id);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<LoaiTaiKhoanModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public List<LoaiTaiKhoanModel> GettAllLoaiTaiKhoan()
         {

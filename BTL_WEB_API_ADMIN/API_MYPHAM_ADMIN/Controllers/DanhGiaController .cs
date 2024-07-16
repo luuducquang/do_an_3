@@ -1,5 +1,6 @@
 ﻿using BussinessLayer;
 using BussinessLayer.Interfaces;
+using DataAccessLayer.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,14 @@ namespace API_MYPHAM.Controllers
         public DanhGiaController(IDanhGiaBUS danhGiaBUS)
         {
             _danhGiaBUS = danhGiaBUS;
+        }
+
+        [AllowAnonymous]
+        [Route("getbyid-danhgia/{id}")]
+        [HttpGet]
+        public DanhGiaModel GetByID(int id)
+        {
+            return _danhGiaBUS.Getbyid(id);
         }
 
         [Route("search-danhgia")]

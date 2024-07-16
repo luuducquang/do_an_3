@@ -9,8 +9,8 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface IHangSanXuatResponsitory
     {
+        HangSanXuatModel Getbyid(int id);
         List<HangSanXuatModel> GetHangSanXuats();
-
         public bool Create(HangSanXuatModel model);
         public bool Update(HangSanXuatModel model);
         public bool Delete(int mahsx);

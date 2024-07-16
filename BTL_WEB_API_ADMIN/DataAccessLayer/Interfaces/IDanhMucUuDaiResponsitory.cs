@@ -9,6 +9,8 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface IDanhMucUuDaiResponsitory
     {
+        DanhmucUuudaisModel Getbyid(int id);
+
         List<DanhmucUuudaisModel> GetAllDanhmucUuudais();
 
         public bool Create(DanhmucUuudaisModel model);

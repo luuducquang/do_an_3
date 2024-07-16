@@ -19,6 +19,14 @@ namespace API_MYPHAM.Controllers
             _loaiTaiKhoanBUS = loaiTaiKhoanBUS;
         }
 
+        [AllowAnonymous]
+        [Route("getbyid-loaitaikhoan/{id}")]
+        [HttpGet]
+        public LoaiTaiKhoanModel GetByID(int id)
+        {
+            return _loaiTaiKhoanBUS.Getbyid(id);
+        }
+
         [Route("get_all_loaitaikhoan")]
         [HttpGet]
         public IActionResult GetallLoaiTaiKhoan()

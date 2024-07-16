@@ -9,8 +9,8 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface IQuangCaoResponsitory
     {
+        QuangCaoModel Getbyid(int id);
         List<QuangCaoModel> GetDataAll();
-
         bool Create(QuangCaoModel model);
         bool Update(QuangCaoModel model);
         bool Delete(int id);

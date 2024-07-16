@@ -20,6 +20,14 @@ namespace API_MYPHAM.Controllers
         }
 
         [AllowAnonymous]
+        [Route("getbyid-slidedetail/{id}")]
+        [HttpGet]
+        public SlideDetailModel GetByID(int id)
+        {
+            return _slideDetailBUS.Getbyid(id);
+        }
+
+        [AllowAnonymous]
         [Route("get-all-slide")]
         [HttpGet]
         public IEnumerable<SlideDetailModel> GetDatabAll()

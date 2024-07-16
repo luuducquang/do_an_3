@@ -9,6 +9,7 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface INhaPhanPhoiResponsitory
     {
+        NhaPhanPhoiModel Getbyid(int id);
         List<NhaPhanPhoiModel> GetNhaPhanPhois();
         public bool Create(NhaPhanPhoiModel model);
         public bool Update(NhaPhanPhoiModel model);

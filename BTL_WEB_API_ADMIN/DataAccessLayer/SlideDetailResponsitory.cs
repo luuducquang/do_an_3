@@ -14,6 +14,23 @@ namespace DataAccessLayer
             _dbHelper = dbHelper;
         }
 
+        public SlideDetailModel Getbyid(int id)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getbyidslidedetail",
+                     "@MaAnh", id);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<SlideDetailModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<SlideDetailModel> GetAllSlide()
         {
             string msgError = "";

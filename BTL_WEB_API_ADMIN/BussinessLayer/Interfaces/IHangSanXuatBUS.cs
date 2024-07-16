@@ -9,8 +9,8 @@ namespace BussinessLayer.Interfaces
 {
     public partial interface IHangSanXuatBUS
     {
+        HangSanXuatModel Getbyid(int id);
         List<HangSanXuatModel> GetHangSanXuats();
-
         public bool Create(HangSanXuatModel model);
         public bool Update(HangSanXuatModel model);
         public bool Delete(int mansx);

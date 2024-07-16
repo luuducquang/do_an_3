@@ -14,6 +14,23 @@ namespace DataAccessLayer
             _dbHelper = dbHelper;
         }
 
+        public DanhmucUuudaisModel Getbyid(int id)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getbyiddanhmucuudai",
+                     "@Madanhmucuudai", id);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<DanhmucUuudaisModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<DanhmucUuudaisModel> GetAllDanhmucUuudais()
         {
             string msgError = "";

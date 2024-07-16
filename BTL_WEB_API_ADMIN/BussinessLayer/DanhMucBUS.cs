@@ -17,6 +17,11 @@ namespace BussinessLayer
             _res = res;
         }
 
+        public DanhMucModel Getbyid(int id)
+        {
+            return _res.Getbyid(id);
+        }
+
         public List<DanhMucModel> GetAllDanhmucs()
         {
             return _res.GetAllDanhmucs();

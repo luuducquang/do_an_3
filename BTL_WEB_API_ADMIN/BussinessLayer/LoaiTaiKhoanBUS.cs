@@ -16,7 +16,10 @@ namespace BussinessLayer
         {
             _res = res;
         }
-
+        public LoaiTaiKhoanModel Getbyid(int id)
+        {
+            return _res.Getbyid(id);
+        }
         public List<LoaiTaiKhoanModel> GettAllLoaiTaiKhoan()
         {
             return _res.GettAllLoaiTaiKhoan();

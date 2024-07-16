@@ -36,7 +36,7 @@ function DistributorModal(props: any) {
                         DiaChi: values.diaChi,
                         SoDienThoai: values.soDienThoai,
                         LinkWeb: values.linkWeb,
-                        MoTa: values.moTa,
+                        MoTa: values.moTa,  
                     });
                     props.fetchData();
                     openNotificationWithIcon("success", "Cập nhật thành công!");

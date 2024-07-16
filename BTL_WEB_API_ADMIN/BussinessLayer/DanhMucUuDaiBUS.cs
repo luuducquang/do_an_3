@@ -17,6 +17,11 @@ namespace BussinessLayer
             _res = res;
         }
 
+        public DanhmucUuudaisModel Getbyid(int id)
+        {
+            return _res.Getbyid(id);
+        }
+
         public List<DanhmucUuudaisModel> GetAllDanhmucUuudais()
         {
             return _res.GetAllDanhmucUuudais();

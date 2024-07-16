@@ -8,7 +8,7 @@ import TypeAccountDelete from "../../components/HandlerTypeAccount/TypeAccountDe
 interface DataType {
     key: React.Key;
     maLoaitaikhoan: any;
-    tenLoai: any;
+    tenLoai: any;   
     moTa: any;
 }
 

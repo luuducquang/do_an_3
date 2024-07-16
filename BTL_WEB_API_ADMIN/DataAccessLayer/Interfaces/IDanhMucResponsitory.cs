@@ -9,6 +9,7 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface IDanhMucResponsitory
     {
+        DanhMucModel Getbyid(int id);
         List<DanhMucModel> GetAllDanhmucs();
 
         public bool Create(DanhMucModel model);

@@ -18,6 +18,23 @@ namespace DataAccessLayer
         {
             _dbHelper = dbHelper;
         }
+
+        public DanhGiaModel Getbyid(int id)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "[sp_getiddanhgia]",
+                     "@MaDanhGia", id);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<DanhGiaModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public List<DanhGiaModel> Getbyids(int pageIndex, int pageSize, out long total, int MaSanPham, int ChatLuong, string NoiDung, DateTime? fr_NgayTao, DateTime? to_NgayTao)
         {
             string msgError = "";

@@ -9,8 +9,8 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface ISlideDetailResponsitory
     {
+        SlideDetailModel Getbyid(int id);
         List<SlideDetailModel> GetAllSlide();
-
         bool Create(SlideDetailModel model);
 
         bool Update(SlideDetailModel model);

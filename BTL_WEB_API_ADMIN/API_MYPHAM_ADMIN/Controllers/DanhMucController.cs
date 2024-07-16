@@ -21,6 +21,14 @@ namespace API_MYPHAM.Controllers
         }
 
         [AllowAnonymous]
+        [Route("getbyid-danhmuc/{id}")]
+        [HttpGet]
+        public DanhMucModel GetByID(int id)
+        {
+            return _danhMucBUS.Getbyid(id);
+        }
+
+        [AllowAnonymous]
         [Route("get-all-danhmuc")]
         [HttpGet]
         public IEnumerable<DanhMucModel> GetDataAll()

@@ -20,6 +20,14 @@ namespace API_MYPHAM.Controllers
         }
 
         [AllowAnonymous]
+        [Route("getbyid-quangcao/{id}")]
+        [HttpGet]
+        public QuangCaoModel GetByID(int id)
+        {
+            return _quangCaoBUS.Getbyid(id);
+        }
+
+        [AllowAnonymous]
         [Route("get-all-quangcao")]
         [HttpGet]
         public IEnumerable<QuangCaoModel> GetDatabAll()

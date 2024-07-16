@@ -9,8 +9,8 @@ namespace BussinessLayer.Interfaces
 {
     public partial interface IQuangCaoBUS
     {
+        QuangCaoModel Getbyid(int id);
         List<QuangCaoModel> GetDataAll();
-
         bool Create(QuangCaoModel quangCao);
         bool Update(QuangCaoModel quangCao);
         bool Delete(int id);

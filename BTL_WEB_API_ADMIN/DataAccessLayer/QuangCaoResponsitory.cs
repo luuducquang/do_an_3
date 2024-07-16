@@ -14,6 +14,23 @@ namespace DataAccessLayer
             _dbHelper = dbHelper;
         }
 
+        public QuangCaoModel Getbyid(int id)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getbyidquangcao",
+                     "@Id", id);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<QuangCaoModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<QuangCaoModel> GetDataAll()
         {
             string msgError = "";

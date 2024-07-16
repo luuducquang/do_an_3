@@ -9,8 +9,8 @@ namespace BussinessLayer.Interfaces
 {
     public partial interface ISlideDetailBUS
     {
+        SlideDetailModel Getbyid(int id);
         List<SlideDetailModel> GetAllSlide();
-
         bool Create(SlideDetailModel model);
         bool Update(SlideDetailModel model);
         bool Delete(int MaAnh);
